@@ -93,15 +93,28 @@ npm run typecheck
 npm run build
 ```
 
-## Current migration state
+## Current deployment state
 
-현재 LIVE DEMO는 Porthub 도메인의 `/demo/*` 경로로 노출하며, 내부적으로 기존 GitHub Pages를 임시 origin으로 사용합니다.
+Porthub는 현재 네 개의 portfolio-safe static export를 저장소 내부 `public/demos/<slug>`에서 직접 서빙합니다.
 
-최종 전환 순서:
+```text
+private source repo
+  → manual Publish Portfolio Demo
+  → security gate
+  → portfolio_hub/public/demos/<slug>
+  → manifest update
+  → Vercel automatic deployment
+```
 
-1. 각 원본 프로젝트의 portfolio-safe static export 규격 통일
-2. 정적 데모를 Porthub 단일 배포에 포함
-3. Porthub의 외부 GitHub Pages proxy 제거
-4. 모든 원본 포트폴리오 저장소를 private로 전환
-5. 기존 GitHub Pages workflow 비활성화
-6. Porthub 전체 데모 및 asset 경로 회귀 검증
+외부 GitHub Pages origin이나 프로젝트별 Vercel deployment는 사용하지 않습니다.
+
+현재 완료된 전환:
+
+1. portfolio-safe static export 규격 통일
+2. 정적 데모 4개를 Porthub 단일 배포에 포함
+3. 외부 GitHub Pages proxy 제거
+4. 기존 GitHub Pages deployment workflow 제거
+5. 프로젝트별 임시 Vercel config 제거
+6. Porthub 전체 demo registry 보안검사 및 build 검증
+
+남은 운영 단계는 원본 포트폴리오 저장소를 private로 유지하는 것입니다.
