@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "slug": "supportops",
+  "order": 2,
+  "title": "SupportOps AI",
+  "kicker": "AI 고객문의·장애접수 운영 자동화",
+  "description": "고객 문의를 AI가 분류하고 관련 지식을 찾아 답변 초안을 만들되, 실제 발송 전에는 반드시 운영자가 검토하는 안전한 SupportOps 흐름입니다.",
+  "category": "AI OPERATIONS",
+  "accent": "#8b7cf8",
+  "stack": [
+    "Next.js",
+    "PostgreSQL",
+    "Gemini",
+    "RAG"
+  ],
+  "problem": "고객 문의가 늘수록 분류, 자료 검색, 답변 작성, 담당자 전달이 모두 수작업 병목이 됩니다.",
+  "solution": "AI 분류 → 근거 검색 → 답변 초안 → 사람 검토 → 발송이라는 운영 흐름을 제품화했습니다. AI가 근거 없이 직접 고객에게 답하지 않도록 사람 검토를 기본 경계로 뒀습니다.",
+  "evidence": [
+    "Hybrid Retrieval + RAG",
+    "Human Review 승인 흐름",
+    "실제 Gemini acceptance 검증",
+    "Playwright E2E 및 AI 평가"
+  ],
+  "scope": [
+    "Ticket Queue",
+    "AI Triage",
+    "Knowledge Retrieval",
+    "Grounded Draft",
+    "Human Review",
+    "Audit / Evaluation"
+  ],
+  "preview": "ai"
+}

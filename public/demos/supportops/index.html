@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111a2c">
+  <title>SupportOps AI · 포트폴리오 데모</title>
+  <meta name="description" content="AI 기반 고객지원 운영 자동화 포트폴리오 데모">
+  <link rel="stylesheet" href="./styles.css">
+  <meta name="robots" content="noindex, nofollow">\n</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div>
+        <div class="brand">SupportOps AI</div>
+        <div class="demo-badge">포트폴리오 데모</div>
+      </div>
+      <nav class="nav" aria-label="주요 메뉴">
+        <button data-route="dashboard">운영 현황</button>
+        <button data-route="tickets">고객 문의</button>
+        <button data-route="knowledge">자료 보관함</button>
+        <button data-route="evaluation">AI 평가</button>
+        <button data-route="delivery">발송 대기</button>
+        <button data-route="audit">처리 기록</button>
+      </nav>
+      <div class="sidebar-foot">
+        <span>테스트용 합성 데이터</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="static-warning">
+        <div class="static-warning-copy">
+          <strong>Portfolio Demo</strong>
+          <span>화면과 운영 흐름을 체험하는 정적 포트폴리오입니다. 실제 DB·AI·메일 연동은 비공개 서버 구현에서 별도로 검증했습니다.</span>
+        </div>
+        <button class="button primary video-demo-button" id="open-demo-video" type="button">시연 영상</button>
+      </div>
+      <div id="app" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <div class="video-modal" id="demo-video-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="demo-video-title">
+    <div class="video-modal-backdrop" data-close-demo-video></div>
+    <div class="video-modal-panel">
+      <div class="video-modal-head">
+        <div>
+          <div class="eyebrow">FUNCTIONAL PROOF</div>
+          <h2 id="demo-video-title">SupportOps AI 시연 영상</h2>
+        </div>
+        <button class="video-modal-close" type="button" data-close-demo-video aria-label="시연 영상 닫기">×</button>
+      </div>
+      <video id="demo-video" class="video-player" controls preload="metadata" playsinline>
+        <source src="./supportops-ai-demo.mp4" type="video/mp4">
+        브라우저가 MP4 비디오 재생을 지원하지 않습니다.
+      </video>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
