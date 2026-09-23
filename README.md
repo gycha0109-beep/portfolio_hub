@@ -35,3 +35,14 @@ npm run build
 Vercel 배포용 Vite SPA입니다. `vercel.json`이 상세 프로젝트 경로를 SPA entry로 rewrite합니다.
 
 현재 각 LIVE DEMO 버튼은 기존 GitHub Pages를 임시로 사용합니다. 각 프로젝트의 Vercel 공개 데모 이관이 끝난 뒤 URL을 교체하고 원본 저장소와 GitHub Pages를 비공개/비활성화합니다.
+
+
+## Safe migration order
+
+1. Import `porthub` into Vercel and confirm the production URL.
+2. Deploy each portfolio demo from its own source repository to Vercel.
+3. Replace the temporary GitHub Pages demo URLs in `src/data.ts`.
+4. Re-run Porthub build verification and verify all four demo links.
+5. Change `partnerflow-erp`, `SupportOps-AI`, `PartnerOps`, `LMS_Skin_change`, and `porthub` to private repositories.
+6. Disable the old GitHub Pages workflows only after the Vercel demos are confirmed.
+7. Keep the public portfolio URL direct-share only; `noindex, nofollow` is enabled by default.
