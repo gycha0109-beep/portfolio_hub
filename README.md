@@ -2,12 +2,48 @@
 
 외주·프로젝트 클라이언트에게 공개하는 통합 포트폴리오 허브입니다.
 
-## 목적
+> Repository: `portfolio_hub`  
+> Public brand: **Porthub**
 
-- 프로젝트 원본 GitHub 저장소와 공개 포트폴리오를 분리
-- 구현 소스 대신 문제 정의, 해결 방식, 작동 데모, 검증 결과를 공개
-- 여러 프로젝트를 하나의 Vercel 진입점에서 제공
-- 개별 원본 저장소를 private로 전환해도 공개 포트폴리오 유지
+## Architecture
+
+```text
+PUBLIC
+portfolio_hub
+└─ Porthub UI
+   └─ exported static demos only
+      ├─ partnerflow
+      ├─ supportops
+      ├─ partnerops
+      └─ lms
+
+PRIVATE
+├─ partnerflow-erp
+├─ SupportOps-AI
+├─ PartnerOps
+└─ LMS_Skin_change
+```
+
+Porthub는 Vercel에 단일 프로젝트로 배포합니다. 원본 프로젝트 저장소를 별도 Vercel 프로젝트로 각각 배포하지 않습니다.
+
+## Security boundary
+
+공개 `portfolio_hub`에는 다음만 포함합니다.
+
+- 포트폴리오 허브 UI
+- 클라이언트에게 보여줄 설명·기술 스택·검증 결과
+- 공개용 synthetic data
+- 실행 가능한 정적 데모 산출물
+- 공개용 영상·스크린샷
+
+다음은 포함하지 않습니다.
+
+- 원본 프로젝트 source
+- 내부 설계 문서 전체
+- DB migration / production schema 원본
+- credential / secret / environment value
+- private repository URL을 노출하는 UI
+- 불필요한 Git history 또는 개발용 artifact
 
 ## Projects
 
@@ -15,6 +51,33 @@
 - SupportOps AI — AI 고객문의·장애접수 운영 자동화
 - PartnerOps — 멀티테넌트 파트너 운영 포털
 - LMS Skin Change — 레거시 LMS 300화면 현대화
+
+## Deployment model
+
+```text
+private project
+   ↓
+portfolio-safe static export
+   ↓
+portfolio_hub/public/demos/<slug>
+   ↓
+one Vercel deployment
+   ↓
+porthub-neon.vercel.app/demo/<slug>/
+```
+
+프로젝트가 추가되어도 Vercel 프로젝트를 새로 만들지 않습니다. 신규 프로젝트는 Porthub 프로젝트 목록과 정적 데모 export만 추가합니다.
+
+## CI policy
+
+`portfolio_hub`는 GitHub Actions 사용 정책상 public repository로 유지합니다.
+
+공개 CI는 다음 원칙을 따릅니다.
+
+- secret이 필요한 workflow는 fork PR에서 실행하지 않음
+- private source를 공개 artifact로 업로드하지 않음
+- Porthub에는 정적 export 결과만 반영
+- 모든 공개 데모에는 `noindex, nofollow` 적용
 
 ## Local
 
@@ -30,19 +93,15 @@ npm run typecheck
 npm run build
 ```
 
-## Deployment
+## Current migration state
 
-Vercel 배포용 Vite SPA입니다. `vercel.json`이 상세 프로젝트 경로를 SPA entry로 rewrite합니다.
+현재 LIVE DEMO는 Porthub 도메인의 `/demo/*` 경로로 노출하며, 내부적으로 기존 GitHub Pages를 임시 origin으로 사용합니다.
 
-현재 각 LIVE DEMO 버튼은 기존 GitHub Pages를 임시로 사용합니다. 각 프로젝트의 Vercel 공개 데모 이관이 끝난 뒤 URL을 교체하고 원본 저장소와 GitHub Pages를 비공개/비활성화합니다.
+최종 전환 순서:
 
-
-## Safe migration order
-
-1. Import `porthub` into Vercel and confirm the production URL.
-2. Deploy each portfolio demo from its own source repository to Vercel.
-3. Replace the temporary GitHub Pages demo URLs in `src/data.ts`.
-4. Re-run Porthub build verification and verify all four demo links.
-5. Change `partnerflow-erp`, `SupportOps-AI`, `PartnerOps`, `LMS_Skin_change`, and `porthub` to private repositories.
-6. Disable the old GitHub Pages workflows only after the Vercel demos are confirmed.
-7. Keep the public portfolio URL direct-share only; `noindex, nofollow` is enabled by default.
+1. 각 원본 프로젝트의 portfolio-safe static export 규격 통일
+2. 정적 데모를 Porthub 단일 배포에 포함
+3. Porthub의 외부 GitHub Pages proxy 제거
+4. 네 원본 저장소를 private로 전환
+5. 기존 GitHub Pages workflow 비활성화
+6. Porthub 전체 데모 및 asset 경로 회귀 검증
