@@ -25,5 +25,7 @@ jobs:
           node-version: "22"
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+      - name: Test public demo security gate
+        run: node scripts/test-demo-security-gate.mjs
       - name: Typecheck and build
         run: npm run build
