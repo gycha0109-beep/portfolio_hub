@@ -1,0 +1,67 @@
+name: Receive Portfolio Demo
+
+on:
+  workflow_call:
+    inputs:
+      slug:
+        description: Public demo slug
+        required: true
+        type: string
+      artifact_name:
+        description: Uploaded portfolio artifact name
+        required: false
+        default: portfolio-demo
+        type: string
+    secrets:
+      PORTFOLIO_HUB_TOKEN:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download sanitized demo artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact_name }}
+          path: incoming-demo
+
+      - name: Checkout public portfolio hub
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: gycha0109-beep/portfolio_hub
+          ref: main
+          path: hub
+          token: ${{ secrets.PORTFOLIO_HUB_TOKEN }}
+          persist-credentials: true
+
+      - name: Validate public demo boundary
+        run: node hub/scripts/validate-demo-package.mjs incoming-demo "${{ inputs.slug }}"
+
+      - name: Install demo and update manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          target="hub/public/demos/${{ inputs.slug }}"
+          rm -rf "$target"
+          mkdir -p "$target"
+          cp -a incoming-demo/. "$target/"
+          node hub/scripts/upsert-project-manifest.mjs             hub/portfolio.manifest.json             incoming-demo/portfolio.json
+
+      - name: Commit public-only demo
+        shell: bash
+        working-directory: hub
+        run: |
+          set -euo pipefail
+          git config user.name "portfolio-publisher[bot]"
+          git config user.email "portfolio-publisher[bot]@users.noreply.github.com"
+          git add portfolio.manifest.json "public/demos/${{ inputs.slug }}"
+          if git diff --cached --quiet; then
+            echo "No public demo changes to publish."
+            exit 0
+          fi
+          git commit -m "portfolio: publish ${{ inputs.slug }}"
+          git push origin HEAD:main
