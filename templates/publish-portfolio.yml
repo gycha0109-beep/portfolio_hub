@@ -1,0 +1,41 @@
+name: Publish Portfolio Demo
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      # Build or assemble ONLY the public-safe static demo into portfolio-export/.
+      # Never copy source directories, docs, DB schemas, migrations, tests, or secrets.
+      - name: Build portfolio export
+        run: |
+          mkdir -p portfolio-export
+          echo "Replace this step with the project's static demo export."
+
+      - name: Attach public metadata
+        run: cp portfolio/portfolio.json portfolio-export/portfolio.json
+
+      - name: Upload sanitized demo candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-demo
+          path: portfolio-export
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    needs: export
+    uses: gycha0109-beep/portfolio_hub/.github/workflows/receive-portfolio-demo.yml@main
+    with:
+      slug: REPLACE_WITH_PUBLIC_SLUG
+      artifact_name: portfolio-demo
+    secrets:
+      PORTFOLIO_HUB_TOKEN: ${{ secrets.PORTFOLIO_HUB_TOKEN }}
