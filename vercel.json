@@ -1,10 +1,18 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
+    { "source": "/demo/partnerflow", "destination": "https://gycha0109-beep.github.io/partnerflow-erp/" },
     { "source": "/demo/partnerflow/:path*", "destination": "https://gycha0109-beep.github.io/partnerflow-erp/:path*" },
+
+    { "source": "/demo/supportops", "destination": "https://gycha0109-beep.github.io/SupportOps-AI/" },
     { "source": "/demo/supportops/:path*", "destination": "https://gycha0109-beep.github.io/SupportOps-AI/:path*" },
+
+    { "source": "/demo/partnerops", "destination": "https://gycha0109-beep.github.io/PartnerOps/" },
     { "source": "/demo/partnerops/:path*", "destination": "https://gycha0109-beep.github.io/PartnerOps/:path*" },
+
+    { "source": "/demo/lms", "destination": "https://gycha0109-beep.github.io/LMS_Skin_change/" },
     { "source": "/demo/lms/:path*", "destination": "https://gycha0109-beep.github.io/LMS_Skin_change/:path*" },
-    { "source": "/(.*)", "destination": "/index.html" }
+
+    { "source": "/:path*", "destination": "/index.html" }
   ]
 }
