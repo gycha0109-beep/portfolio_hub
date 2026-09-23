@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>운영 지원 · 화면 22 | 사내교육관리시스템</title>
+    <link rel="stylesheet" href="../assets/app.css">
+<meta name="robots" content="noindex, nofollow"></head>
+<body class="mode-legacy" data-route="support-page-22" data-mode="legacy" data-archetype="modal" data-legacy-profile="dom-order-modal">
+<div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+                    <div class="brand">사내교육관리시스템</div>
+        
+        <nav>
+                                                                <a class="" href="../legacy/dashboard-page-01.html">
+                                                <span>대시보드</span>
+                    </a>
+                                    <a class="" href="../legacy/users-page-01.html">
+                                                <span>사용자 관리</span>
+                    </a>
+                                    <a class="" href="../legacy/courses-page-01.html">
+                                                <span>강좌 관리</span>
+                    </a>
+                                    <a class="" href="../legacy/enrollments-page-01.html">
+                                                <span>수강 관리</span>
+                    </a>
+                                    <a class="" href="../legacy/attendance-page-01.html">
+                                                <span>출결 관리</span>
+                    </a>
+                                                                                <a class="" href="../legacy/assignments-page-01.html">
+                                                <span>과제 관리</span>
+                    </a>
+                                    <a class="" href="../legacy/exams-page-01.html">
+                                                <span>시험 관리</span>
+                    </a>
+                                    <a class="" href="../legacy/notices-page-01.html">
+                                                <span>공지사항</span>
+                    </a>
+                                    <a class="" href="../legacy/materials-page-01.html">
+                                                <span>자료실</span>
+                    </a>
+                                                                                <a class="" href="../legacy/reports-page-01.html">
+                                                <span>통계/리포트</span>
+                    </a>
+                                    <a class="" href="../legacy/settings-page-01.html">
+                                                <span>시스템 설정</span>
+                    </a>
+                                    <a class="active" href="../legacy/support-page-01.html">
+                                                <span>운영 지원</span>
+                    </a>
+                                    </nav>
+
+            </aside>
+    
+    <main class="main">
+                    <header class="topbar">
+                <div>
+                    <div class="eyebrow">운영 지원</div>
+                    <h1>운영 지원 · 화면 22</h1>
+                </div>
+                <div class="topbar-actions">
+                    <a class="mode-link" href="../modern/support-page-22.html">변경 화면 보기</a>
+                    <button id="openModal" type="button">빠른 작업</button>
+                </div>
+            </header>
+            <table class="legacy-notice"><tr><td>공지</td><td>기존 운영 화면 샘플 · CSS/ID/스크립트 의존성이 혼재된 상태를 재현</td></tr></table>
+            <section class="legacy-source-evidence" data-profile="dom-order-modal">
+                <div>
+                    <span class="legacy-source-label">LEGACY SOURCE PATTERN</span>
+                    <strong>DOM-order dependent modal</strong>
+                </div>
+                <div class="legacy-issue-list">
+                                            <span>inline click handler</span>
+                                            <span>descendant selector dependency</span>
+                                            <span>fixed modal IDs</span>
+                                    </div>
+                <b class="legacy-risk">risk: high</b>
+            </section>
+        
+        <div class="content-area">
+                    <section class="empty-state panel">
+            <span class="empty-icon">↗</span>
+            <h2>일괄 운영 작업</h2>
+            <p>기존 id 기반 모달 호출을 유지하면서 신규 스킨의 다이얼로그 스타일을 적용했습니다.</p>
+            <button id="openInlineModal" class="primary" type="button">빠른 작업 열기</button>
+            <div class="code-hint"><span>Legacy hook</span><code>#openModal → #demoModal</code></div>
+        </section>
+                </div>
+
+            </main>
+</div>
+
+<div id="demoModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-head">
+            <div><span class="modal-kicker">QUICK ACTION</span><strong id="modalTitle">운영 작업 만들기</strong></div>
+            <button id="closeModal" class="icon-button" type="button" aria-label="닫기">×</button>
+        </div>
+        <label class="modal-field">작업 유형
+            <select><option>강좌 공지 등록</option><option>수강생 일괄 등록</option><option>운영 메모 작성</option></select>
+        </label>
+        <label class="modal-field">메모
+            <textarea rows="4" placeholder="작업 내용을 입력하세요."></textarea>
+        </label>
+        <div class="modal-actions"><button id="modalCancel" type="button">취소</button><button type="button" class="primary">작업 생성</button></div>
+    </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite">변경사항이 저장되었습니다.</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>
+    

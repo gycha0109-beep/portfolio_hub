@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "slug": "lms",
+  "order": 4,
+  "title": "LMS Skin Change",
+  "kicker": "레거시 LMS 300화면 현대화",
+  "description": "규칙 없이 얽힌 레거시 PHP 화면을 분석하고 공통 패턴으로 분류한 뒤, 기존 동작을 깨지 않고 신규 관리자 UI로 교체하는 대규모 마이그레이션 프로젝트입니다.",
+  "category": "LEGACY",
+  "accent": "#e96f64",
+  "stack": [
+    "PHP 8.2",
+    "Playwright",
+    "Static Analysis",
+    "Regression"
+  ],
+  "problem": "수백 개 레거시 화면을 사람이 하나씩 수정하면 누락과 JavaScript 회귀를 통제하기 어렵습니다.",
+  "solution": "300개 소스를 먼저 분석해 8개 UI 패턴으로 분류하고, 공통 shell 적용 → 300 URL 브라우저 검증까지 자동화하는 납품 흐름으로 재구성했습니다.",
+  "evidence": [
+    "300개 화면 source inventory",
+    "8개 UI archetype",
+    "300/300 Chromium smoke",
+    "Before / After regression"
+  ],
+  "scope": [
+    "Legacy Analysis",
+    "Pattern Classification",
+    "Shared Admin Shell",
+    "300-page Migration",
+    "Browser Regression",
+    "Delivery Manifest"
+  ],
+  "preview": "legacy"
+}

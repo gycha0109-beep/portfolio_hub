@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>시스템 설정 · 화면 08 | NOVA LMS</title>
+    <link rel="stylesheet" href="../assets/app.css">
+<meta name="robots" content="noindex, nofollow"></head>
+<body class="mode-modern" data-route="settings-page-08" data-mode="modern" data-archetype="settings" data-legacy-profile="direct-control-binding">
+<div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+                    <div class="sidebar-brand">
+                <span class="brand-mark">N</span>
+                <div><strong>NOVA LMS</strong><small>ADMIN CONSOLE</small></div>
+            </div>
+            <div class="workspace-chip">
+                <span class="workspace-dot"></span>
+                <div><strong>사내 교육 운영</strong><small>Production workspace</small></div>
+            </div>
+        
+        <nav>
+                            <div class="nav-label">운영</div>                                    <a class="" href="../modern/dashboard-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">D</span>                        <span>대시보드</span>
+                    </a>
+                                    <a class="" href="../modern/users-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">U</span>                        <span>사용자 관리</span>
+                    </a>
+                                    <a class="" href="../modern/courses-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">C</span>                        <span>강좌 관리</span>
+                    </a>
+                                    <a class="" href="../modern/enrollments-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">E</span>                        <span>수강 관리</span>
+                    </a>
+                                    <a class="" href="../modern/attendance-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">A</span>                        <span>출결 관리</span>
+                    </a>
+                                            <div class="nav-label">학습 콘텐츠</div>                                    <a class="" href="../modern/assignments-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">A</span>                        <span>과제 관리</span>
+                    </a>
+                                    <a class="" href="../modern/exams-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">E</span>                        <span>시험 관리</span>
+                    </a>
+                                    <a class="" href="../modern/notices-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">N</span>                        <span>공지사항</span>
+                    </a>
+                                    <a class="" href="../modern/materials-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">M</span>                        <span>자료실</span>
+                    </a>
+                                            <div class="nav-label">분석 및 설정</div>                                    <a class="" href="../modern/reports-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">R</span>                        <span>통계/리포트</span>
+                    </a>
+                                    <a class="active" href="../modern/settings-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">S</span>                        <span>시스템 설정</span>
+                    </a>
+                                    <a class="" href="../modern/support-page-01.html">
+                        <span class="nav-icon" aria-hidden="true">S</span>                        <span>운영 지원</span>
+                    </a>
+                                    </nav>
+
+                    <div class="sidebar-footer">
+                <span class="avatar">AD</span>
+                <div><strong>관리자</strong><small>admin@nova.local</small></div>
+                <span class="more">•••</span>
+            </div>
+            </aside>
+    
+    <main class="main">
+                    <header class="utility-bar">
+                <button id="sidebarToggle" class="icon-button mobile-only" type="button" aria-label="메뉴 열기">☰</button>
+                <label class="global-search">
+                    <span>⌕</span>
+                    <input type="search" placeholder="사용자, 강좌, 메뉴 검색">
+                    <kbd>⌘ K</kbd>
+                </label>
+                <div class="utility-actions">
+                    <button class="icon-button" type="button" aria-label="알림">♢<span class="notification-dot"></span></button>
+                    <span class="utility-separator"></span>
+                    <span class="avatar small">AD</span>
+                </div>
+            </header>
+
+            <section class="page-heading">
+                <div>
+                    <div class="breadcrumbs"><span>홈</span><b>›</b><span>시스템 설정</span><b>›</b><strong>settings</strong></div>
+                    <h1>시스템 설정 · 화면 08</h1>
+                    <p>운영 중인 레거시 LMS의 기능 흐름을 유지하면서 신규 관리자 스킨으로 전환한 화면입니다.</p>
+                </div>
+                <div class="topbar-actions">
+                    <a class="mode-link" href="../legacy/settings-page-08.html">Before 보기</a>
+                    <button id="openModal" class="primary" type="button">+ 빠른 작업</button>
+                </div>
+            </section>
+
+            <section class="migration-banner">
+                <div><span class="check-dot">✓</span><strong>Skin migration applied</strong><span>PHP 8.2 · DOM/JS hook preservation</span></div>
+                <span class="migration-meta">300-page inventory · settings</span>
+            </section>
+        
+        <div class="content-area">
+                    <section class="settings-layout">
+            <aside class="settings-tabs panel">
+                <a class="active" href="#">기본 설정</a><a href="#">알림</a><a href="#">권한</a><a href="#">메일 템플릿</a><a href="#">로그</a>
+            </aside>
+            <article class="panel settings-panel">
+                <div class="panel-head"><div><h2>기본 운영 설정</h2><p>LMS 공통 동작을 설정합니다.</p></div></div>
+                <div class="setting-row"><div><strong>자동 수강 승인</strong><p>신청 즉시 수강 상태로 전환합니다.</p></div><button class="switch on" type="button" aria-label="자동 수강 승인 켜짐"><i></i></button></div>
+                <div class="setting-row"><div><strong>완료 알림 발송</strong><p>과정 이수 시 사용자에게 알림을 보냅니다.</p></div><button class="switch on" type="button" aria-label="완료 알림 켜짐"><i></i></button></div>
+                <div class="setting-row"><div><strong>관리자 승인 없는 외부 과정</strong><p>외부 과정 등록 시 검토 단계를 생략합니다.</p></div><button class="switch" type="button" aria-label="외부 과정 자동 승인 꺼짐"><i></i></button></div>
+                <div class="settings-actions"><button id="saveSettings" class="primary" type="button">설정 저장</button></div>
+            </article>
+        </section>
+                </div>
+
+                    <footer class="page-footer">
+                <span>Legacy migration simulation · client source/data not used</span>
+                <span>PHP 8.2 · Browser regression gated</span>
+            </footer>
+            </main>
+</div>
+
+<div id="demoModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-head">
+            <div><span class="modal-kicker">QUICK ACTION</span><strong id="modalTitle">운영 작업 만들기</strong></div>
+            <button id="closeModal" class="icon-button" type="button" aria-label="닫기">×</button>
+        </div>
+        <label class="modal-field">작업 유형
+            <select><option>강좌 공지 등록</option><option>수강생 일괄 등록</option><option>운영 메모 작성</option></select>
+        </label>
+        <label class="modal-field">메모
+            <textarea rows="4" placeholder="작업 내용을 입력하세요."></textarea>
+        </label>
+        <div class="modal-actions"><button id="modalCancel" type="button">취소</button><button type="button" class="primary">작업 생성</button></div>
+    </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite">변경사항이 저장되었습니다.</div>
+<script src="../assets/app.js"></script>
+</body>
+</html>
+    

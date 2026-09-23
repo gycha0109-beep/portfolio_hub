@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>LMS Skin Change · Static Demo</title>
+<style>
+:root{font-family:Inter,Pretendard,"Noto Sans KR",Arial,sans-serif;color:#18212f;background:#f5f7fb}
+*{box-sizing:border-box}body{margin:0}main{max-width:1180px;margin:auto;padding:68px 22px 80px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;color:#3159ae}
+h1{font-size:42px;letter-spacing:-.04em;margin:10px 0 12px}p{max-width:760px;color:#667085;line-height:1.7;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 36px}.meta span{border:1px solid #dce3ed;background:#fff;border-radius:999px;padding:7px 10px;font-size:11px;color:#526072}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{min-height:150px;padding:17px;display:flex;flex-direction:column;border:1px solid #e3e8ef;border-radius:14px;background:#fff;text-decoration:none;color:inherit;box-shadow:0 4px 18px rgba(20,35,60,.035)}
+.card:hover{border-color:#bfd1ff;transform:translateY(-1px)}.card .tag{font-size:9px;color:#3159ae;font-weight:800;letter-spacing:.1em}.card strong{font-size:15px;margin:22px 0 5px}.card small{color:#8a6c18;font-size:10px;line-height:1.45}.card>span:last-child{margin-top:auto;font-size:10px;color:#7b8493}
+.actions{display:flex;gap:9px;margin-top:28px}.actions a{text-decoration:none;border-radius:9px;padding:10px 13px;font-size:11px}.primary{background:#3159ae;color:#fff}.secondary{background:#fff;border:1px solid #dce3ed;color:#344054}
+.note{margin-top:38px;padding-top:18px;border-top:1px solid #e2e7ee;color:#98a2b3;font-size:10px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:540px){h1{font-size:32px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<div class="eyebrow">PORTFOLIO REPRODUCTION</div>
+<h1>Legacy PHP LMS Skin Migration</h1>
+<p>실제 외주 공고의 요구사항을 독립적으로 재현한 정적 데모입니다. 300개 검수 URL에 대응하는 가상 레거시 PHP fixture를 8개 source profile로 생성·분석하고, DOM/JavaScript 동작 계약을 유지한 채 현대적인 관리자 스킨으로 전환한 결과를 비교할 수 있습니다.</p>
+<div class="meta"><span>PHP 8.2</span><span>300 target URLs</span><span>300 generated legacy PHP fixtures</span><span>8 source profiles</span><span>8 archetypes</span><span>300 source-scanned PHP fixtures</span><span>risk: high 144 / medium 156</span><span>Playwright behavior regression</span></div>
+<section class="grid"><a class="card" href="compare/dashboard.html"><span class="tag">DASHBOARD</span><strong>대시보드 · 화면 01</strong><small>Inline style + embedded CSS</small><span>Legacy ↔ Modern 비교 보기 →</span></a>
+<a class="card" href="compare/list.html"><span class="tag">LIST</span><strong>대시보드 · 화면 02</strong><small>ID-coupled filter script</small><span>Legacy ↔ Modern 비교 보기 →</span></a>
+<a class="card" href="compare/detail.html"><span class="tag">DETAIL</span><strong>대시보드 · 화면 03</strong><small>Shared include + page override</small><span>Legacy ↔ Modern 비교 보기 →</span></a>
+<a class="card" href="compare/form.html"><span class="tag">FORM</span><strong>대시보드 · 화면 04</strong><small>Inline form validation handler</small><span>Legacy ↔ Modern 비교 보기 →</span></a>
+<a class="card" href="compare/table-filter.html"><span class="tag">TABLE-FILTER</span><strong>대시보드 · 화면 05</strong><small>Selector-coupled table/filter</small><span>Legacy ↔ Modern 비교 보기 →</span></a>
+<a class="card" href="compare/modal.html"><span class="tag">MODAL</span><strong>대시보드 · 화면 06</strong><small>DOM-order dependent modal</small><span>Legacy ↔ Modern 비교 보기 →</span></a>
+<a class="card" href="compare/statistics.html"><span class="tag">STATISTICS</span><strong>대시보드 · 화면 07</strong><small>Duplicated page CSS</small><span>Legacy ↔ Modern 비교 보기 →</span></a>
+<a class="card" href="compare/settings.html"><span class="tag">SETTINGS</span><strong>대시보드 · 화면 08</strong><small>Direct settings control binding</small><span>Legacy ↔ Modern 비교 보기 →</span></a></section>
+<div class="actions">
+<a class="primary" href="modern/dashboard-page-01.html">Modern Dashboard 열기</a>
+<a class="secondary" href="legacy/dashboard-page-01.html">Legacy Dashboard 열기</a>
+</div>
+<div class="note">실제 고객사 소스·데이터 및 Metronic 유료 소스/에셋은 포함하지 않습니다.</div>
+</main></body>
+</html>
