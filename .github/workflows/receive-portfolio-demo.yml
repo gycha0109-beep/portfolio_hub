@@ -38,31 +38,50 @@ jobs:
           path: hub
           token: ${{ secrets.PORTFOLIO_HUB_TOKEN }}
           persist-credentials: true
+          fetch-depth: 0
 
       - name: Validate public demo boundary
         run: node hub/scripts/validate-demo-package.mjs incoming-demo "${{ inputs.slug }}"
 
-      - name: Install demo and update manifest
-        shell: bash
-        run: |
-          set -euo pipefail
-          target="hub/public/demos/${{ inputs.slug }}"
-          rm -rf "$target"
-          mkdir -p "$target"
-          cp -a incoming-demo/. "$target/"
-          node hub/scripts/upsert-project-manifest.mjs             hub/portfolio.manifest.json             incoming-demo/portfolio.json
-
-      - name: Commit public-only demo
+      - name: Publish public-only demo atomically
         shell: bash
         working-directory: hub
         run: |
           set -euo pipefail
+
           git config user.name "portfolio-publisher[bot]"
           git config user.email "portfolio-publisher[bot]@users.noreply.github.com"
-          git add portfolio.manifest.json "public/demos/${{ inputs.slug }}"
-          if git diff --cached --quiet; then
-            echo "No public demo changes to publish."
-            exit 0
-          fi
-          git commit -m "portfolio: publish ${{ inputs.slug }}"
-          git push origin HEAD:main
+
+          for attempt in 1 2 3 4 5; do
+            echo "Publish attempt $attempt/5"
+
+            git fetch origin main
+            git reset --hard origin/main
+
+            target="public/demos/${{ inputs.slug }}"
+            rm -rf "$target"
+            mkdir -p "$target"
+            cp -a ../incoming-demo/. "$target/"
+
+            node scripts/upsert-project-manifest.mjs               portfolio.manifest.json               ../incoming-demo/portfolio.json
+
+            git add portfolio.manifest.json "$target"
+
+            if git diff --cached --quiet; then
+              echo "No public demo changes to publish."
+              exit 0
+            fi
+
+            git commit -m "portfolio: publish ${{ inputs.slug }}"
+
+            if git push origin HEAD:main; then
+              echo "Published ${{ inputs.slug }} successfully."
+              exit 0
+            fi
+
+            echo "Main changed during publish; retrying from latest origin/main."
+            sleep $((attempt * 2))
+          done
+
+          echo "Failed to publish after 5 attempts."
+          exit 1
