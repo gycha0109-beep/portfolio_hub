@@ -18,10 +18,10 @@ portfolio_hub
       └─ lms
 
 PRIVATE
-├─ partnerflow-erp
-├─ SupportOps-AI
-├─ PartnerOps
-└─ LMS_Skin_change
+├─ <portfolio-source-01>
+├─ <portfolio-source-02>
+├─ <portfolio-source-03>
+└─ <future-portfolio-source...>
 ```
 
 Porthub는 Vercel에 단일 프로젝트로 배포합니다. 원본 프로젝트 저장소를 별도 Vercel 프로젝트로 각각 배포하지 않습니다.
@@ -102,6 +102,6 @@ npm run build
 1. 각 원본 프로젝트의 portfolio-safe static export 규격 통일
 2. 정적 데모를 Porthub 단일 배포에 포함
 3. Porthub의 외부 GitHub Pages proxy 제거
-4. 네 원본 저장소를 private로 전환
+4. 모든 원본 포트폴리오 저장소를 private로 전환
 5. 기존 GitHub Pages workflow 비활성화
 6. Porthub 전체 데모 및 asset 경로 회귀 검증
