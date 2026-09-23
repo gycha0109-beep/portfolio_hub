@@ -42,37 +42,16 @@ function Preview({ type }: { type: Project['preview'] }) {
 
   if (type === 'legacy') {
     return (
-      <div className="preview-shell preview-legacy">
-        <div className="legacy-head"><b>LMS</b><span>강의</span><span>학습현황</span><span>공지사항</span></div>
-        <div className="legacy-body">
-          <strong>새로운 배움이<br />더 나은 내일을 만듭니다.</strong>
-          <p>기존 LMS의 구조를 정리하고 화면을 현대화했습니다.</p>
-          <div className="legacy-card" />
-        </div>
+      <div className="preview-shell cover-shell">
+        <img className="cover-image" src="/covers/lms.webp" alt="LMS Skin Change 포트폴리오 표지" />
       </div>
     )
   }
 
   if (type === 'ops') {
     return (
-      <div className="preview-shell preview-ops">
-        <div className="ops-layout">
-          <aside>
-            <b>PartnerOps</b>
-            <span className="on">대시보드</span>
-            <span>거래처</span>
-            <span>담당자</span>
-            <span>활동 이력</span>
-            <span>설정</span>
-          </aside>
-          <main>
-            <b>거래처 관리</b>
-            <div className="ops-search" />
-            {['(주)테크솔루션','마케팅컴퍼니','베스트웍스'].map((name) => (
-              <p key={name}><span>{name}</span><i /></p>
-            ))}
-          </main>
-        </div>
+      <div className="preview-shell cover-shell">
+        <img className="cover-image" src="/covers/partnerops.webp" alt="PartnerOps 포트폴리오 표지" />
       </div>
     )
   }
