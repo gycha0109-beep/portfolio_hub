@@ -23,7 +23,7 @@ export const projects: Project[] = [
     kicker: '거래처 접수·정산 통합 관리',
     description: '관리자가 접수와 정산을 등록하면 각 거래처가 로그인해 자기 회사의 진행 현황만 직접 확인하는 B2B 업무 시스템입니다.',
     category: 'B2B ERP',
-    accent: '#f5a623',
+    accent: '#4f7cff',
     demoUrl: 'https://gycha0109-beep.github.io/partnerflow-erp/',
     stack: ['React', 'TypeScript', 'Vite', 'RLS 설계'],
     problem: '거래처가 접수·정산 현황을 매번 운영자에게 문의하고, 운영자는 Excel을 열어 확인해주는 반복 업무가 발생합니다.',
