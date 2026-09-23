@@ -43,7 +43,7 @@ function Preview({ type }: { type: Project['preview'] }) {
   if (type === 'legacy') {
     return (
       <div className="preview-shell cover-shell">
-        <img className="cover-image" src="/covers/lms.webp?v=2" alt="LMS Skin Change 포트폴리오 표지" />
+        <img className="cover-image" src="/covers/lms.webp?v=3" alt="LMS Skin Change 포트폴리오 표지" />
       </div>
     )
   }
@@ -51,7 +51,7 @@ function Preview({ type }: { type: Project['preview'] }) {
   if (type === 'ops') {
     return (
       <div className="preview-shell cover-shell">
-        <img className="cover-image" src="/covers/partnerops.webp?v=2" alt="PartnerOps 포트폴리오 표지" />
+        <img className="cover-image" src="/covers/partnerops.webp?v=3" alt="PartnerOps 포트폴리오 표지" />
       </div>
     )
   }
