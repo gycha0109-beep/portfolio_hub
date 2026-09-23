@@ -1,0 +1,42 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PartnerOps Portfolio Demo</title><link rel="stylesheet" href="assets/app.css">  <meta name="robots" content="noindex, nofollow">\n</head><body class="landing">
+<div class="demo-banner"><strong>Portfolio Demo</strong> · 실제 외주 공고 요구사항을 기반으로 독립 재현한 정적 데모입니다. 실제 고객사 소스와 데이터는 사용하지 않았습니다.</div>
+<div class="container">
+<header class="topbar"><div class="brand"><span class="brand-mark">PO</span>PartnerOps</div><span class="tag">PORTFOLIO DEMO</span></header>
+
+<section class="hero">
+  <div class="eyebrow">거래처 접수·정산 현황 조회 시스템</div>
+  <h1>문의 없이 직접 확인하고,<br>관리자는 한 곳에서 운영합니다.</h1>
+  <p>Google Drive·Excel로 관리하던 접수·정산 업무를 웹으로 옮기는 상황을 가정했습니다. 관리자가 거래처·접수·정산 정보를 등록하면 각 거래처는 로그인 후 <strong>자사 데이터만</strong> 조회하는 구조입니다.</p>
+  <div class="hero-actions"><a class="btn primary" href="admin.html">관리자 화면 확인</a><a class="btn dark" href="partner-alpha.html">거래처 화면 확인</a></div>
+</section>
+
+<section class="section">
+  <div class="section-head"><div><div class="eyebrow">요구사항 대응</div><h2>공고에서 필요한 핵심 흐름을 그대로 재현했습니다.</h2></div><p class="muted">화면뿐 아니라 서버 구현·자동 검증까지 별도로 구성했습니다.</p></div>
+  <div class="grid grid-4">
+    <div class="card"><div class="mini muted">거래처별 조회</div><div class="kpi">자사 데이터만</div><p class="muted">각 거래처 계정은 자기 접수·정산 내역만 조회하도록 설계했습니다.</p></div>
+    <div class="card"><div class="mini muted">관리자 운영</div><div class="kpi">한 곳에서 관리</div><p class="muted">거래처·계정 발급, 접수 등록·상태 변경, 정산 관리를 한 화면 흐름으로 구성했습니다.</p></div>
+    <div class="card"><div class="mini muted">기존 데이터 이관</div><div class="kpi">Excel → DB</div><p class="muted">기존 Excel을 바로 저장하지 않고 검증·오류 확인 후 이관하는 흐름을 구현했습니다.</p></div>
+    <div class="card"><div class="mini muted">운영 안정성</div><div class="kpi">자동 검증</div><p class="muted">관리자→거래처 전체 업무 흐름과 거래처 간 데이터 분리를 자동 테스트합니다.</p></div>
+  </div>
+</section>
+
+<section class="section"><div class="section-head"><div><div class="eyebrow">화면 확인</div><h2>관리자와 거래처 화면을 바로 비교할 수 있습니다.</h2></div><p class="muted">정적 데모에서는 로그인 대신 역할을 직접 선택합니다.</p></div>
+<div class="grid grid-3">
+<a class="card role-card" href="admin.html"><span class="tag">ADMIN</span><h3>관리자 백오피스</h3><p class="muted">거래처 등록·계정 발급, 접수·정산 등록과 상태 변경, Excel 이관 Preview를 확인할 수 있습니다.</p></a>
+<a class="card role-card" href="partner-alpha.html"><span class="tag">PARTNER A</span><h3>알파네트웍스</h3><p class="muted">알파네트웍스에 속한 접수·정산 데이터만 조회하는 거래처 화면입니다.</p></a>
+<a class="card role-card" href="partner-bridge.html"><span class="tag">PARTNER B</span><h3>브릿지렌탈</h3><p class="muted">브릿지렌탈 데이터만 별도로 표시되어 거래처 간 정보 분리를 비교할 수 있습니다.</p></a>
+</div></section>
+
+<section class="section">
+  <div class="section-head"><div><div class="eyebrow">검증 근거</div><h2>화면 시안에 그치지 않도록 실제 구현도 검증했습니다.</h2></div></div>
+  <div class="grid grid-4">
+    <div class="card"><div class="mini muted">거래처 간 정보 분리</div><div class="kpi">PASS</div><p class="muted">A 거래처에서 B 거래처 데이터에 접근하지 못하도록 서버 조회 범위를 강제합니다.</p></div>
+    <div class="card"><div class="mini muted">관리자 업무 흐름</div><div class="kpi">PASS</div><p class="muted">거래처 생성 → 계정 발급 → 접수/정산 등록 → 거래처 조회까지 브라우저에서 검증했습니다.</p></div>
+    <div class="card"><div class="mini muted">기존 Excel 이관</div><div class="kpi">검증 후 반영</div><p class="muted">잘못된 행을 먼저 표시하고 검증을 통과한 데이터만 DB에 반영하도록 구성했습니다.</p></div>
+    <div class="card"><div class="mini muted">데이터 저장 구조</div><div class="kpi">PostgreSQL</div><p class="muted">거래처·사용자·접수·정산·이관 이력·감사 로그를 분리 관리합니다.</p></div>
+  </div>
+</section>
+
+<section class="section"><div class="callout"><strong>공개 데모 안내:</strong> 공개 데모에서는 화면과 업무 흐름을 빠르게 확인할 수 있도록 합성 데이터 기반 정적 화면을 제공합니다. 실제 로그인, 서버 세션, 관리자 데이터 변경, PostgreSQL 거래처별 접근 제한, Excel DB 반영 로직은 비공개 서버 구현과 자동 테스트에서 검증했습니다.</div></section>
+<footer class="foot">PartnerOps · 실제 외주 공고 요구사항을 기반으로 독립 재현한 포트폴리오 프로젝트 · 실제 고객사 소스/데이터 미사용</footer>
+</div><script src="assets/app.js"></script></body></html>

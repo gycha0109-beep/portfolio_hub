@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "slug": "partnerops",
+  "order": 3,
+  "title": "PartnerOps",
+  "kicker": "멀티테넌트 파트너 운영 포털",
+  "description": "여러 거래처를 하나의 백오피스에서 관리하면서 각 회사가 자기 데이터만 볼 수 있도록 권한 경계를 먼저 설계한 파트너 운영 시스템입니다.",
+  "category": "BACKOFFICE",
+  "accent": "#3eb7a7",
+  "stack": [
+    "Next.js",
+    "PostgreSQL",
+    "Drizzle",
+    "Playwright"
+  ],
+  "problem": "B2B 파트너 포털은 화면보다 먼저 “A회사 데이터가 B회사에 절대 보이지 않는가”를 해결해야 합니다.",
+  "solution": "UI보다 tenant isolation과 DB 권한 경계를 먼저 잡고, 거래처·접수·정산·스프레드시트 이관을 운영 백오피스로 연결했습니다.",
+  "evidence": [
+    "Tenant isolation integration test",
+    "PostgreSQL-backed architecture",
+    "Spreadsheet validation",
+    "권한·감사 추적 설계"
+  ],
+  "scope": [
+    "Partner Accounts",
+    "Reception",
+    "Settlement",
+    "Spreadsheet Import",
+    "Tenant Security",
+    "Audit Evidence"
+  ],
+  "preview": "ops"
+}

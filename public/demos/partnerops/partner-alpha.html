@@ -1,0 +1,14 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PartnerOps Partner A Demo</title><link rel="stylesheet" href="assets/app.css"><meta name="robots" content="noindex, nofollow"></head><body>
+<div class="demo-banner"><strong>PARTNER A STATIC DEMO</strong> · 알파네트웍스 데이터만 렌더링한 격리 화면입니다.</div>
+<div class="shell"><aside class="sidebar"><div class="brand"><span class="brand-mark">PO</span>PartnerOps</div><div class="mini muted">알파네트웍스</div><nav><a class="active" href="#dashboard">대시보드</a><a href="#receptions">접수내역</a><a href="#settlements">정산내역</a><a href="index.html">데모 선택</a></nav><div class="divider"></div><a href="partner-bridge.html">Partner B와 비교 →</a></aside>
+<main class="workspace"><header class="workspace-head"><div class="eyebrow">PARTNER PORTAL</div><h1>알파네트웍스 업무 현황</h1></header><div class="workspace-body">
+<section id="dashboard" class="section"><div class="grid grid-4"><div class="card"><div class="mini muted">진행 중 접수</div><div class="kpi">1</div></div><div class="card"><div class="mini muted">이번 달 완료</div><div class="kpi">1</div></div><div class="card"><div class="mini muted">확정 정산</div><div class="kpi">120K</div></div><div class="card"><div class="mini muted">데이터 범위</div><div class="kpi">ALPHA</div></div></div></section>
+<section id="receptions" class="section"><div class="section-head"><div><div class="eyebrow">My receptions</div><h2>접수내역</h2></div><span class="badge blue">READ ONLY</span></div>
+<div class="filters" data-filter-group="alpha"><button class="filter active" data-filter="ALL">전체</button><button class="filter" data-filter="INTERNET">인터넷</button><button class="filter" data-filter="RENTAL">렌탈</button><button class="filter" data-filter="MOBILE">휴대폰</button></div>
+<div class="panel"><table><thead><tr><th>접수일</th><th>구분</th><th>고객</th><th>상품</th><th>상태</th></tr></thead><tbody>
+<tr data-row-group="alpha" data-category="INTERNET"><td>2026.09.18</td><td>인터넷</td><td>홍길동</td><td>기가 인터넷</td><td><span class="badge blue">PROCESSING</span></td></tr>
+<tr data-row-group="alpha" data-category="RENTAL"><td>2026.09.15</td><td>렌탈</td><td>김고객</td><td>정수기 렌탈</td><td><span class="badge green">COMPLETED</span></td></tr>
+</tbody></table></div></section>
+<section id="settlements" class="section"><div class="section-head"><div><div class="eyebrow">My settlements</div><h2>정산내역</h2></div></div><div class="panel"><table><thead><tr><th>정산월</th><th>구분</th><th>금액</th><th>상태</th></tr></thead><tbody><tr><td>2026-09</td><td>인터넷</td><td><b>120,000원</b></td><td><span class="badge amber">CONFIRMED</span></td></tr></tbody></table></div></section>
+<section class="section"><div class="callout"><strong>격리 증거:</strong> 상대 거래처의 고객·정산 레코드는 이 화면에 존재하지 않습니다. 실제 서버 구현에서는 UI 필터가 아니라 세션의 companyId를 기준으로 PostgreSQL 조회 범위를 강제하며 CI에서 cross-tenant access를 검증합니다.</div></section>
+</div></main></div><script src="assets/app.js"></script></body></html>

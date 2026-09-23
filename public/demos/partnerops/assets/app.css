@@ -1,0 +1,45 @@
+:root{
+  --bg:#f5f7fb;--surface:#fff;--ink:#172033;--muted:#667085;--line:#e4e7ec;
+  --brand:#2563eb;--brand-soft:#eff6ff;--nav:#111827;--good:#047857;--warn:#b45309;--bad:#b42318
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}
+.demo-banner{background:#0f172a;color:#e2e8f0;padding:10px 20px;text-align:center;font-size:13px}
+.demo-banner strong{color:#fff}.container{width:min(1180px,calc(100% - 32px));margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 0}.brand{display:flex;gap:10px;align-items:center;font-weight:800}.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;font-size:14px}.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;cursor:pointer}.btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}.btn.dark{background:#111827;color:#fff;border-color:#111827}
+.hero{padding:68px 0 36px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--brand);text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-.045em;max-width:920px;margin:16px 0}.hero p{font-size:18px;line-height:1.8;max-width:760px;color:var(--muted)}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.grid{display:grid;gap:18px}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 28px rgba(15,23,42,.04)}.card h3{margin:0 0 8px;font-size:17px}.kpi{font-size:30px;font-weight:800;letter-spacing:-.03em;margin-top:10px}.section{padding:34px 0}.section h2{font-size:28px;letter-spacing:-.03em;margin:0 0 8px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:18px}.mini{font-size:12px}
+.role-card{transition:.18s ease}.role-card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,23,42,.08)}.role-card .tag{display:inline-block;background:var(--brand-soft);color:var(--brand);padding:6px 9px;border-radius:999px;font-size:12px;font-weight:800;margin-bottom:14px}
+.shell{display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 38px)}.sidebar{background:var(--nav);color:#fff;padding:24px 18px}.sidebar .brand{padding:0 8px 20px}.sidebar nav{display:grid;gap:6px;margin-top:18px}.sidebar a,.sidebar button{border:0;background:transparent;color:#cbd5e1;padding:11px 12px;border-radius:9px;text-align:left;cursor:pointer;font-size:14px}.sidebar a:hover,.sidebar button:hover,.sidebar .active{background:#1f2937;color:#fff}.sidebar .divider{border-top:1px solid #273244;margin:20px 0}.workspace{min-width:0}.workspace-head{background:#fff;border-bottom:1px solid var(--line);padding:24px 32px}.workspace-head h1{margin:4px 0 0;font-size:26px}.workspace-body{padding:28px 32px}.panel{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}.panel-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}.panel-head h3{margin:0;font-size:16px}.panel-body{padding:20px}
+table{width:100%;border-collapse:collapse;font-size:14px}th{background:#f8fafc;color:#667085;font-weight:700;text-align:left;padding:12px 16px}td{padding:14px 16px;border-top:1px solid #eef1f5}.badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800}.badge.blue{background:#eff6ff;color:#1d4ed8}.badge.green{background:#ecfdf3;color:#047857}.badge.gray{background:#f2f4f7;color:#475467}.badge.amber{background:#fffaeb;color:#b54708}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.filter{border:1px solid var(--line);background:#fff;padding:8px 11px;border-radius:999px;cursor:pointer;font-size:13px}.filter.active{background:#111827;color:#fff;border-color:#111827}
+.callout{border:1px solid #bfdbfe;background:#eff6ff;color:#1e3a8a;border-radius:14px;padding:14px 16px;font-size:13px;line-height:1.6}
+.demo-result{display:none;margin-top:16px;border-radius:14px;background:#f8fafc;border:1px solid var(--line);padding:16px}.demo-result.show{display:block}.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}.metric-box b{display:block;font-size:24px;margin-top:6px}.foot{padding:34px 0 50px;color:#667085;font-size:13px}
+@media(max-width:900px){.grid-3,.grid-4{grid-template-columns:1fr 1fr}.shell{grid-template-columns:1fr}.sidebar{min-height:auto}.sidebar nav{grid-template-columns:repeat(3,minmax(0,1fr));overflow:auto}.workspace-body,.workspace-head{padding-left:20px;padding-right:20px}}
+@media(max-width:640px){.grid-3,.grid-4,.metric-row{grid-template-columns:1fr}.hero{padding-top:38px}.hero h1{font-size:40px}.section-head{align-items:start;flex-direction:column}.sidebar nav{grid-template-columns:1fr 1fr}th,td{padding:11px 12px}.container{width:min(100% - 22px,1180px)}}
+
+/* Client-facing landing typography: keep hierarchy readable without oversized wrapping. */
+.landing .hero{padding:58px 0 32px}
+.landing .hero h1{font-size:clamp(40px,4.6vw,56px);line-height:1.08;letter-spacing:-.04em;max-width:1040px;margin:14px 0 18px}
+.landing .hero p{font-size:16px;line-height:1.75;max-width:860px}
+.landing .section{padding:30px 0}
+.landing .section h2{font-size:24px;line-height:1.3;letter-spacing:-.025em}
+.landing .section-head>.muted,.landing .section-head>p{font-size:14px;line-height:1.6}
+.landing .card{padding:20px}
+.landing .card h3{font-size:16px;line-height:1.4}
+.landing .card p{font-size:14px;line-height:1.65}
+.landing .kpi{font-size:24px;line-height:1.25;margin-top:8px}
+.landing .mini{font-size:11px}
+.landing .role-card .tag{font-size:11px;padding:5px 8px;margin-bottom:12px}
+@media(max-width:900px){
+  .landing .hero h1{font-size:clamp(38px,7vw,50px)}
+  .landing .section h2{font-size:23px}
+}
+@media(max-width:640px){
+  .landing .hero{padding-top:34px}
+  .landing .hero h1{font-size:36px;line-height:1.12}
+  .landing .hero p{font-size:15px}
+  .landing .section h2{font-size:22px}
+  .landing .kpi{font-size:22px}
+}
