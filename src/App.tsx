@@ -9,7 +9,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { Link, Route, Routes, useParams } from 'react-router'
-import { projectBySlug, projects, type Project } from './data'
+import { projectBySlug, projectCount, projects, type Project } from './data'
 
 function Logo() {
   return (
@@ -104,7 +104,7 @@ function Home() {
         <h1>업무를 이해하고,<br /><em>작동하는 결과물</em>로 만듭니다.</h1>
         <p>실제 외주 요구사항을 제품 단위로 해석하고, 화면 설계부터 데이터 흐름·권한·자동 검증까지 구현합니다.</p>
         <a className="hero-cta" href="#work">프로젝트 보기 <ArrowRight size={18} /></a>
-        <div className="hero-rule"><span>SELECTED WORK · 2026</span><b>04</b></div>
+        <div className="hero-rule"><span>SELECTED WORK · 2026</span><b>{String(projectCount).padStart(2, '0')}</b></div>
       </section>
 
       <section className="project-list" id="work">
@@ -112,7 +112,7 @@ function Home() {
           <article className="project-card" key={project.slug}>
             <Link className="project-link" to={`/work/${project.slug}`}>
               <div className="project-copy">
-                <div className="project-index">{project.index} / 04</div>
+                <div className="project-index">{project.index} / {String(projectCount).padStart(2, '0')}</div>
                 <div className="project-tags"><span>{project.category}</span><span>CASE STUDY</span></div>
                 <h2>{project.title}</h2>
                 <h3>{project.kicker}</h3>
@@ -173,7 +173,7 @@ function ProjectDetail() {
         <Link className="back-link" to="/"><ArrowLeft size={16} /> ALL WORK</Link>
         <div className="detail-grid">
           <div>
-            <div className="project-tags"><span>{project.category}</span><span>{project.index} / 04</span></div>
+            <div className="project-tags"><span>{project.category}</span><span>{project.index} / {String(projectCount).padStart(2, '0')}</span></div>
             <h1>{project.title}</h1>
             <h2>{project.kicker}</h2>
             <p>{project.description}</p>
