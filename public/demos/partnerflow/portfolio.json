@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "slug": "partnerflow",
+  "order": 1,
+  "title": "PartnerFlow ERP",
+  "kicker": "거래처 접수·정산 통합 관리",
+  "description": "관리자가 접수와 정산을 등록하면 각 거래처가 로그인해 자기 회사의 진행 현황만 직접 확인하는 B2B 업무 시스템입니다.",
+  "category": "B2B ERP",
+  "accent": "#4f7cff",
+  "stack": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "RLS 설계"
+  ],
+  "problem": "거래처가 접수·정산 현황을 매번 운영자에게 문의하고, 운영자는 Excel을 열어 확인해주는 반복 업무가 발생합니다.",
+  "solution": "관리자 입력과 거래처 셀프 조회를 하나의 흐름으로 연결했습니다. 거래처별 데이터 분리와 기존 Excel 이관까지 실제 도입 흐름을 기준으로 설계했습니다.",
+  "evidence": [
+    "관리자 → 거래처 실제 업무 흐름 시연",
+    "88초 Playwright 자동 시연 영상",
+    "접수·정산·거래처 CRUD",
+    "기존 데이터 이관 사전검증"
+  ],
+  "scope": [
+    "관리자 대시보드",
+    "접수 관리",
+    "정산 관리",
+    "거래처 계정 관리",
+    "거래처 전용 포털",
+    "데이터 이관"
+  ],
+  "preview": "erp"
+}
