@@ -19,23 +19,8 @@ function Logo() {
 function Preview({ type }: { type: Project['preview'] }) {
   if (type === 'ai') {
     return (
-      <div className="preview-shell preview-ai">
-        <div className="preview-top"><i /><i /><i /><span>Support queue</span></div>
-        <div className="preview-body">
-          <div className="ticket-list">
-            <b>OPEN TICKETS</b>
-            <span className="active">결제 오류 문의 <em>P1</em></span>
-            <span>로그인 장애 <em>P2</em></span>
-            <span>기능 문의 <em>P3</em></span>
-          </div>
-          <div className="ai-panel">
-            <small>AI ANALYSIS</small>
-            <strong>결제 실패 · 높은 우선순위</strong>
-            <p>관련 운영 가이드를 근거로 답변 초안을 생성했습니다.</p>
-            <div className="confidence"><span /></div>
-            <button>사람 검토 필요</button>
-          </div>
-        </div>
+      <div className="preview-shell cover-shell">
+        <img className="cover-image" src="/covers/supportops.webp?v=1" alt="SupportOps AI 포트폴리오 표지" />
       </div>
     )
   }
