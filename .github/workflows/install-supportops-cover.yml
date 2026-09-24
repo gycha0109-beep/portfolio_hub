@@ -1,0 +1,63 @@
+name: Install SupportOps Cover
+
+on:
+  push:
+    paths:
+      - '.supportops-upload/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decode and verify SupportOps cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public/covers
+
+          cat .supportops-upload/*.b64 | tr -d '\n\r' | base64 -d > public/covers/supportops.webp
+
+          test "$(wc -c < public/covers/supportops.webp)" -eq 26736
+
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+
+          path = Path("public/covers/supportops.webp")
+          data = path.read_bytes()
+          wanted = "a41ec866646ed9ddc79b58b89c3ce68d2d17f6f31e25818b8835e8dcbebcdfb0"
+          got = hashlib.sha256(data).hexdigest()
+
+          if got != wanted:
+              raise SystemExit(f"sha256 mismatch: {got} != {wanted}")
+
+          if data[:4] != b"RIFF" or data[8:12] != b"WEBP":
+              raise SystemExit("not a valid WebP container")
+
+          print("SupportOps cover verified:", len(data), got)
+          PY
+
+      - name: Commit verified cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "portfolio-assets[bot]"
+          git config user.email "portfolio-assets[bot]@users.noreply.github.com"
+          git add public/covers/supportops.webp
+
+          if git diff --cached --quiet; then
+            echo "Verified SupportOps cover is already installed."
+            exit 0
+          fi
+
+          git commit -m "assets: add verified SupportOps portfolio cover"
+          git pull --rebase origin main
+          git push origin HEAD:main
