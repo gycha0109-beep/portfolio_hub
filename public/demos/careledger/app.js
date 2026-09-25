@@ -7,3 +7,15 @@ $('approveBtn').addEventListener('click',()=>{if(!state.reviewed||state.approved
 $('transmitBtn').addEventListener('click',()=>{if(!state.approved||state.transmitted)return;state.transmitted=true;$('transmitStepText').textContent='일부 실패';$('batchStatus').textContent='2건 성공 · 1건 실패';$('batchStatus').className='status-pill warn';$('retryBtn').disabled=false;$('transmitBtn').disabled=true;$('varianceMetric').textContent='₩33,333';log('회계 시스템 전송','2건 성공 · 1건 일시 오류');log('결과 비교','원장과 전송 결과 차이 · ₩33,333');});
 $('retryBtn').addEventListener('click',()=>{if(!state.transmitted||state.retried)return;state.retried=true;$('transmitStep').className='step done';$('transmitStepText').textContent='전송 완료';$('reconcileStep').className='step current';$('batchStatus').textContent='전송 완료';$('batchStatus').className='status-pill ok';$('retryBtn').disabled=true;$('reconcileBtn').disabled=false;log('실패 건 재전송','실패한 1건만 다시 전송 · 최초 전송 식별값 유지 · 성공');});
 $('reconcileBtn').addEventListener('click',()=>{if(!state.retried||state.reconciled)return;state.reconciled=true;$('reconcileStep').className='step done';$('reconcileStepText').textContent='일치 완료';$('varianceMetric').textContent='₩0';$('reconcileBtn').disabled=true;log('최종 결과 확인','원장과 전송 결과 일치 · 차이 ₩0');});
+
+const videoDemoBtn=$('videoDemoBtn');
+const videoDemoModal=$('videoDemoModal');
+const videoDemoClose=$('videoDemoClose');
+const careledgerDemoVideo=$('careledgerDemoVideo');
+let videoReturnFocus=null;
+const openVideoDemo=()=>{videoReturnFocus=document.activeElement;videoDemoModal.hidden=false;document.body.classList.add('modal-open');videoDemoClose.focus();careledgerDemoVideo.play().catch(()=>{});};
+const closeVideoDemo=()=>{careledgerDemoVideo.pause();videoDemoModal.hidden=true;document.body.classList.remove('modal-open');if(videoReturnFocus&&typeof videoReturnFocus.focus==='function')videoReturnFocus.focus();};
+videoDemoBtn.addEventListener('click',openVideoDemo);
+videoDemoClose.addEventListener('click',closeVideoDemo);
+videoDemoModal.querySelector('[data-close-video]').addEventListener('click',closeVideoDemo);
+document.addEventListener('keydown',(event)=>{if(event.key==='Escape'&&!videoDemoModal.hidden)closeVideoDemo();});
