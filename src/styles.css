@@ -611,6 +611,50 @@ button, input, select { font: inherit; }
   background: #0f1318;
 }
 
+
+.demo-video-section {
+  margin: 34px 0 0;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0f1318;
+}
+
+.demo-video-heading {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 36px;
+  align-items: end;
+  margin-bottom: 20px;
+}
+
+.demo-video-heading h3 {
+  margin: 7px 0 0;
+  font-size: 28px;
+  letter-spacing: -.035em;
+}
+
+.demo-video-heading p,
+.demo-video-note {
+  margin: 0;
+  color: #9ca3ad;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.demo-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #262d36;
+  border-radius: 7px;
+  background: #080b0e;
+}
+
+.demo-video-note {
+  margin-top: 12px;
+}
+
 .detail-content {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -745,7 +789,8 @@ button, input, select { font: inherit; }
   }
 
   .project-grid,
-  .detail-hero {
+  .detail-hero,
+  .demo-video-heading {
     grid-template-columns: 1fr;
   }
 
