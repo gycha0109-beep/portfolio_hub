@@ -31,6 +31,7 @@
         <div class="top-actions">
           <span class="badge">시연 버전 0.28</span>
           <span class="badge safe">실행 준비 완료</span>
+          <button class="video-demo-btn" id="videoDemoBtn" type="button" aria-haspopup="dialog" aria-controls="videoDemoModal">동영상 시연</button>
         </div>
       </header>
 
@@ -125,6 +126,24 @@
         </div>
       </section>
     </main>
+  </div>
+  <div class="video-modal" id="videoDemoModal" role="dialog" aria-modal="true" aria-labelledby="videoDemoTitle" hidden>
+    <div class="video-modal-backdrop" data-close-video></div>
+    <div class="video-modal-card" role="document">
+      <div class="video-modal-head">
+        <div>
+          <p class="eyebrow">PORTFOLIO DEMO</p>
+          <h2 id="videoDemoTitle">CareLedger 업무 흐름 동영상 시연</h2>
+        </div>
+        <button class="video-modal-close" id="videoDemoClose" type="button" aria-label="동영상 시연 닫기">닫기</button>
+      </div>
+      <p class="video-modal-note">Excel 불러오기부터 검토·승인·전송, 일부 실패 후 실패 건만 재전송하고 최종 금액 차이 0원을 확인하는 흐름입니다.</p>
+      <video id="careledgerDemoVideo" controls preload="metadata" poster="./careledger-demo-poster.webp">
+        <source src="./careledger-demo.mp4" type="video/mp4" />
+        브라우저가 MP4 동영상 재생을 지원하지 않습니다.
+      </video>
+      <p class="video-modal-disclaimer">실제 희망이음 운영 시스템이 아닌 독립 테스트 연동 환경의 포트폴리오 시연입니다.</p>
+    </div>
   </div>
   <script src="./app.js"></script>
 </body>
