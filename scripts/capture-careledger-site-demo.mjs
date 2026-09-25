@@ -74,7 +74,8 @@ await focus(".metrics");
 await banner("최종 금액 차이 0원", "원장과 전송 결과가 일치하는지 마지막으로 확인합니다.", 4800);
 
 await page.locator('[data-view="history"]').click();
-await banner("전송 및 재시도 이력", "승인 보호, 최초 전송 내용 유지, 중복 실행 방지 원칙을 확인합니다.");
+await focus(".transfer-history");
+await banner("전송 및 재시도 이력", "1차 전송의 부분 실패, 실패 1건 재전송, 최종 금액 차이 0원까지 실제 수행 기록을 확인합니다.");
 await page.locator('[data-view="ops"]').click();
 await banner("자동 복구 운영 상태", "응답 지연과 미처리 건을 감시해 중복 전송 위험을 줄입니다.", 4600);
 

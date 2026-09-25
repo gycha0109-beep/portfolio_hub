@@ -108,8 +108,23 @@
 
       <section id="history" class="view">
         <div class="panel page-panel">
-          <div class="panel-head"><div><p class="eyebrow">전송 이력</p><h2>전송 및 재시도 이력</h2></div></div>
-          <div class="history-card"><span>시연 흐름</span><b>부분 실패 후 안전한 재전송</b><small>승인 → 일부 전송 실패 → 실패 건만 다시 전송 → 전송 완료 흐름을 재현할 수 있습니다.</small></div>
+          <div class="panel-head">
+            <div><p class="eyebrow">전송 이력</p><h2>전송 및 재시도 이력</h2></div>
+            <span id="historyStatus" class="status-pill">전송 전</span>
+          </div>
+          <div class="history-card">
+            <span>현재 배치</span>
+            <b id="historyHeadline">아직 전송된 거래가 없습니다</b>
+            <small id="historyDescription">업무 처리에서 전송을 실행하면 최초 전송, 실패 건 재전송, 최종 결과 확인 기록이 여기에 순서대로 남습니다.</small>
+          </div>
+          <div class="transfer-history">
+            <div class="transfer-history-head">
+              <span>구분</span><span>대상</span><span>금액</span><span>결과</span><span>처리 시각</span>
+            </div>
+            <div id="transferHistoryRows" class="transfer-history-rows">
+              <div id="historyEmpty" class="transfer-history-empty">전송 이력이 없습니다.</div>
+            </div>
+          </div>
           <div class="history-grid">
             <div><span>승인 보호</span><b>승인 후 변경 감지</b><small>승인한 내용이 바뀌면 다시 승인하도록 차단합니다.</small></div>
             <div><span>재전송 보호</span><b>최초 전송 내용 유지</b><small>실패 건을 다시 보낼 때 처음 보낸 계정·요청 내용을 그대로 유지합니다.</small></div>
