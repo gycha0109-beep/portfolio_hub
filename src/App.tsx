@@ -208,7 +208,7 @@ function ProjectDetail() {
                 <span className="eyebrow">DEMO VIDEO</span>
                 <h3 id="careledger-demo-video-title">실제 업무 흐름 시연</h3>
               </div>
-              <p>실제 CareLedger 화면에서 Excel 불러오기부터 검토·승인·전송·실패 건 재전송·최종 확인까지 약 2분 동안 진행합니다.</p>
+              <p>CareLedger 포트폴리오 시연 화면에서 Excel 불러오기부터 검토·승인·전송·실패 건 재전송·최종 확인까지 핵심 흐름을 진행합니다.</p>
             </div>
             <video
               className="demo-video"
