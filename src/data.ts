@@ -1,6 +1,6 @@
 import manifest from '../portfolio.manifest.json'
 
-export type PreviewKind = 'erp' | 'ai' | 'ops' | 'legacy'
+export type PreviewKind = 'erp' | 'ai' | 'ops' | 'legacy' | 'ledger'
 
 export type Project = {
   slug: string
