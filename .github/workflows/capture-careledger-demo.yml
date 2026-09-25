@@ -1,0 +1,102 @@
+name: Capture CareLedger Site Demo
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/capture-careledger-site-demo.mjs
+      - .github/workflows/capture-careledger-demo.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: careledger-site-demo
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install app
+        run: npm ci
+
+      - name: Install browser and video tools
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.63.0
+          npx playwright install --with-deps chromium
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+
+      - name: Build
+        run: npm run build
+
+      - name: Start preview
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/porthub-preview.log 2>&1 &
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:4173/demos/careledger/index.html > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/porthub-preview.log
+          exit 1
+
+      - name: Capture demo
+        env:
+          DEMO_BASE_URL: http://127.0.0.1:4173/demos/careledger/index.html
+        run: node scripts/capture-careledger-site-demo.mjs
+
+      - name: Encode site assets
+        run: |
+          ffmpeg -y -i artifacts/careledger-video/careledger-demo.webm \
+            -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=white,fps=30" \
+            -c:v libx264 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart -an \
+            public/demos/careledger/careledger-demo.mp4
+          ffmpeg -y -ss 00:00:18 -i public/demos/careledger/careledger-demo.mp4 \
+            -frames:v 1 -vf "scale=1280:-2" -q:v 70 \
+            public/demos/careledger/careledger-demo-poster.webp
+          duration=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 public/demos/careledger/careledger-demo.mp4)
+          size=$(stat -c%s public/demos/careledger/careledger-demo.mp4)
+          echo "duration=$duration"
+          echo "size=$size"
+          awk -v d="$duration" 'BEGIN { if (d < 50 || d > 180) exit 1 }'
+          test "$size" -lt 100000000
+
+      - name: Publish generated video
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/demos/careledger/careledger-demo.mp4 public/demos/careledger/careledger-demo-poster.webp
+          if git diff --cached --quiet; then
+            echo "No generated asset changes."
+            exit 0
+          fi
+          git commit -m "feat: publish CareLedger demo video"
+          git restore --worktree .
+          git clean -fd
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: careledger-site-demo
+          path: |
+            public/demos/careledger/careledger-demo.mp4
+            public/demos/careledger/careledger-demo-poster.webp
+          if-no-files-found: error
+          retention-days: 7
