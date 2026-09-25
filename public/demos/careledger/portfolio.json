@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "slug": "careledger",
+  "order": 5,
+  "title": "CareLedger Bridge",
+  "kicker": "희망이음 회계 수기 입력 자동화",
+  "description": "장기요양기관의 은행 거래내역 Excel을 표준화·자동분류하고 담당자 검토와 승인 후 외부 회계 연계 경계까지 안전하게 전달하는 회계 업무 자동화 시스템입니다.",
+  "category": "ACCOUNTING OPS",
+  "accent": "#2f8f83",
+  "stack": [
+    "Next.js",
+    "FastAPI",
+    "PostgreSQL",
+    "Docker"
+  ],
+  "problem": "은행 거래내역을 사람이 다시 읽고 계정과목을 판단해 회계 시스템에 수기 입력하면 반복 작업, 오분류, 중복 전송, 부분 실패 재처리와 감사 추적이 모두 운영자에게 집중됩니다.",
+  "solution": "Excel 감지·정규화 → 근거 기반 자동분류 → 담당자 보정 → Maker-Checker 승인 → Mock W4C 전송 → 실패 item 재시도·crash recovery → 금액 대사를 하나의 통제된 흐름으로 연결했습니다.",
+  "evidence": [
+    "V28 Release Acceptance CI",
+    "Maker-Checker + approval digest",
+    "동일 idempotency key 기반 retry/recovery",
+    "OUTSTANDING → BALANCED reconciliation"
+  ],
+  "scope": [
+    "Excel Import / Mapping",
+    "Classification Review",
+    "Approval / Preview",
+    "Mock W4C Transmission",
+    "Retry / Crash Recovery",
+    "Reconciliation / Audit"
+  ],
+  "preview": "ledger"
+}
