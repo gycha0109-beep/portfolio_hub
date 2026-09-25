@@ -1,12 +1,42 @@
 const state={reviewed:false,approved:false,transmitted:false,retried:false,reconciled:false};
 const $=(id)=>document.getElementById(id);
 const log=(action,message)=>{const row=document.createElement('div');const now=new Date();row.innerHTML='<time>'+now.toLocaleTimeString('ko-KR',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'})+'</time><b>'+action+'</b><span>'+message+'</span>';$('eventLog').appendChild(row);row.classList.add('flash');};
+const formatTime=()=>new Date().toLocaleTimeString('ko-KR',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'});
+const addHistory=(kind,target,amount,result,detail,tone='')=>{
+  $('historyEmpty')?.remove();
+  const row=document.createElement('div');
+  row.className='transfer-history-row'+(tone?' '+tone:'');
+  const kindCell=document.createElement('span');
+  const kindTitle=document.createElement('b');
+  kindTitle.textContent=kind;
+  const kindDetail=document.createElement('small');
+  kindDetail.textContent=detail;
+  kindCell.append(kindTitle,kindDetail);
+  const targetCell=document.createElement('span');
+  targetCell.textContent=target;
+  const amountCell=document.createElement('span');
+  amountCell.textContent=amount;
+  const resultCell=document.createElement('span');
+  resultCell.textContent=result;
+  resultCell.className='history-result';
+  const timeCell=document.createElement('time');
+  timeCell.textContent=formatTime();
+  row.append(kindCell,targetCell,amountCell,resultCell,timeCell);
+  $('transferHistoryRows').appendChild(row);
+  row.classList.add('flash');
+};
+const setHistorySummary=(status,headline,description,tone='')=>{
+  $('historyStatus').textContent=status;
+  $('historyStatus').className='status-pill'+(tone?' '+tone:'');
+  $('historyHeadline').textContent=headline;
+  $('historyDescription').textContent=description;
+};
 document.querySelectorAll('.nav-item').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));btn.classList.add('active');$(btn.dataset.view).classList.add('active');}));
 $('correctBtn').addEventListener('click',()=>{if(state.reviewed)return;state.reviewed=true;$('coupangCategory').textContent='사무비';$('coupangStatus').textContent='확인 완료';$('coupangStatus').className='ok';$('reviewMetric').textContent='0';$('reviewStep').className='step done';$('reviewStepText').textContent='완료';$('approvalStep').className='step current';$('validationText').textContent='통과';$('validationText').className='ok';$('validationPill').textContent='전송 가능';$('validationPill').className='status-pill ok';$('correctBtn').disabled=true;$('correctBtn').textContent='수정 완료';$('approveBtn').disabled=false;log('계정과목 수정','쿠팡 · 소모품비 → 사무비 · 변경 이력 저장');});
 $('approveBtn').addEventListener('click',()=>{if(!state.reviewed||state.approved)return;state.approved=true;$('approvalStep').className='step done';$('approvalStepText').textContent='승인 완료';$('transmitStep').className='step current';$('digestText').textContent='변경 없음';$('digestText').className='ok';$('approveBtn').disabled=true;$('transmitBtn').disabled=false;log('전송 승인','승인자 확인 완료 · 승인 시점의 전송 내용 저장');});
-$('transmitBtn').addEventListener('click',()=>{if(!state.approved||state.transmitted)return;state.transmitted=true;$('transmitStepText').textContent='일부 실패';$('batchStatus').textContent='2건 성공 · 1건 실패';$('batchStatus').className='status-pill warn';$('retryBtn').disabled=false;$('transmitBtn').disabled=true;$('varianceMetric').textContent='₩33,333';log('회계 시스템 전송','2건 성공 · 1건 일시 오류');log('결과 비교','원장과 전송 결과 차이 · ₩33,333');});
-$('retryBtn').addEventListener('click',()=>{if(!state.transmitted||state.retried)return;state.retried=true;$('transmitStep').className='step done';$('transmitStepText').textContent='전송 완료';$('reconcileStep').className='step current';$('batchStatus').textContent='전송 완료';$('batchStatus').className='status-pill ok';$('retryBtn').disabled=true;$('reconcileBtn').disabled=false;log('실패 건 재전송','실패한 1건만 다시 전송 · 최초 전송 식별값 유지 · 성공');});
-$('reconcileBtn').addEventListener('click',()=>{if(!state.retried||state.reconciled)return;state.reconciled=true;$('reconcileStep').className='step done';$('reconcileStepText').textContent='일치 완료';$('varianceMetric').textContent='₩0';$('reconcileBtn').disabled=true;log('최종 결과 확인','원장과 전송 결과 일치 · 차이 ₩0');});
+$('transmitBtn').addEventListener('click',()=>{if(!state.approved||state.transmitted)return;state.transmitted=true;$('transmitStepText').textContent='일부 실패';$('batchStatus').textContent='2건 성공 · 1건 실패';$('batchStatus').className='status-pill warn';$('retryBtn').disabled=false;$('transmitBtn').disabled=true;$('varianceMetric').textContent='₩33,333';addHistory('1차 전송','3건','₩286,666','2건 성공 · 1건 실패','미처리 ₩33,333','warn');setHistorySummary('일부 실패','3건 중 1건 전송 실패','성공한 2건은 유지하고 실패한 1건만 재전송 대상으로 남았습니다. · 미처리 ₩33,333','warn');log('회계 시스템 전송','2건 성공 · 1건 일시 오류');log('결과 비교','원장과 전송 결과 차이 · ₩33,333');});
+$('retryBtn').addEventListener('click',()=>{if(!state.transmitted||state.retried)return;state.retried=true;$('transmitStep').className='step done';$('transmitStepText').textContent='전송 완료';$('reconcileStep').className='step current';$('batchStatus').textContent='전송 완료';$('batchStatus').className='status-pill ok';$('retryBtn').disabled=true;$('reconcileBtn').disabled=false;addHistory('실패 건 재전송','1건','₩33,333','성공','최초 전송 내용 유지','ok');setHistorySummary('재전송 완료','실패한 1건만 재전송 완료','최초 전송 내용을 유지한 채 실패 건만 다시 보내 중복 없이 전송을 마쳤습니다.','ok');log('실패 건 재전송','실패한 1건만 다시 전송 · 최초 전송 식별값 유지 · 성공');});
+$('reconcileBtn').addEventListener('click',()=>{if(!state.retried||state.reconciled)return;state.reconciled=true;$('reconcileStep').className='step done';$('reconcileStepText').textContent='일치 완료';$('varianceMetric').textContent='₩0';$('reconcileBtn').disabled=true;addHistory('최종 결과 확인','3건','₩286,666','금액 차이 ₩0','원장·전송 결과 일치','ok');setHistorySummary('처리 완료','전송 완료 · 금액 차이 ₩0','원장 ₩286,666과 전송 결과 ₩286,666이 최종 일치합니다.','ok');log('최종 결과 확인','원장과 전송 결과 일치 · 차이 ₩0');});
 
 const videoDemoBtn=$('videoDemoBtn');
 const videoDemoModal=$('videoDemoModal');
