@@ -835,3 +835,175 @@ button, input, select { font: inherit; }
     grid-column: 1 / -1;
   }
 }
+
+/* CareLedger Bridge preview */
+.preview-ledger {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  background: #f4f8f7;
+}
+
+.ledger-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding-top: 14px;
+  background: #102421;
+}
+
+.ledger-side b {
+  color: #fff;
+  font-size: 10px;
+}
+
+.ledger-side span {
+  width: 14px;
+  height: 4px;
+  border-radius: 4px;
+  background: #41625d;
+}
+
+.ledger-side span.on {
+  background: #43b5a4;
+}
+
+.ledger-main {
+  padding: 13px 15px;
+  overflow: hidden;
+}
+
+.ledger-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ledger-head div {
+  display: grid;
+  gap: 2px;
+}
+
+.ledger-head small {
+  color: #83928f;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.ledger-head b {
+  color: #21312e;
+  font-size: 10px;
+}
+
+.ledger-head > i {
+  padding: 3px 5px;
+  border-radius: 999px;
+  background: #e2f5ef;
+  color: #247663;
+  font-size: 6px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.ledger-flow {
+  display: flex;
+  align-items: center;
+  margin: 11px 0 9px;
+}
+
+.ledger-flow span {
+  min-width: 35px;
+  padding: 5px 4px;
+  border: 1px solid #d9e3e0;
+  border-radius: 5px;
+  background: #fff;
+  color: #8a9996;
+  text-align: center;
+  font-size: 6px;
+  font-weight: 800;
+}
+
+.ledger-flow span.done {
+  color: #277866;
+  background: #edf8f5;
+}
+
+.ledger-flow span.active {
+  border-color: #55a99c;
+  color: #fff;
+  background: #2f8f83;
+}
+
+.ledger-flow em {
+  width: 12px;
+  height: 1px;
+  background: #ccd9d6;
+}
+
+.ledger-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.ledger-kpis span {
+  padding: 8px;
+  border: 1px solid #dde6e3;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.ledger-kpis small {
+  display: block;
+  color: #8b9996;
+  font-size: 5px;
+}
+
+.ledger-kpis b {
+  display: block;
+  margin-top: 3px;
+  font-size: 10px;
+}
+
+.ledger-table {
+  margin-top: 7px;
+  padding: 4px 8px;
+  border: 1px solid #dde6e3;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.ledger-table p {
+  display: grid;
+  grid-template-columns: 6px 1fr auto;
+  align-items: center;
+  gap: 6px;
+  height: 20px;
+  margin: 0;
+  border-bottom: 1px solid #eef2f1;
+}
+
+.ledger-table p:last-child {
+  border-bottom: 0;
+}
+
+.ledger-table i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #45b59f;
+}
+
+.ledger-table span {
+  width: 62%;
+  height: 4px;
+  border-radius: 3px;
+  background: #dbe4e2;
+}
+
+.ledger-table b {
+  color: #596b67;
+  font-size: 6px;
+}
+
