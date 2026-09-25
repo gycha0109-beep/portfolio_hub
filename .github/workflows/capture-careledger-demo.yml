@@ -77,7 +77,6 @@ jobs:
           ffmpeg -y -ss 00:00:18 -i public/demos/careledger/careledger-demo.mp4 \
             -frames:v 1 -vf "scale=1280:-2" -q:v 70 \
             public/demos/careledger/careledger-demo-poster.webp
-            public/demos/careledger/screenshots/*.png
           duration=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 public/demos/careledger/careledger-demo.mp4)
           size=$(stat -c%s public/demos/careledger/careledger-demo.mp4)
           echo "duration=$duration"
@@ -107,5 +106,6 @@ jobs:
           path: |
             public/demos/careledger/careledger-demo.mp4
             public/demos/careledger/careledger-demo-poster.webp
+            public/demos/careledger/screenshots/*.png
           if-no-files-found: error
           retention-days: 7
