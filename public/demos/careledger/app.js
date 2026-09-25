@@ -271,9 +271,9 @@ function pickValue(row,keys){
 
 function normalizeImportedRow(row){
   return {
-    vendor:pickValue(row,["거래처","거래처명","업체","업체명","가맹점","상호","vendor","merchant","payee"]),
-    memo:pickValue(row,["적요","내용","거래내용","메모","비고","memo","description","desc"]),
-    amount:pickValue(row,["금액","출금액","지출","거래금액","amount","debit","withdrawal"]),
+    vendor:pickValue(row,["거래처","거래처명","업체","업체명","가맹점","상호","상대방","받는분","vendor","merchant","payee"]),
+    memo:pickValue(row,["적요","내용","거래내용","거래기록사항","기재내용","메모","비고","memo","description","desc"]),
+    amount:pickValue(row,["금액","출금액","출금금액","지출","지출액","거래금액","amount","debit","withdrawal"]),
     category:pickValue(row,["계정과목","분류","계정","category","account"])
   };
 }
