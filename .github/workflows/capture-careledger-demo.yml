@@ -6,6 +6,10 @@ on:
       - main
     paths:
       - scripts/capture-careledger-site-demo.mjs
+      - scripts/test-careledger-sandbox.mjs
+      - public/demos/careledger/app.js
+      - public/demos/careledger/index.html
+      - public/demos/careledger/app.css
       - .github/workflows/capture-careledger-demo.yml
   workflow_dispatch:
 
@@ -53,6 +57,11 @@ jobs:
           done
           cat /tmp/porthub-preview.log
           exit 1
+
+      - name: Test interactive sandbox
+        env:
+          DEMO_BASE_URL: http://127.0.0.1:4173/demos/careledger/index.html
+        run: node scripts/test-careledger-sandbox.mjs
 
       - name: Capture demo
         env:
