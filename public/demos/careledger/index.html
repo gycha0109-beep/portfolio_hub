@@ -12,36 +12,36 @@
     <aside class="sidebar">
       <div class="brand"><span>CL</span><div><b>CareLedger</b><small>Bridge</small></div></div>
       <nav>
-        <button class="nav-item active" data-view="workbench">워크벤치</button>
+        <button class="nav-item active" data-view="workbench">업무 처리</button>
         <button class="nav-item" data-view="history">전송 이력</button>
         <button class="nav-item" data-view="ops">운영 상태</button>
       </nav>
       <div class="sidebar-foot">
         <span class="dot"></span>
-        <div><b>Portfolio Demo</b><small>Mock W4C only</small></div>
+        <div><b>포트폴리오 시연</b><small>테스트 연동 환경</small></div>
       </div>
     </aside>
 
     <main>
       <header class="topbar">
         <div>
-          <p class="eyebrow">ACCOUNTING AUTOMATION</p>
-          <h1>회계 전송 워크벤치</h1>
+          <p class="eyebrow">회계 업무 자동화</p>
+          <h1>회계 전송 업무 화면</h1>
         </div>
         <div class="top-actions">
-          <span class="badge">API v0.28.0</span>
-          <span class="badge safe">Runtime Ready</span>
+          <span class="badge">시연 버전 0.28</span>
+          <span class="badge safe">실행 준비 완료</span>
         </div>
       </header>
 
       <section id="workbench" class="view active">
         <div class="notice">
-          <div><b>Mock W4C 연계 데모</b><span>실제 희망이음 운영 시스템에는 접속하지 않습니다.</span></div>
-          <span class="notice-pill">SANITIZED DEMO</span>
+          <div><b>희망이음 연계 흐름 시연</b><span>실제 희망이음 운영 시스템에는 접속하지 않습니다.</span></div>
+          <span class="notice-pill">시연용 데이터</span>
         </div>
 
         <div class="workflow">
-          <div class="step done"><span>1</span><b>Excel Import</b><small>3건</small></div>
+          <div class="step done"><span>1</span><b>Excel 불러오기</b><small>3건</small></div>
           <div class="connector"></div>
           <div class="step current" id="reviewStep"><span>2</span><b>검토</b><small id="reviewStepText">1건 필요</small></div>
           <div class="connector"></div>
@@ -49,79 +49,79 @@
           <div class="connector"></div>
           <div class="step" id="transmitStep"><span>4</span><b>전송</b><small id="transmitStepText">대기</small></div>
           <div class="connector"></div>
-          <div class="step" id="reconcileStep"><span>5</span><b>대사</b><small id="reconcileStepText">미실행</small></div>
+          <div class="step" id="reconcileStep"><span>5</span><b>결과 확인</b><small id="reconcileStepText">미실행</small></div>
         </div>
 
         <div class="metrics">
-          <article><span>IMPORT</span><strong>3</strong><small>거래 건수</small></article>
-          <article><span>REVIEW</span><strong id="reviewMetric">1</strong><small>확인 필요</small></article>
-          <article><span>EXPENSE</span><strong>₩286,666</strong><small>전송 대상 합계</small></article>
-          <article><span>VARIANCE</span><strong id="varianceMetric">—</strong><small>대사 차이</small></article>
+          <article><span>불러온 거래</span><strong>3</strong><small>거래 건수</small></article>
+          <article><span>확인 필요</span><strong id="reviewMetric">1</strong><small>담당자 검토</small></article>
+          <article><span>전송 금액</span><strong>₩286,666</strong><small>전송 대상 합계</small></article>
+          <article><span>금액 차이</span><strong id="varianceMetric">—</strong><small>원장과 전송 결과</small></article>
         </div>
 
         <div class="grid">
           <section class="panel transactions">
             <div class="panel-head">
-              <div><p class="eyebrow">TRANSACTIONS</p><h2>거래 검토</h2></div>
-              <span class="status-pill" id="validationPill">검증 대기</span>
+              <div><p class="eyebrow">거래 내역</p><h2>거래 검토</h2></div>
+              <span class="status-pill" id="validationPill">점검 대기</span>
             </div>
             <div class="table">
               <div class="tr th"><span>거래처</span><span>적요</span><span>계정과목</span><span>금액</span><span>상태</span></div>
-              <div class="tr"><span>한국전력공사</span><span>전기요금</span><span>공공요금 · 전기료</span><span>₩181,111</span><span class="ok">AUTO</span></div>
-              <div class="tr focus"><span>쿠팡</span><span>업무용 구매</span><span id="coupangCategory">소모품비</span><span>₩72,222</span><span id="coupangStatus" class="warn">REVIEW</span></div>
-              <div class="tr"><span>오피스상사</span><span>사무용품</span><span>소모품비</span><span>₩33,333</span><span class="ok">AUTO</span></div>
+              <div class="tr"><span>한국전력공사</span><span>전기요금</span><span>공공요금 · 전기료</span><span>₩181,111</span><span class="ok">자동분류</span></div>
+              <div class="tr focus"><span>쿠팡</span><span>업무용 구매</span><span id="coupangCategory">소모품비</span><span>₩72,222</span><span id="coupangStatus" class="warn">확인 필요</span></div>
+              <div class="tr"><span>오피스상사</span><span>사무용품</span><span>소모품비</span><span>₩33,333</span><span class="ok">자동분류</span></div>
             </div>
             <div class="review-box" id="reviewBox">
               <div>
                 <b>쿠팡 · 업무용 구매</b>
                 <span>범용 구매처이므로 담당자 확인이 필요합니다.</span>
               </div>
-              <button id="correctBtn">사무비로 보정</button>
+              <button id="correctBtn">사무비로 수정</button>
             </div>
           </section>
 
           <aside class="panel control">
-            <div class="panel-head"><div><p class="eyebrow">CONTROL</p><h2>전송 통제</h2></div></div>
-            <div class="control-row"><span>외부 계정 Mapping</span><b class="ok">3 / 3</b></div>
-            <div class="control-row"><span>Pre-flight Validation</span><b id="validationText">검토 필요</b></div>
-            <div class="control-row"><span>Approval Digest</span><b id="digestText">—</b></div>
-            <div class="control-row"><span>Maker / Checker</span><b>분리 적용</b></div>
-            <div class="control-row"><span>Idempotency</span><b>Stable Key</b></div>
+            <div class="panel-head"><div><p class="eyebrow">전송 준비</p><h2>전송 전 확인</h2></div></div>
+            <div class="control-row"><span>외부 계정 연결</span><b class="ok">3 / 3</b></div>
+            <div class="control-row"><span>전송 전 점검</span><b id="validationText">검토 필요</b></div>
+            <div class="control-row"><span>승인 후 변경 여부</span><b id="digestText">—</b></div>
+            <div class="control-row"><span>승인자 / 전송자 분리</span><b>적용</b></div>
+            <div class="control-row"><span>중복 전송 방지</span><b>적용</b></div>
             <div class="action-stack">
-              <button id="approveBtn" disabled>APPROVER 승인</button>
-              <button id="transmitBtn" disabled>Mock W4C 전송</button>
-              <button id="retryBtn" class="secondary" disabled>실패 1건 재시도</button>
-              <button id="reconcileBtn" class="secondary" disabled>전송 대사 확인</button>
+              <button id="approveBtn" disabled>전송 승인</button>
+              <button id="transmitBtn" disabled>회계 시스템으로 전송</button>
+              <button id="retryBtn" class="secondary" disabled>실패 1건 다시 전송</button>
+              <button id="reconcileBtn" class="secondary" disabled>원장·전송 결과 비교</button>
             </div>
           </aside>
         </div>
 
         <section class="panel event-panel">
-          <div class="panel-head"><div><p class="eyebrow">AUDIT / ATTEMPTS</p><h2>실행 로그</h2></div><span id="batchStatus" class="status-pill">NOT TRANSMITTED</span></div>
+          <div class="panel-head"><div><p class="eyebrow">처리 이력</p><h2>실행 기록</h2></div><span id="batchStatus" class="status-pill">전송 전</span></div>
           <div class="event-log" id="eventLog">
-            <div><time>09:00:01</time><b>IMPORT_CREATED</b><span>release-acceptance.xlsx · 3 transactions</span></div>
-            <div><time>09:00:02</time><b>CLASSIFICATION_READY</b><span>2 auto-confirmed · 1 review required</span></div>
+            <div><time>09:00:01</time><b>Excel 불러오기</b><span>시연용 거래내역.xlsx · 3건</span></div>
+            <div><time>09:00:02</time><b>자동분류 완료</b><span>2건 자동분류 · 1건 담당자 확인 필요</span></div>
           </div>
         </section>
       </section>
 
       <section id="history" class="view">
         <div class="panel page-panel">
-          <div class="panel-head"><div><p class="eyebrow">TRANSMISSION HISTORY</p><h2>Batch / Attempt 이력</h2></div></div>
-          <div class="history-card"><span>BATCH</span><b>Release Acceptance Demo</b><small>승인 → 부분 실패 → item retry → SENT 흐름을 워크벤치에서 재현할 수 있습니다.</small></div>
+          <div class="panel-head"><div><p class="eyebrow">전송 이력</p><h2>전송 및 재시도 이력</h2></div></div>
+          <div class="history-card"><span>시연 흐름</span><b>부분 실패 후 안전한 재전송</b><small>승인 → 일부 전송 실패 → 실패 건만 다시 전송 → 전송 완료 흐름을 재현할 수 있습니다.</small></div>
           <div class="history-grid">
-            <div><span>승인 통제</span><b>Approval Digest</b><small>승인 후 전송 관련 상태 변경 시 STALE</small></div>
-            <div><span>재시도 통제</span><b>Frozen Request</b><small>최초 mapping snapshot과 idempotency key 유지</small></div>
-            <div><span>Crash Recovery</span><b>Durable Lease</b><small>Unknown delivery는 즉시 재전송하지 않음</small></div>
+            <div><span>승인 보호</span><b>승인 후 변경 감지</b><small>승인한 내용이 바뀌면 다시 승인하도록 차단합니다.</small></div>
+            <div><span>재전송 보호</span><b>최초 전송 내용 유지</b><small>실패 건을 다시 보낼 때 처음 보낸 계정·요청 내용을 그대로 유지합니다.</small></div>
+            <div><span>중단 복구</span><b>중복 실행 방지</b><small>전송 결과가 불확실하면 즉시 중복 전송하지 않고 안전하게 복구합니다.</small></div>
           </div>
         </div>
       </section>
 
       <section id="ops" class="view">
         <div class="ops-grid">
-          <div class="panel page-panel"><p class="eyebrow">RECOVERY WORKER</p><h2>HEALTHY</h2><p>자동 복구 worker heartbeat와 stale backlog를 분리해서 확인합니다.</p><div class="health-line"><span></span> Active worker · no stale backlog</div></div>
-          <div class="panel page-panel"><p class="eyebrow">PROVIDER BUDGET</p><h2>5s</h2><p>Provider timeout은 실패로 단정하지 않고 unknown delivery로 보존합니다.</p><div class="health-line"><span></span> Timeout &lt; dispatch lease</div></div>
-          <div class="panel page-panel"><p class="eyebrow">OPERATIONAL ALERT</p><h2>NONE</h2><p>WORKER_STALE / RECOVERY_BACKLOG 경보와 Global ADMIN acknowledgement 경계를 제공합니다.</p><div class="health-line"><span></span> external delivery not configured</div></div>
+          <div class="panel page-panel"><p class="eyebrow">자동 복구</p><h2>정상</h2><p>전송이 중간에 멈춘 건이 있는지 주기적으로 확인하고 안전하게 복구합니다.</p><div class="health-line"><span></span> 복구 작업 정상 · 미처리 건 없음</div></div>
+          <div class="panel page-panel"><p class="eyebrow">외부 시스템 응답</p><h2>5초</h2><p>응답이 늦으면 실패로 단정해 다시 보내지 않고, 전송 결과를 확인할 수 없는 상태로 보존합니다.</p><div class="health-line"><span></span> 중복 전송을 막기 위한 안전 대기 적용</div></div>
+          <div class="panel page-panel"><p class="eyebrow">운영 경고</p><h2>없음</h2><p>자동 복구가 멈추거나 미처리 건이 쌓이면 관리자가 확인할 수 있도록 경고합니다.</p><div class="health-line"><span></span> 외부 알림 서비스는 시연 환경에서 미연결</div></div>
         </div>
       </section>
     </main>
