@@ -278,14 +278,52 @@ function normalizeImportedRow(row){
   };
 }
 
+function parseDelimited(text,delimiter){
+  const rows=[];
+  let row=[];
+  let field="";
+  let quoted=false;
+  const source=String(text).replace(/^\uFEFF/,"");
+  for(let i=0;i<source.length;i+=1){
+    const char=source[i];
+    if(quoted){
+      if(char==='"'&&source[i+1]==='"'){field+='"';i+=1;}
+      else if(char==='"'){quoted=false;}
+      else field+=char;
+      continue;
+    }
+    if(char==='"'){quoted=true;continue;}
+    if(char===delimiter){row.push(field);field="";continue;}
+    if(char==="\n"||char==="\r"){
+      if(char==="\r"&&source[i+1]==="\n")i+=1;
+      row.push(field);field="";
+      if(row.some(cell=>String(cell).trim()!==""))rows.push(row);
+      row=[];
+      continue;
+    }
+    field+=char;
+  }
+  row.push(field);
+  if(row.some(cell=>String(cell).trim()!==""))rows.push(row);
+  if(rows.length<2)return [];
+  const headers=rows[0].map(header=>String(header).trim());
+  return rows.slice(1).map(values=>Object.fromEntries(headers.map((header,index)=>[header,values[index]??""])));
+}
+
 async function importFile(file){
   if(!file)return;
   try{
-    if(!window.XLSX)throw new Error("Excel 파서가 로드되지 않았습니다. 네트워크 연결을 확인해 주세요.");
-    const data=await file.arrayBuffer();
-    const workbook=window.XLSX.read(data);
-    const sheet=workbook.Sheets[workbook.SheetNames[0]];
-    const rawRows=window.XLSX.utils.sheet_to_json(sheet,{defval:"",raw:false});
+    const extension=file.name.split(".").pop()?.toLowerCase();
+    let rawRows;
+    if(extension==="csv"||extension==="tsv"){
+      rawRows=parseDelimited(await file.text(),extension==="tsv"?"\t":",");
+    }else{
+      if(!window.XLSX)throw new Error("Excel 파일 해석 모듈을 불러오지 못했습니다. CSV로 저장해 다시 시도할 수 있습니다.");
+      const data=await file.arrayBuffer();
+      const workbook=window.XLSX.read(data);
+      const sheet=workbook.Sheets[workbook.SheetNames[0]];
+      rawRows=window.XLSX.utils.sheet_to_json(sheet,{defval:"",raw:false});
+    }
     const rows=rawRows.map(normalizeImportedRow).filter(row=>normalizeAmount(row.amount)>0&&(normalizeText(row.vendor)||normalizeText(row.memo)));
     if(!rows.length)throw new Error("읽을 수 있는 거래가 없습니다. 거래처·적요·금액 열 이름을 확인해 주세요.");
     loadTransactions(rows,file.name);
