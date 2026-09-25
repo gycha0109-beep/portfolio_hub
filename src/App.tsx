@@ -17,6 +17,43 @@ function Logo() {
 }
 
 function Preview({ type }: { type: Project['preview'] }) {
+  if (type === 'ledger') {
+    return (
+      <div className="preview-shell preview-ledger">
+        <div className="ledger-side">
+          <b>CL</b>
+          <span className="on" />
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="ledger-main">
+          <div className="ledger-head">
+            <div><small>ACCOUNTING OPS</small><b>회계 전송 워크벤치</b></div>
+            <i>READY</i>
+          </div>
+          <div className="ledger-flow">
+            <span className="done">Excel</span><em />
+            <span className="done">검토</span><em />
+            <span className="active">승인</span><em />
+            <span>전송</span><em />
+            <span>대사</span>
+          </div>
+          <div className="ledger-kpis">
+            <span><small>IMPORT</small><b>3</b></span>
+            <span><small>REVIEW</small><b>0</b></span>
+            <span><small>EXPENSE</small><b>₩286K</b></span>
+          </div>
+          <div className="ledger-table">
+            <p><i /><span /><b>₩181,111</b></p>
+            <p><i /><span /><b>₩72,222</b></p>
+            <p><i /><span /><b>₩33,333</b></p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (type === 'ai') {
     return (
       <div className="preview-shell cover-shell">
