@@ -29,5 +29,9 @@ jobs:
         run: node scripts/test-demo-security-gate.mjs
       - name: Verify published demo registry
         run: node scripts/verify-all-public-demos.mjs
+      - name: Check CareLedger demo scripts
+        run: |
+          node --check public/demos/careledger/app.js
+          node --check scripts/capture-careledger-site-demo.mjs
       - name: Typecheck and build
         run: npm run build
