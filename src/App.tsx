@@ -201,6 +201,28 @@ function ProjectDetail() {
           </div>
         </div>
 
+        {project.slug === 'careledger' && (
+          <section className="demo-video-section" aria-labelledby="careledger-demo-video-title">
+            <div className="demo-video-heading">
+              <div>
+                <span className="eyebrow">PLAYWRIGHT DEMO</span>
+                <h3 id="careledger-demo-video-title">실제 업무 흐름 시연</h3>
+              </div>
+              <p>실제 CareLedger 화면에서 Excel 불러오기부터 검토·승인·전송·실패 건 재전송·최종 확인까지 약 2분 동안 진행합니다.</p>
+            </div>
+            <video
+              className="demo-video"
+              controls
+              preload="metadata"
+              poster="/demos/careledger/careledger-demo-poster.webp"
+            >
+              <source src="/demos/careledger/careledger-demo.mp4" type="video/mp4" />
+              브라우저에서 MP4 영상을 재생할 수 없습니다.
+            </video>
+            <p className="demo-video-note">실제 희망이음 운영 시스템이 아닌 독립 테스트 연동 환경에서 촬영한 시연입니다.</p>
+          </section>
+        )}
+
         <div className="detail-content">
           <article className="info-block">
             <span>01</span>
