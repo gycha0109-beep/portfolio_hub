@@ -17,6 +17,37 @@ function Logo() {
 }
 
 function Preview({ type }: { type: Project['preview'] }) {
+  if (type === 'proposal') {
+    return (
+      <div className="preview-shell preview-proposal">
+        <div className="proposal-preview-head">
+          <small>PROPOSAL OPS</small>
+          <b>Evidence-grounded workflow</b>
+          <i>6 / 6</i>
+        </div>
+        <div className="proposal-preview-flow">
+          <span>RFP</span><em />
+          <span>RETRIEVE</span><em />
+          <span>EVIDENCE</span><em />
+          <span>STRATEGY</span>
+        </div>
+        <div className="proposal-preview-main">
+          <div className="proposal-preview-column">
+            <p><b>01</b><span>Coverage validator</span><i>PASS</i></p>
+            <p><b>02</b><span>Slide provenance</span><i>PASS</i></p>
+            <p><b>03</b><span>Semantic QA</span><i>GUARD</i></p>
+          </div>
+          <div className="proposal-preview-card">
+            <small>GROUNDING CHECK</small>
+            <strong>잘못 연결된 근거 자동 차단</strong>
+            <div><span>OFF_PAGE_EVIDENCE</span><b>BLOCK</b></div>
+            <div><span>INVALID_REFERENCE</span><b>BLOCK</b></div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (type === 'ledger') {
     return (
       <div className="preview-shell preview-ledger">
