@@ -165,6 +165,39 @@
         "원장·전송 결과 비교 / 처리 이력"
       ],
       "preview": "ledger"
+    },
+    {
+      "schemaVersion": 1,
+      "slug": "proposalops",
+      "order": 6,
+      "title": "ProposalOps AI",
+      "kicker": "근거 기반 AI 제안서 작성·검증 자동화",
+      "description": "RFP를 구조화하고 과거 제안서 근거를 검색해 전략·페이지·슬라이드 초안을 생성한 뒤, 잘못된 근거 연결과 근거 범위 초과 문장을 자동 검증하는 제안서 작성 워크플로입니다.",
+      "category": "AI PROPOSAL OPS",
+      "accent": "#7c6cf2",
+      "stack": [
+        "Dify",
+        "OpenAI",
+        "RAG",
+        "Python"
+      ],
+      "problem": "제안서 작성은 RFP 요구사항을 빠짐없이 반영하면서 과거 수행자료를 정확한 근거로 연결해야 합니다. 생성형 AI만 붙이면 다른 요구사항의 근거가 섞이거나, 참고자료가 실제로 말하지 않은 세부 내용까지 확대해 작성하는 문제가 생깁니다.",
+      "solution": "RFP 분석 → 이중 검색 질의 → Knowledge Retrieval → Evidence Pack → 전략 → Pagination → Slide/Visual Draft → deterministic provenance gate → semantic QA → targeted repair 흐름으로 구성했습니다. 생성보다 근거 추적과 오류 차단을 중심에 둔 구조입니다.",
+      "evidence": [
+        "Dify Studio 실제 workflow import·실행 검증",
+        "RFP 필수 요구사항 6/6 반영·missing 0 확인",
+        "OFF_PAGE_EVIDENCE / EVIDENCE_REQUIREMENT_MISMATCH 실제 차단",
+        "INVALID_REFERENCE 탐지 후 Targeted Repair 실제 실행"
+      ],
+      "scope": [
+        "RFP Analyzer / Retrieval Planner",
+        "Production Knowledge Retrieval",
+        "Evidence Pack / Proposal Strategy",
+        "Pagination / Slide / Visual Draft",
+        "Coverage · Provenance Validation",
+        "Semantic QA / Targeted Repair"
+      ],
+      "preview": "proposal"
     }
   ]
 }
