@@ -3,10 +3,44 @@ import {
   ArrowRight,
   Check,
   ExternalLink,
+  FileText,
+  Github,
+  Images,
+  LayoutList,
+  Lightbulb,
   Play,
+  Search,
+  ShieldCheck,
 } from 'lucide-react'
 import { Link, Route, Routes, useParams } from 'react-router'
 import { projectBySlug, projects, type Project } from './data'
+import './proposal.css'
+
+const proposalSteps = [
+  { index: '01', title: 'RFP 분석', note: '요구사항 추출', icon: FileText },
+  { index: '02', title: '근거 자료 검색', note: '과거 제안서 탐색', icon: Search },
+  { index: '03', title: '제안 전략 생성', note: '컨셉·방향성 도출', icon: Lightbulb },
+  { index: '04', title: '페이지 구성', note: '목차·장표 흐름 설계', icon: LayoutList },
+  { index: '05', title: '장표 초안 작성', note: '텍스트·시각 자료 기획', icon: Images },
+  { index: '06', title: '검증 및 수정', note: '근거 검증·부분 재작성', icon: ShieldCheck },
+]
+
+const proposalRequirements = [
+  ['R-201', '통합 마케팅 전략 수립', 'PAGE 02'],
+  ['R-202', '디지털 채널 운영 방안', 'PAGE 03'],
+  ['R-203', '영상 콘텐츠 제작', 'PAGE 04'],
+  ['R-204', '온/오프라인 연계 방안', 'PAGE 05'],
+  ['R-205', '캠페인 운영 계획', 'PAGE 06'],
+  ['R-206', '성과 측정 및 분석 체계', 'PAGE 07'],
+]
+
+const proposalSlides = [
+  ['01', '제안 개요', 'overview'],
+  ['02', '현황 분석', 'bars'],
+  ['03', '전략 방향', 'radial'],
+  ['04', '추진 계획', 'flow'],
+  ['05', '성과 측정', 'chart'],
+]
 
 function Logo() {
   return (
@@ -189,6 +223,254 @@ function Home() {
   )
 }
 
+function ProposalProductMock() {
+  return (
+    <div className="proposal-product">
+      <div className="proposal-product-inputs">
+        <div className="proposal-source-card">
+          <div className="proposal-source-icon"><FileText size={18} /></div>
+          <div>
+            <small>INPUT 01</small>
+            <strong>과업지시서 (RFP)</strong>
+            <span>RFP-TEST-002.pdf</span>
+          </div>
+        </div>
+        <div className="proposal-source-card">
+          <div className="proposal-source-icon"><FileText size={18} /></div>
+          <div>
+            <small>INPUT 02</small>
+            <strong>과거 우수 제안서</strong>
+            <span>PPT · PDF · 문서</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="proposal-app-window">
+        <aside className="proposal-app-nav">
+          <b>ProposalOps <i>AI</i></b>
+          <span className="active">RFP 분석</span>
+          <span>근거 자료 검색</span>
+          <span>제안 전략</span>
+          <span>페이지 구성</span>
+          <span>슬라이드 초안</span>
+          <span>검증 및 수정</span>
+        </aside>
+
+        <div className="proposal-app-main">
+          <div className="proposal-app-toolbar">
+            <b>RFP-TEST-002</b>
+            <span>완료</span>
+          </div>
+
+          <div className="proposal-app-slide">
+            <div>
+              <small>PROPOSAL DRAFT</small>
+              <h3>제안 개요</h3>
+              <p>요구사항과 과거 수행 근거를 연결해 제안 방향과 장표 초안을 구성합니다.</p>
+            </div>
+            <div className="proposal-app-art">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+
+          <div className="proposal-app-bottom">
+            <div className="proposal-app-requirements">
+              <small>요구사항 반영</small>
+              {proposalRequirements.slice(0, 4).map(([id, title]) => (
+                <p key={id}><Check size={11} /><b>{id}</b><span>{title}</span></p>
+              ))}
+            </div>
+            <div className="proposal-app-thumbs">
+              {proposalSlides.slice(0, 4).map(([id]) => <i key={id}>{id}</i>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProposalSlideVisual({ kind }: { kind: string }) {
+  if (kind === 'overview') {
+    return (
+      <div className="proposal-slide-canvas overview">
+        <div><small>PROPOSAL</small><b>제안 개요</b><span>데이터 기반 통합 마케팅 제안</span></div>
+        <i />
+      </div>
+    )
+  }
+
+  if (kind === 'bars') {
+    return (
+      <div className="proposal-slide-canvas bars">
+        <b>현황 분석</b>
+        <div><i /><i /><i /><i /></div>
+      </div>
+    )
+  }
+
+  if (kind === 'radial') {
+    return (
+      <div className="proposal-slide-canvas radial">
+        <b>전략 방향</b>
+        <div><i /><span /><span /><span /></div>
+      </div>
+    )
+  }
+
+  if (kind === 'flow') {
+    return (
+      <div className="proposal-slide-canvas flow">
+        <b>추진 계획</b>
+        <div><span>01</span><em /><span>02</span><em /><span>03</span></div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="proposal-slide-canvas chart">
+      <b>성과 측정</b>
+      <div><i /><i /><i /><i /><i /></div>
+    </div>
+  )
+}
+
+function ProposalDetail({ project, next }: { project: Project; next: Project }) {
+  return (
+    <main>
+      <Header />
+
+      <section className="detail proposal-detail-page">
+        <Link className="back-link" to="/"><ArrowLeft size={16} /> 전체 프로젝트</Link>
+
+        <section className="proposal-hero">
+          <div className="proposal-hero-copy">
+            <span className="proposal-kicker">AI PROPOSAL AUTOMATION</span>
+            <h1>RFP를 넣으면,<br /><em>근거 있는 제안서 초안</em>이<br />자동으로 완성됩니다.</h1>
+            <p>과업지시서를 분석하고 과거 우수 제안서에서 관련 레퍼런스를 찾아, 제안 전략·목차·장표 텍스트 초안·이미지 생성 프롬프트까지 하나의 흐름으로 만듭니다.</p>
+            <div className="proposal-hero-actions">
+              <a className="primary-button" href={project.demoUrl} target="_blank" rel="noreferrer">
+                <Play size={16} fill="currentColor" /> 데모 결과 보기
+              </a>
+              <a className="secondary-button" href="https://github.com/gycha0109-beep/ProposalOps-AI" target="_blank" rel="noreferrer">
+                <Github size={17} /> GitHub 보기
+              </a>
+            </div>
+          </div>
+
+          <ProposalProductMock />
+        </section>
+
+        <section className="proposal-section proposal-process-section">
+          <div className="proposal-section-heading">
+            <span>01. 전체 프로세스</span>
+            <h2>RFP부터 제안서 초안까지, 6단계 자동화</h2>
+            <p>검색과 생성 사이에 근거 연결을 두고, 마지막에는 근거 범위를 다시 검증합니다.</p>
+          </div>
+
+          <div className="proposal-step-row">
+            {proposalSteps.map((step, index) => {
+              const Icon = step.icon
+              return (
+                <div className="proposal-step" key={step.index}>
+                  <div className="proposal-step-icon"><Icon size={22} /></div>
+                  <small>{step.index}</small>
+                  <b>{step.title}</b>
+                  <span>{step.note}</span>
+                  {index < proposalSteps.length - 1 && <ArrowRight className="proposal-step-arrow" size={16} />}
+                </div>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="proposal-section proposal-result-section">
+          <div className="proposal-section-heading compact">
+            <span>02. 실제 결과</span>
+            <h2>신규 RFP를 기반으로 생성된 제안서 예시</h2>
+          </div>
+
+          <div className="proposal-slide-grid">
+            {proposalSlides.map(([id, title, kind]) => (
+              <figure className="proposal-slide-preview" key={id}>
+                <ProposalSlideVisual kind={kind} />
+                <figcaption><small>{id}.</small> {title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <div className="proposal-two-column">
+          <section className="proposal-section proposal-coverage-section">
+            <div className="proposal-section-heading compact">
+              <span>03. 요구사항 반영 결과</span>
+              <h2>모든 필수 요구사항이 제안서에 반영됐습니다.</h2>
+            </div>
+
+            <div className="proposal-coverage-layout">
+              <div className="proposal-requirement-list">
+                {proposalRequirements.map(([id, title, page]) => (
+                  <div key={id}>
+                    <Check size={14} />
+                    <b>{id}</b>
+                    <span>{title}</span>
+                    <strong>{page}</strong>
+                  </div>
+                ))}
+              </div>
+
+              <div className="proposal-metrics">
+                <div><small>필수 요구사항 반영</small><b>6 / 6</b></div>
+                <div><small>누락 요구사항</small><b>0</b></div>
+                <div><small>생성 페이지 수</small><b>7</b><span>제한 ≤ 8</span></div>
+                <div><small>근거 없는 주장</small><b>0건</b></div>
+              </div>
+            </div>
+          </section>
+
+          <section className="proposal-section proposal-validation-section">
+            <div className="proposal-section-heading compact">
+              <span>04. 근거 기반 검증</span>
+              <h2>AI가 없는 내용을 만들지 않도록 검증합니다.</h2>
+              <p>실제 evidence가 지원하는 범위를 넘으면 차단하고, 문제가 생긴 범위만 다시 작성합니다.</p>
+            </div>
+
+            <div className="proposal-validation-flow">
+              <div className="proposal-validation-card invalid">
+                <small>잘못된 AI 초안</small>
+                <blockquote>“지도·예약 연계를 통해 방문 전환을 높입니다.”</blockquote>
+                <b>INVALID_REFERENCE</b>
+              </div>
+
+              <ArrowRight className="proposal-validation-arrow" size={22} />
+
+              <div className="proposal-validation-card valid">
+                <small>실제 근거 자료</small>
+                <blockquote>“공식 채널과 크리에이터의 역할을 분리하여 운영합니다.”</blockquote>
+                <b><Check size={14} /> 해당 부분만 재작성</b>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <Link className="next-card" to={`/work/${next.slug}`}>
+          <span>다음 프로젝트</span>
+          <b>{next.title}</b>
+          <ArrowRight size={24} />
+        </Link>
+      </section>
+
+      <footer className="simple-footer">
+        <Logo />
+        <span>실무에서 출발하는, 실제로 작동하는 결과물.</span>
+        <span>© 2026 Porthub</span>
+      </footer>
+    </main>
+  )
+}
+
 function ProjectDetail() {
   const { slug } = useParams()
   const project = projectBySlug(slug)
@@ -205,6 +487,10 @@ function ProjectDetail() {
 
   const current = projects.findIndex((item) => item.slug === project.slug)
   const next = projects[(current + 1) % projects.length]
+
+  if (project.slug === 'proposalops') {
+    return <ProposalDetail project={project} next={next} />
+  }
 
   return (
     <main>
