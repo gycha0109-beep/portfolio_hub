@@ -194,34 +194,102 @@
     .slides{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:9px;
+      gap:10px;
     }
-    .slide{
-      min-height:116px;
-      padding:12px;
-      border:1px solid #d7ddea;
-      border-radius:7px;
-      color:#172338;
+    .slide-thumb{
+      appearance:none;
+      padding:0;
+      overflow:hidden;
+      border:1px solid #2a313c;
+      border-radius:9px;
+      color:#d8dde5;
+      background:#0b0f15;
+      cursor:pointer;
+      text-align:left;
+      transition:border-color .18s ease,transform .18s ease;
+    }
+    .slide-thumb:hover{
+      border-color:rgba(139,124,248,.62);
+      transform:translateY(-2px);
+    }
+    .slide-thumb img{
+      display:block;
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
       background:#fff;
     }
-    .slide small{
-      color:#7166d7;
-      font-size:7px;
-      font-weight:900;
-    }
-    .slide b{
+    .slide-thumb span{
       display:block;
-      margin:7px 0;
-      font-size:12px;
+      padding:9px 11px 10px;
+      font-size:10px;
+      line-height:1.4;
     }
-    .slide .bar{
-      height:7px;
-      margin-top:7px;
-      border-radius:999px;
-      background:#dce3ef;
+    .lightbox[hidden]{display:none}
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      padding:18px;
     }
-    .slide .bar:nth-of-type(2){width:78%}
-    .slide .bar:nth-of-type(3){width:56%}
+    .lightbox-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.84);
+      backdrop-filter:blur(4px);
+    }
+    .lightbox-dialog{
+      position:relative;
+      z-index:1;
+      width:min(1320px,100%);
+      max-height:calc(100vh - 36px);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:13px;
+      background:#0b0f15;
+      box-shadow:0 32px 90px rgba(0,0,0,.55);
+    }
+    .lightbox-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      min-height:50px;
+      padding:10px 14px 10px 18px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .lightbox-head strong{
+      color:#eef1f5;
+      font-size:13px;
+    }
+    .lightbox-close{
+      width:34px;
+      height:34px;
+      border:0;
+      border-radius:50%;
+      color:#fff;
+      background:rgba(255,255,255,.08);
+      cursor:pointer;
+      font-size:22px;
+      line-height:1;
+    }
+    .lightbox-body{
+      overflow:auto;
+      padding:14px;
+      text-align:center;
+    }
+    .lightbox-body img{
+      display:block;
+      max-width:100%;
+      height:auto;
+      margin:auto;
+      border-radius:8px;
+      background:#fff;
+    }
     .metrics{
       display:grid;
       grid-template-columns:repeat(2,1fr);
@@ -395,12 +463,30 @@
 
     <div class="results">
       <div class="slides">
-        <div class="slide"><small>01</small><b>제안 개요</b><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-        <div class="slide"><small>02</small><b>현황 분석</b><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-        <div class="slide"><small>03</small><b>전략 방향</b><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-        <div class="slide"><small>04</small><b>추진 계획</b><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-        <div class="slide"><small>05</small><b>콘텐츠 운영</b><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-        <div class="slide"><small>06</small><b>성과 측정</b><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+        <button class="slide-thumb" type="button" data-full="./screenshots/01.png" data-title="실제 결과 01">
+          <img src="./screenshots/01.png" alt="ProposalOps 실제 결과 화면 01">
+          <span>실제 결과 01</span>
+        </button>
+        <button class="slide-thumb" type="button" data-full="./screenshots/02.png" data-title="실제 결과 02">
+          <img src="./screenshots/02.png" alt="ProposalOps 실제 결과 화면 02">
+          <span>실제 결과 02</span>
+        </button>
+        <button class="slide-thumb" type="button" data-full="./screenshots/03.png" data-title="실제 결과 03">
+          <img src="./screenshots/03.png" alt="ProposalOps 실제 결과 화면 03">
+          <span>실제 결과 03</span>
+        </button>
+        <button class="slide-thumb" type="button" data-full="./screenshots/04.png" data-title="실제 결과 04">
+          <img src="./screenshots/04.png" alt="ProposalOps 실제 결과 화면 04">
+          <span>실제 결과 04</span>
+        </button>
+        <button class="slide-thumb" type="button" data-full="./screenshots/05.png" data-title="실제 결과 05">
+          <img src="./screenshots/05.png" alt="ProposalOps 실제 결과 화면 05">
+          <span>실제 결과 05</span>
+        </button>
+        <button class="slide-thumb" type="button" data-full="./screenshots/06.png" data-title="실제 결과 06">
+          <img src="./screenshots/06.png" alt="ProposalOps 실제 결과 화면 06">
+          <span>실제 결과 06</span>
+        </button>
       </div>
 
       <div class="metrics">
@@ -454,5 +540,50 @@
 
   <p class="note">포트폴리오용 테스트 문서와 안전한 샘플 데이터로 검증했습니다. 실제 발주처 문서, 회사 기밀자료, 계정 정보는 포함하지 않습니다.</p>
 </main>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-backdrop" data-close="true"></div>
+  <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div class="lightbox-head">
+      <strong id="lightbox-title">실제 결과</strong>
+      <button class="lightbox-close" id="lightbox-close" type="button" aria-label="이미지 닫기">×</button>
+    </div>
+    <div class="lightbox-body">
+      <img id="lightbox-image" src="" alt="">
+    </div>
+  </div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  const closeLightbox = () => {
+    lightbox.hidden = true;
+    lightboxImage.src = '';
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.slide-thumb').forEach((button) => {
+    button.addEventListener('click', () => {
+      const image = button.querySelector('img');
+      lightboxImage.src = button.dataset.full;
+      lightboxImage.alt = image ? image.alt : button.dataset.title;
+      lightboxTitle.textContent = button.dataset.title;
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (event) => {
+    if (event.target.dataset.close === 'true') closeLightbox();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
+  });
+</script>
 </body>
 </html>
