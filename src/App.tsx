@@ -4,7 +4,6 @@ import {
   Check,
   ExternalLink,
   FileText,
-  Github,
   Images,
   LayoutList,
   Lightbulb,
@@ -355,7 +354,7 @@ function ProposalDetail({ project, next }: { project: Project; next: Project }) 
                 <Play size={16} fill="currentColor" /> 데모 결과 보기
               </a>
               <a className="secondary-button" href="https://github.com/gycha0109-beep/ProposalOps-AI" target="_blank" rel="noreferrer">
-                <Github size={17} /> GitHub 보기
+                GitHub 보기
               </a>
             </div>
           </div>
