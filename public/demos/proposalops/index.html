@@ -188,12 +188,13 @@
     }
     .results{
       display:grid;
-      grid-template-columns:1.2fr .8fr;
+      grid-template-columns:minmax(0,1fr) 270px;
       gap:14px;
+      align-items:start;
     }
     .slides{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
+      grid-template-columns:repeat(3,minmax(0,1fr));
       gap:10px;
     }
     .slide-thumb{
@@ -213,13 +214,15 @@
       transform:translateY(-2px);
     }
     .slide-thumb.wide{
-      grid-column:1 / -1;
+      grid-column:auto;
     }
     .slide-thumb img{
       display:block;
       width:100%;
+      aspect-ratio:16/9;
       height:auto;
-      object-fit:contain;
+      object-fit:cover;
+      object-position:center top;
       background:#0b0f15;
     }
     .slide-thumb span{
@@ -301,8 +304,8 @@
       gap:9px;
     }
     .metric{
-      min-height:116px;
-      padding:16px;
+      min-height:96px;
+      padding:14px;
       border:1px solid var(--line);
       border-radius:9px;
       background:#0c1016;
@@ -313,9 +316,9 @@
     }
     .metric strong{
       display:block;
-      margin-top:11px;
+      margin-top:8px;
       color:var(--green);
-      font-size:26px;
+      font-size:24px;
       letter-spacing:-.03em;
     }
     .metric span{
@@ -394,7 +397,8 @@
     @media(max-width:900px){
       .hero,.results{grid-template-columns:1fr}
       .process{grid-template-columns:repeat(2,1fr)}
-      .slides{grid-template-columns:1fr}
+      .results{grid-template-columns:1fr}
+      .slides{grid-template-columns:repeat(2,minmax(0,1fr))}
       .slide-thumb.wide{grid-column:auto}
       .guard{grid-template-columns:1fr}
       .guard-arrow{transform:rotate(90deg)}
@@ -403,7 +407,8 @@
       main{width:min(100% - 24px,1180px);padding-top:34px}
       .hero-visual{grid-template-columns:1fr}
       .arrow{text-align:center;transform:rotate(90deg)}
-      .process,.slides,.metrics{grid-template-columns:1fr}
+      .process,.slides{grid-template-columns:1fr}
+      .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
       .section{padding:20px}
       .section-head{display:block}
       .section-head p{margin-top:10px}
