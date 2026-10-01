@@ -212,12 +212,15 @@
       border-color:rgba(139,124,248,.62);
       transform:translateY(-2px);
     }
+    .slide-thumb.wide{
+      grid-column:1 / -1;
+    }
     .slide-thumb img{
       display:block;
       width:100%;
-      height:220px;
+      height:auto;
       object-fit:contain;
-      background:#fff;
+      background:#0b0f15;
     }
     .slide-thumb span{
       display:block;
@@ -285,10 +288,12 @@
     .lightbox-body img{
       display:block;
       max-width:100%;
+      max-height:calc(100vh - 110px);
+      width:auto;
       height:auto;
       margin:auto;
       border-radius:8px;
-      background:#fff;
+      background:#0b0f15;
     }
     .metrics{
       display:grid;
@@ -389,6 +394,8 @@
     @media(max-width:900px){
       .hero,.results{grid-template-columns:1fr}
       .process{grid-template-columns:repeat(2,1fr)}
+      .slides{grid-template-columns:1fr}
+      .slide-thumb.wide{grid-column:auto}
       .guard{grid-template-columns:1fr}
       .guard-arrow{transform:rotate(90deg)}
     }
@@ -463,28 +470,28 @@
 
     <div class="results">
       <div class="slides">
-        <button class="slide-thumb" type="button" data-full="./screenshots/01.webp" data-title="전체 자동화 흐름">
-          <img src="./screenshots/01.webp" alt="ProposalOps 전체 자동화 흐름 화면">
+        <button class="slide-thumb wide" type="button" data-full="./screenshots/01.png" data-title="전체 자동화 흐름">
+          <img src="./screenshots/01.png" alt="ProposalOps 전체 자동화 흐름 화면">
           <span>전체 자동화 흐름</span>
         </button>
-        <button class="slide-thumb" type="button" data-full="./screenshots/02.webp" data-title="RFP 분석부터 초안 작성까지">
-          <img src="./screenshots/02.webp" alt="ProposalOps RFP 분석부터 초안 작성까지의 흐름">
+        <button class="slide-thumb wide" type="button" data-full="./screenshots/02.png" data-title="RFP 분석부터 초안 작성까지">
+          <img src="./screenshots/02.png" alt="ProposalOps RFP 분석부터 초안 작성까지의 흐름">
           <span>RFP 분석부터 초안 작성까지</span>
         </button>
-        <button class="slide-thumb" type="button" data-full="./screenshots/03.webp" data-title="필수 요구사항 6개 모두 반영">
-          <img src="./screenshots/03.webp" alt="ProposalOps 필수 요구사항 6개 모두 반영 확인 화면">
+        <button class="slide-thumb" type="button" data-full="./screenshots/03.png" data-title="필수 요구사항 6개 모두 반영">
+          <img src="./screenshots/03.png" alt="ProposalOps 필수 요구사항 6개 모두 반영 확인 화면">
           <span>필수 요구사항 6개 모두 반영</span>
         </button>
-        <button class="slide-thumb" type="button" data-full="./screenshots/04.webp" data-title="잘못 연결된 참고자료 자동 차단">
-          <img src="./screenshots/04.webp" alt="ProposalOps 잘못 연결된 참고자료 자동 차단 화면">
+        <button class="slide-thumb" type="button" data-full="./screenshots/04.png" data-title="잘못 연결된 참고자료 자동 차단">
+          <img src="./screenshots/04.png" alt="ProposalOps 잘못 연결된 참고자료 자동 차단 화면">
           <span>잘못 연결된 참고자료 자동 차단</span>
         </button>
-        <button class="slide-thumb" type="button" data-full="./screenshots/05.webp" data-title="과거 자료에 없는 표현 발견">
-          <img src="./screenshots/05.webp" alt="ProposalOps 과거 자료에 없는 표현 발견 화면">
+        <button class="slide-thumb" type="button" data-full="./screenshots/05.png" data-title="과거 자료에 없는 표현 발견">
+          <img src="./screenshots/05.png" alt="ProposalOps 과거 자료에 없는 표현 발견 화면">
           <span>과거 자료에 없는 표현 발견</span>
         </button>
-        <button class="slide-thumb" type="button" data-full="./screenshots/06.webp" data-title="문제 부분만 다시 작성">
-          <img src="./screenshots/06.webp" alt="ProposalOps 문제 부분만 다시 작성한 실행 화면">
+        <button class="slide-thumb" type="button" data-full="./screenshots/06.png" data-title="문제 부분만 다시 작성">
+          <img src="./screenshots/06.png" alt="ProposalOps 문제 부분만 다시 작성한 실행 화면">
           <span>문제 부분만 다시 작성</span>
         </button>
       </div>
