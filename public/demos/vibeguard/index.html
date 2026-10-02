@@ -6,18 +6,37 @@
   <meta name="robots" content="noindex,nofollow">
   <title>VibeGuard — Security Hardening Evidence</title>
   <style>
-    *{box-sizing:border-box}body{margin:0;font-family:Inter,"Noto Sans KR",system-ui,sans-serif;background:#09100f;color:#eef8f4}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,"Noto Sans KR",system-ui,sans-serif;background:#f6f9ff;color:#172033}
     main{width:min(1080px,calc(100% - 36px));margin:0 auto;padding:56px 0 72px}
-    .eyebrow{color:#66d5ad;font:800 12px/1 monospace;letter-spacing:.14em}.hero{padding-bottom:34px;border-bottom:1px solid #1d302b}
-    h1{margin:12px 0 14px;font-size:clamp(44px,7vw,78px);letter-spacing:-.055em;line-height:1}h1 em{color:#65d7af;font-style:normal}
-    .hero p{max-width:760px;color:#93a9a1;font-size:16px;line-height:1.75}.status{display:inline-flex;margin-top:20px;padding:8px 12px;border:1px solid #275244;border-radius:999px;background:#10241f;color:#76deb9;font:800 12px/1 monospace}
-    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}.metric{padding:20px;border:1px solid #20352f;border-radius:10px;background:#0e1816}
-    .metric small{display:block;color:#718c82;font:800 10px/1 monospace}.metric b{display:block;margin-top:9px;font-size:25px;letter-spacing:-.04em}.metric span{display:block;margin-top:7px;color:#81968f;font-size:11px}
-    section{margin-top:34px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:12px}.section-head h2{margin:0;font-size:24px}.section-head span{color:#637a72;font:700 11px monospace}
-    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.flow div{padding:18px 14px;border:1px solid #20352f;border-radius:8px;background:#0d1715}.flow small{color:#5c766d;font:700 10px monospace}.flow b{display:block;margin-top:8px;font-size:14px}.flow i{display:block;margin-top:12px;color:#62d4ac;font:900 10px monospace;font-style:normal}
-    table{width:100%;border-collapse:collapse;border:1px solid #20352f;background:#0d1715}th,td{padding:14px 16px;border-bottom:1px solid #1b2e29;text-align:left;font-size:13px}th{color:#6f8c82;font:800 10px monospace}td:last-child{color:#67d7af;font-weight:800}
-    .note{margin-top:28px;padding:18px;border-left:3px solid #5ed3a6;background:#0d1715;color:#81968f;font-size:12px;line-height:1.7}
-    @media(max-width:760px){.metrics{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column;gap:8px}}
+    .eyebrow{color:#4f7cff;font:800 12px/1 monospace;letter-spacing:.14em}
+    .hero{padding:34px;border:1px solid #dce6fb;border-radius:18px;background:linear-gradient(145deg,#fff 0%,#f3f7ff 100%);box-shadow:0 18px 50px rgba(65,103,180,.08)}
+    h1{margin:12px 0 14px;font-size:clamp(44px,7vw,78px);letter-spacing:-.055em;line-height:1;color:#111a2d}
+    h1 em{color:#4f7cff;font-style:normal}
+    .hero p{max-width:760px;color:#647089;font-size:16px;line-height:1.75}
+    .status{display:inline-flex;margin-top:20px;padding:8px 12px;border:1px solid #c8d8ff;border-radius:999px;background:#edf4ff;color:#356cf4;font:800 12px/1 monospace}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+    .metric{padding:20px;border:1px solid #dce6fb;border-radius:12px;background:#fff;box-shadow:0 10px 26px rgba(65,103,180,.06)}
+    .metric small{display:block;color:#8290aa;font:800 10px/1 monospace}
+    .metric b{display:block;margin-top:9px;color:#244aa5;font-size:25px;letter-spacing:-.04em}
+    .metric span{display:block;margin-top:7px;color:#7a879d;font-size:11px}
+    section{margin-top:34px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:12px}
+    .section-head h2{margin:0;color:#172033;font-size:24px}
+    .section-head span{color:#8492ab;font:700 11px monospace}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+    .flow div{padding:18px 14px;border:1px solid #dce6fb;border-radius:10px;background:#fff}
+    .flow small{color:#9aa8bd;font:700 10px monospace}
+    .flow b{display:block;margin-top:8px;color:#26344d;font-size:14px}
+    .flow i{display:block;margin-top:12px;color:#356cf4;font:900 10px monospace;font-style:normal}
+    table{width:100%;overflow:hidden;border-collapse:separate;border-spacing:0;border:1px solid #dce6fb;border-radius:12px;background:#fff;box-shadow:0 10px 26px rgba(65,103,180,.05)}
+    th,td{padding:14px 16px;border-bottom:1px solid #e7edf8;text-align:left;font-size:13px}
+    tr:last-child td{border-bottom:0}
+    th{background:#f4f7fd;color:#7e8ba3;font:800 10px monospace}
+    td{color:#4d5a70}
+    td:last-child{color:#356cf4;font-weight:800}
+    .note{margin-top:28px;padding:18px;border:1px solid #dce6fb;border-left:4px solid #4f7cff;border-radius:10px;background:#eef4ff;color:#67758d;font-size:12px;line-height:1.7}
+    @media(max-width:760px){.metrics{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column;gap:8px}.hero{padding:24px}}
   </style>
 </head>
 <body>

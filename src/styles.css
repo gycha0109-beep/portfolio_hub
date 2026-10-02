@@ -1207,11 +1207,12 @@ button, input, select { font: inherit; }
 /* VibeGuard security hardening preview */
 .preview-security {
   padding: 15px;
-  border-color: #263a35;
+  border-color: #d7e3ff;
   background:
-    radial-gradient(circle at 88% 12%, rgba(94,211,166,.18), transparent 30%),
-    linear-gradient(180deg, #111b19 0%, #0d1414 100%);
-  color: #eef8f4;
+    radial-gradient(circle at 88% 10%, rgba(79,124,255,.12), transparent 32%),
+    linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+  color: #172033;
+  box-shadow: 0 12px 30px rgba(65,103,180,.12);
 }
 
 .security-preview-head {
@@ -1219,7 +1220,7 @@ button, input, select { font: inherit; }
   align-items: center;
   justify-content: space-between;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(137,199,177,.18);
+  border-bottom: 1px solid #dfe8fb;
 }
 
 .security-preview-head div {
@@ -1228,23 +1229,23 @@ button, input, select { font: inherit; }
 }
 
 .security-preview-head small {
-  color: #6fae97;
+  color: #6d83ae;
   font-size: 6px;
   font-weight: 900;
   letter-spacing: .14em;
 }
 
 .security-preview-head b {
-  color: #f1faf6;
+  color: #16213a;
   font-size: 12px;
 }
 
 .security-preview-head i {
   padding: 4px 7px;
-  border: 1px solid rgba(94,211,166,.28);
+  border: 1px solid #c8d8ff;
   border-radius: 999px;
-  background: rgba(94,211,166,.1);
-  color: #6fe0b6;
+  background: #edf4ff;
+  color: #356cf4;
   font-size: 6px;
   font-style: normal;
   font-weight: 900;
@@ -1259,14 +1260,14 @@ button, input, select { font: inherit; }
 
 .security-preview-metrics span {
   padding: 8px;
-  border: 1px solid rgba(137,199,177,.14);
+  border: 1px solid #dbe6fb;
   border-radius: 5px;
-  background: rgba(255,255,255,.035);
+  background: #ffffff;
 }
 
 .security-preview-metrics small {
   display: block;
-  color: #6f9487;
+  color: #8391aa;
   font-size: 5px;
   font-weight: 800;
 }
@@ -1274,7 +1275,7 @@ button, input, select { font: inherit; }
 .security-preview-metrics b {
   display: block;
   margin-top: 3px;
-  color: #dff8ee;
+  color: #244aa5;
   font-size: 10px;
 }
 
@@ -1290,24 +1291,24 @@ button, input, select { font: inherit; }
   align-items: center;
   margin: 0;
   padding: 6px 7px;
-  border: 1px solid rgba(137,199,177,.11);
+  border: 1px solid #e0e8f8;
   border-radius: 4px;
-  background: rgba(255,255,255,.025);
+  background: #f9fbff;
 }
 
 .security-preview-flow p > b {
-  color: #58796e;
+  color: #9aa7bc;
   font-size: 6px;
 }
 
 .security-preview-flow p > span {
-  color: #a9c7bc;
+  color: #4c5b73;
   font-size: 6px;
   font-weight: 700;
 }
 
 .security-preview-flow p > i {
-  color: #64d5ad;
+  color: #356cf4;
   font-size: 5px;
   font-style: normal;
   font-weight: 900;

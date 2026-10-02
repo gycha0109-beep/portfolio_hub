@@ -207,7 +207,7 @@
       "kicker": "AI 코딩 웹서비스 보안 점검·안정화",
       "description": "AI로 빠르게 만든 Next.js + Supabase 서비스의 권한 경계, 중복 투표, 행동 데이터, 브라우저 회귀를 실제 실패 → 수정 → 재검증 흐름으로 하드닝한 프로젝트입니다.",
       "category": "SECURITY HARDENING",
-      "accent": "#5ed3a6",
+      "accent": "#4f7cff",
       "stack": [
         "Next.js",
         "Supabase",
