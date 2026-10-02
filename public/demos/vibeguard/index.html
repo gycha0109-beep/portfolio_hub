@@ -4,39 +4,57 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>VibeGuard — Security Hardening Evidence</title>
+  <title>VibeGuard — AI 코딩 웹서비스 보안 하드닝</title>
   <style>
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,"Noto Sans KR",system-ui,sans-serif;background:#f6f9ff;color:#172033}
-    main{width:min(1080px,calc(100% - 36px));margin:0 auto;padding:56px 0 72px}
-    .eyebrow{color:#4f7cff;font:800 12px/1 monospace;letter-spacing:.14em}
-    .hero{padding:34px;border:1px solid #dce6fb;border-radius:18px;background:linear-gradient(145deg,#fff 0%,#f3f7ff 100%);box-shadow:0 18px 50px rgba(65,103,180,.08)}
-    h1{margin:12px 0 14px;font-size:clamp(44px,7vw,78px);letter-spacing:-.055em;line-height:1;color:#111a2d}
-    h1 em{color:#4f7cff;font-style:normal}
-    .hero p{max-width:760px;color:#647089;font-size:16px;line-height:1.75}
-    .status{display:inline-flex;margin-top:20px;padding:8px 12px;border:1px solid #c8d8ff;border-radius:999px;background:#edf4ff;color:#356cf4;font:800 12px/1 monospace}
-    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
-    .metric{padding:20px;border:1px solid #dce6fb;border-radius:12px;background:#fff;box-shadow:0 10px 26px rgba(65,103,180,.06)}
-    .metric small{display:block;color:#8290aa;font:800 10px/1 monospace}
-    .metric b{display:block;margin-top:9px;color:#244aa5;font-size:25px;letter-spacing:-.04em}
-    .metric span{display:block;margin-top:7px;color:#7a879d;font-size:11px}
-    section{margin-top:34px}
-    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:12px}
-    .section-head h2{margin:0;color:#172033;font-size:24px}
-    .section-head span{color:#8492ab;font:700 11px monospace}
-    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-    .flow div{padding:18px 14px;border:1px solid #dce6fb;border-radius:10px;background:#fff}
-    .flow small{color:#9aa8bd;font:700 10px monospace}
-    .flow b{display:block;margin-top:8px;color:#26344d;font-size:14px}
-    .flow i{display:block;margin-top:12px;color:#356cf4;font:900 10px monospace;font-style:normal}
-    table{width:100%;overflow:hidden;border-collapse:separate;border-spacing:0;border:1px solid #dce6fb;border-radius:12px;background:#fff;box-shadow:0 10px 26px rgba(65,103,180,.05)}
-    th,td{padding:14px 16px;border-bottom:1px solid #e7edf8;text-align:left;font-size:13px}
-    tr:last-child td{border-bottom:0}
-    th{background:#f4f7fd;color:#7e8ba3;font:800 10px monospace}
-    td{color:#4d5a70}
-    td:last-child{color:#356cf4;font-weight:800}
-    .note{margin-top:28px;padding:18px;border:1px solid #dce6fb;border-left:4px solid #4f7cff;border-radius:10px;background:#eef4ff;color:#67758d;font-size:12px;line-height:1.7}
-    @media(max-width:760px){.metrics{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column;gap:8px}.hero{padding:24px}}
+    :root{--blue:#4f7cff;--blue2:#2456d8;--ink:#172033;--muted:#66738b;--line:#dce6fb;--soft:#f5f8ff;--red:#c54c5a;--redbg:#fff5f6}
+    body{margin:0;font-family:Inter,"Noto Sans KR",system-ui,sans-serif;background:#f7f9fe;color:var(--ink)}
+    main{width:min(1120px,calc(100% - 36px));margin:0 auto;padding:46px 0 72px}
+    .hero{padding:38px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#fff 0%,#f0f5ff 100%);box-shadow:0 18px 50px rgba(65,103,180,.08)}
+    .eyebrow{color:var(--blue);font:800 12px/1 monospace;letter-spacing:.14em}
+    h1{margin:12px 0 14px;font-size:clamp(42px,6.5vw,72px);line-height:1;letter-spacing:-.055em}
+    h1 em{color:var(--blue);font-style:normal}
+    .hero h2{margin:0 0 16px;font-size:clamp(21px,3vw,30px);letter-spacing:-.035em}
+    .hero p{max-width:820px;margin:0;color:var(--muted);font-size:15px;line-height:1.75}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .hero-tags span{padding:8px 11px;border:1px solid #cddcff;border-radius:999px;background:#fff;color:#315ebf;font-size:11px;font-weight:800}
+    section{margin-top:40px}
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:15px}
+    .section-head h2{margin:0;font-size:27px;letter-spacing:-.035em}
+    .section-head p{max-width:600px;margin:0;color:#78859b;font-size:12px;line-height:1.6;text-align:right}
+    .fix-list{display:grid;gap:14px}
+    .fix-card{overflow:hidden;border:1px solid var(--line);border-radius:15px;background:#fff;box-shadow:0 10px 28px rgba(65,103,180,.05)}
+    .fix-title{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:16px 18px;border-bottom:1px solid #e6edf9;background:#fbfcff}
+    .fix-title .num{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:#eaf1ff;color:#3263cc;font:900 11px monospace}
+    .fix-title h3{margin:0;font-size:18px;letter-spacing:-.025em}
+    .fix-title .proof-badge{padding:6px 9px;border-radius:999px;background:#edf4ff;color:#356cf4;font:900 9px monospace}
+    .compare{display:grid;grid-template-columns:1fr 46px 1fr;gap:0;align-items:stretch}
+    .pane{padding:20px}
+    .pane.before{background:var(--redbg)}
+    .pane.after{background:#f5f8ff}
+    .pane small{display:block;margin-bottom:8px;font:900 10px monospace;letter-spacing:.09em}
+    .before small{color:var(--red)}.after small{color:var(--blue2)}
+    .pane strong{display:block;margin-bottom:9px;font-size:15px;line-height:1.45}
+    .pane p{margin:0;color:#69768c;font-size:12px;line-height:1.65}
+    .code{margin-top:12px;padding:11px 12px;border:1px solid rgba(117,135,168,.18);border-radius:8px;background:rgba(255,255,255,.75);color:#46546c;font:700 11px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-line}
+    .arrow{display:grid;place-items:center;background:#fff;color:#8ca5dc;font-size:22px;font-weight:900}
+    .proof{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:13px 18px;border-top:1px solid #e7edf8;background:#fff}
+    .proof b{color:#356cf4;font:900 10px monospace}
+    .proof span{color:#526178;font-size:12px;line-height:1.55}
+    .flow-box{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:18px;border:1px solid var(--line);border-radius:15px;background:#fff}
+    .flow-box div{position:relative;padding:15px 12px;border:1px solid #dfe7f7;border-radius:10px;background:#f8faff}
+    .flow-box div:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);z-index:2;color:#7d9be0;font-weight:900}
+    .flow-box small{color:#96a5bb;font:800 9px monospace}.flow-box b{display:block;margin-top:6px;color:#26344e;font-size:12px}.flow-box span{display:block;margin-top:5px;color:#7c899d;font-size:10px;line-height:1.45}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .summary div{padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .summary small{display:block;color:#8794aa;font:800 9px monospace}.summary b{display:block;margin-top:7px;color:#244aa5;font-size:21px}.summary span{display:block;margin-top:6px;color:#7a879d;font-size:10px}
+    .note{margin-top:28px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;background:#eef4ff;color:#68768e;font-size:11px;line-height:1.65}
+    @media(max-width:800px){
+      .section-head{align-items:start;flex-direction:column}.section-head p{text-align:left}
+      .compare{grid-template-columns:1fr}.arrow{min-height:36px;transform:rotate(90deg)}
+      .summary{grid-template-columns:1fr 1fr}.flow-box{grid-template-columns:1fr}.flow-box div:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-17px;transform:translateX(50%)}
+    }
+    @media(max-width:520px){main{width:min(100% - 24px,1120px)}.hero{padding:24px}.fix-title{grid-template-columns:auto 1fr}.proof-badge{grid-column:2}.summary{grid-template-columns:1fr}.proof{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -44,44 +62,107 @@
   <section class="hero">
     <div class="eyebrow">AI-GENERATED APP HARDENING</div>
     <h1>Vibe<em>Guard</em></h1>
-    <p>기능은 돌아가지만 안전성이 검증되지 않은 AI 코딩 웹서비스를 대상으로, 권한·데이터 무결성·행동 이벤트·브라우저 회귀를 실제 실패 → 수정 → 재검증 흐름으로 닫았습니다.</p>
-    <div class="status">HARDENED RELEASE · PASS</div>
+    <h2>AI 코딩으로 만든 웹서비스에서 실제로 무엇을 고쳤는가</h2>
+    <p>단순히 “보안을 강화했다”가 아니라, 처음 앱에서 발생할 수 있던 구체적인 문제를 재현하고 DB·권한·투표·행동 이벤트·브라우저 검증 구조를 바꾼 뒤 같은 공격·재시도·회귀 시나리오로 다시 확인했습니다.</p>
+    <div class="hero-tags"><span>Supabase RLS</span><span>권한 위조 차단</span><span>중복투표 방지</span><span>이벤트 위조 차단</span><span>Cross-browser QA</span></div>
   </section>
 
-  <div class="metrics">
-    <div class="metric"><small>SECURITY CONTRACT</small><b>0/10 → 10/10</b><span>baseline 대비 하드닝</span></div>
-    <div class="metric"><small>CONCURRENT VOTES</small><b>20 → 1</b><span>최종 durable vote</span></div>
-    <div class="metric"><small>BROWSER PROJECTS</small><b>3 / 3</b><span>Chromium · WebKit · Mobile</span></div>
-    <div class="metric"><small>DIRECT DB BYPASS</small><b>BLOCKED</b><span>vote / event RPC-only</span></div>
-  </div>
-
   <section>
-    <div class="section-head"><h2>하드닝 흐름</h2><span>BEFORE → AFTER</span></div>
-    <div class="flow">
-      <div><small>01</small><b>Baseline 보존</b><i>FAIL EVIDENCE</i></div>
-      <div><small>02</small><b>RLS / AuthZ 재설계</b><i>PASS</i></div>
-      <div><small>03</small><b>Vote / Event RPC</b><i>PASS</i></div>
-      <div><small>04</small><b>Concurrency 검증</b><i>PASS</i></div>
-      <div><small>05</small><b>Release Gate</b><i>PASS</i></div>
+    <div class="section-head">
+      <h2>수정 전 → 수정 후</h2>
+      <p>클라이언트가 실제로 체감할 수 있는 위험 기준으로 정리했습니다. 각 항목 아래에는 수정이 먹혔는지 확인한 검증 결과가 붙습니다.</p>
+    </div>
+
+    <div class="fix-list">
+      <article class="fix-card">
+        <div class="fix-title"><span class="num">01</span><h3>사용자가 관리자라고 속일 수 있는 권한 구조</h3><span class="proof-badge">AUTHZ</span></div>
+        <div class="compare">
+          <div class="pane before"><small>BEFORE · 위험</small><strong>클라이언트가 보낸 역할 값을 신뢰</strong><p>브라우저 요청에서 관리자 역할을 주장하면 서버 로직이 그 값을 믿을 여지가 있었습니다.</p><div class="code">x-role: admin
+→ 관리자 기능 판단에 사용</div></div>
+          <div class="arrow">→</div>
+          <div class="pane after"><small>AFTER · 수정</small><strong>로그인 사용자와 DB 권한을 서버가 직접 확인</strong><p><code>auth.uid()</code>로 실제 사용자를 식별하고 DB의 role을 기준으로 관리자 RPC 접근을 제한했습니다. 일반 사용자의 자기 role 변경도 DB trigger로 막았습니다.</p><div class="code">auth.uid()
+→ profiles.role 확인
+→ admin만 관리자 RPC 허용</div></div>
+        </div>
+        <div class="proof"><b>검증</b><span>일반 사용자의 관리자 export 호출 거부 · 자기 계정 role을 admin으로 변경하는 시도 거부</span></div>
+      </article>
+
+      <article class="fix-card">
+        <div class="fix-title"><span class="num">02</span><h3>다른 사용자의 프로필·파일에 접근할 수 있는 경계</h3><span class="proof-badge">RLS / STORAGE</span></div>
+        <div class="compare">
+          <div class="pane before"><small>BEFORE · 위험</small><strong>“로그인했다”와 “이 데이터를 볼 권한이 있다”가 분리되지 않음</strong><p>AI 코딩 앱에서 흔한 형태처럼, 인증만 되어 있으면 타 사용자 데이터나 저장 경로까지 권한 경계가 느슨해질 수 있었습니다.</p></div>
+          <div class="arrow">→</div>
+          <div class="pane after"><small>AFTER · 수정</small><strong>사용자별 RLS + Storage owner path 적용</strong><p>프로필은 본인 또는 관리자만 접근하도록 RLS를 다시 설계하고, 파일 저장도 로그인 사용자 자신의 경로에만 쓰도록 제한했습니다.</p><div class="code">user A → profile A : 허용
+user A → profile B : 차단
+user A → storage/B/* : 차단</div></div>
+        </div>
+        <div class="proof"><b>검증</b><span>A 사용자가 B 프로필 조회/수정 실패 · 타 사용자 Storage 경로 write 실패 · 관리자 접근은 정상 동작</span></div>
+      </article>
+
+      <article class="fix-card">
+        <div class="fix-title"><span class="num">03</span><h3>연타·재시도·동시 요청으로 투표가 여러 번 들어가는 문제</h3><span class="proof-badge">DATA INTEGRITY</span></div>
+        <div class="compare">
+          <div class="pane before"><small>BEFORE · 위험</small><strong>투표 저장과 카운트 증가가 따로 움직임</strong><p>버튼 연타, 네트워크 재시도, 여러 탭에서 동시에 요청하면 같은 사용자의 투표가 중복 반영될 가능성이 있었습니다.</p><div class="code">INSERT vote
+UPDATE count +1
+INSERT event
+각각 별도 실행</div></div>
+          <div class="arrow">→</div>
+          <div class="pane after"><small>AFTER · 수정</small><strong>직접 INSERT 금지 + DB UNIQUE + 단일 RPC 트랜잭션</strong><p><code>submit_vote()</code> 안에서 투표 행·집계·canonical 이벤트를 한 번에 처리하고, <code>UNIQUE(poll_id,user_id)</code>로 DB 자체가 중복을 거부합니다.</p><div class="code">submit_vote()
+→ vote 1건
+→ count +1
+→ vote_submitted 1건
+모두 한 트랜잭션</div></div>
+        </div>
+        <div class="proof"><b>검증</b><span>같은 사용자의 논리적 투표를 20개 DB 세션에서 동시에 요청 → 최종 vote row 1 · aggregate 1 · vote_submitted event 1</span></div>
+      </article>
+
+      <article class="fix-card">
+        <div class="fix-title"><span class="num">04</span><h3>사용자가 분석 이벤트를 직접 조작할 수 있는 문제</h3><span class="proof-badge">EVENT INTEGRITY</span></div>
+        <div class="compare">
+          <div class="pane before"><small>BEFORE · 위험</small><strong>클라이언트가 중요한 이벤트를 직접 기록 가능</strong><p>예를 들어 실제 투표를 하지 않고도 <code>vote_submitted</code> 이벤트만 만들어 분석 수치를 부풀릴 수 있는 구조는 신뢰할 수 없습니다.</p></div>
+          <div class="arrow">→</div>
+          <div class="pane after"><small>AFTER · 수정</small><strong>일반 이벤트와 canonical 이벤트 경로 분리</strong><p>직접 <code>user_events</code> INSERT를 막고, 일반 행동은 allowlist가 있는 <code>record_event()</code>로만 기록합니다. <code>vote_submitted</code>는 오직 실제 투표 RPC 안에서만 생성됩니다.</p><div class="code">record_event("content_viewed") ✓
+record_event("vote_submitted") ✕
+submit_vote() → vote_submitted ✓</div></div>
+        </div>
+        <div class="proof"><b>검증</b><span>정상 content_viewed 기록 성공 · 위조 vote_submitted 요청 실패 · 직접 user_events INSERT 실패</span></div>
+      </article>
+
+      <article class="fix-card">
+        <div class="fix-title"><span class="num">05</span><h3>“내 PC에서는 됨” 수준의 배포 검증</h3><span class="proof-badge">STABILITY</span></div>
+        <div class="compare">
+          <div class="pane before"><small>BEFORE · 부족</small><strong>브라우저 회귀·서버 상태·사용자 이탈을 확인할 근거가 부족</strong><p>기능 구현만으로는 iPhone 계열 엔진, 모바일 Chrome, 서버 readiness, 퍼널 이탈 여부를 알 수 없습니다.</p></div>
+          <div class="arrow">→</div>
+          <div class="pane after"><small>AFTER · 수정</small><strong>Release gate + health/readiness + 실제 퍼널 이벤트 추가</strong><p>Chromium·WebKit·Android형 Chromium E2E, console/page error 검사, health/readiness API, 사용자 행동 퍼널과 관리자 CSV export를 붙였습니다.</p><div class="code">content_viewed
+→ vote_started
+→ result_viewed
++ health / readiness
++ 3 browser projects</div></div>
+        </div>
+        <div class="proof"><b>검증</b><span>3개 브라우저 프로젝트 E2E PASS · 핵심 흐름 console/page error 0 · 퍼널 이벤트 발생 순서 확인</span></div>
+      </article>
     </div>
   </section>
 
   <section>
-    <div class="section-head"><h2>검증 항목</h2><span>EXECUTABLE EVIDENCE</span></div>
-    <table>
-      <thead><tr><th>영역</th><th>검증 내용</th><th>결과</th></tr></thead>
-      <tbody>
-        <tr><td>RLS / AuthZ</td><td>Cross-user profile, admin boundary, self role escalation</td><td>PASS</td></tr>
-        <tr><td>Storage</td><td>Owner path write / cross-user write denial</td><td>PASS</td></tr>
-        <tr><td>Vote integrity</td><td>Unique invariant + transaction RPC + 20-session concurrency</td><td>1 VOTE</td></tr>
-        <tr><td>Event integrity</td><td>Raw insert 차단, canonical vote_submitted 위조 차단</td><td>PASS</td></tr>
-        <tr><td>Analytics</td><td>Ordered funnel, dedupe, authorized CSV export</td><td>PASS</td></tr>
-        <tr><td>Browser QA</td><td>Production build E2E + console/page error check</td><td>3 / 3</td></tr>
-      </tbody>
-    </table>
+    <div class="section-head"><h2>수정 후 핵심 요청 흐름</h2><p>중요한 변경은 “프론트에서 DB를 믿고 직접 건드리는 구조”를 “검증된 서버/DB 함수만 통과하는 구조”로 바꾼 것입니다.</p></div>
+    <div class="flow-box">
+      <div><small>01</small><b>로그인 확인</b><span>auth.uid()로 실제 사용자 식별</span></div>
+      <div><small>02</small><b>권한 확인</b><span>RLS / DB role로 허용 범위 판정</span></div>
+      <div><small>03</small><b>검증 RPC</b><span>투표·이벤트는 허용된 함수만 실행</span></div>
+      <div><small>04</small><b>DB 불변식</b><span>UNIQUE / trigger / transaction으로 우회 차단</span></div>
+      <div><small>05</small><b>자동 재검증</b><span>Supabase + Playwright release gate</span></div>
+    </div>
+
+    <div class="summary">
+      <div><small>SECURITY CONTRACT</small><b>0/10 → 10/10</b><span>정의한 보안 계약 기준</span></div>
+      <div><small>CONCURRENT VOTE</small><b>20 → 1</b><span>20개 동시 요청에도 최종 1표</span></div>
+      <div><small>DIRECT DB BYPASS</small><b>BLOCKED</b><span>vote / canonical event 직접 쓰기 차단</span></div>
+      <div><small>BROWSER E2E</small><b>3 / 3 PASS</b><span>Chromium · WebKit · Android형 Chromium</span></div>
+    </div>
   </section>
 
-  <div class="note">이 데모는 실제 고객 서비스나 운영 데이터를 사용하지 않은 synthetic 포트폴리오입니다. Hosted Supabase 환경 및 물리 iPhone/Android 실기기 검증은 별도 production gap으로 구분합니다.</div>
+  <div class="note">포트폴리오 검증은 disposable local Supabase와 자동화 브라우저 환경에서 수행했습니다. Hosted Supabase staging/production 및 물리 iPhone/Android 실기기 검증은 별도 production gap으로 명시합니다.</div>
 </main>
 </body>
 </html>
