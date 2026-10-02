@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>VibeGuard — Security Hardening Evidence</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,"Noto Sans KR",system-ui,sans-serif;background:#09100f;color:#eef8f4}
+    main{width:min(1080px,calc(100% - 36px));margin:0 auto;padding:56px 0 72px}
+    .eyebrow{color:#66d5ad;font:800 12px/1 monospace;letter-spacing:.14em}.hero{padding-bottom:34px;border-bottom:1px solid #1d302b}
+    h1{margin:12px 0 14px;font-size:clamp(44px,7vw,78px);letter-spacing:-.055em;line-height:1}h1 em{color:#65d7af;font-style:normal}
+    .hero p{max-width:760px;color:#93a9a1;font-size:16px;line-height:1.75}.status{display:inline-flex;margin-top:20px;padding:8px 12px;border:1px solid #275244;border-radius:999px;background:#10241f;color:#76deb9;font:800 12px/1 monospace}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}.metric{padding:20px;border:1px solid #20352f;border-radius:10px;background:#0e1816}
+    .metric small{display:block;color:#718c82;font:800 10px/1 monospace}.metric b{display:block;margin-top:9px;font-size:25px;letter-spacing:-.04em}.metric span{display:block;margin-top:7px;color:#81968f;font-size:11px}
+    section{margin-top:34px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:12px}.section-head h2{margin:0;font-size:24px}.section-head span{color:#637a72;font:700 11px monospace}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.flow div{padding:18px 14px;border:1px solid #20352f;border-radius:8px;background:#0d1715}.flow small{color:#5c766d;font:700 10px monospace}.flow b{display:block;margin-top:8px;font-size:14px}.flow i{display:block;margin-top:12px;color:#62d4ac;font:900 10px monospace;font-style:normal}
+    table{width:100%;border-collapse:collapse;border:1px solid #20352f;background:#0d1715}th,td{padding:14px 16px;border-bottom:1px solid #1b2e29;text-align:left;font-size:13px}th{color:#6f8c82;font:800 10px monospace}td:last-child{color:#67d7af;font-weight:800}
+    .note{margin-top:28px;padding:18px;border-left:3px solid #5ed3a6;background:#0d1715;color:#81968f;font-size:12px;line-height:1.7}
+    @media(max-width:760px){.metrics{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="eyebrow">AI-GENERATED APP HARDENING</div>
+    <h1>Vibe<em>Guard</em></h1>
+    <p>기능은 돌아가지만 안전성이 검증되지 않은 AI 코딩 웹서비스를 대상으로, 권한·데이터 무결성·행동 이벤트·브라우저 회귀를 실제 실패 → 수정 → 재검증 흐름으로 닫았습니다.</p>
+    <div class="status">HARDENED RELEASE · PASS</div>
+  </section>
+
+  <div class="metrics">
+    <div class="metric"><small>SECURITY CONTRACT</small><b>0/10 → 10/10</b><span>baseline 대비 하드닝</span></div>
+    <div class="metric"><small>CONCURRENT VOTES</small><b>20 → 1</b><span>최종 durable vote</span></div>
+    <div class="metric"><small>BROWSER PROJECTS</small><b>3 / 3</b><span>Chromium · WebKit · Mobile</span></div>
+    <div class="metric"><small>DIRECT DB BYPASS</small><b>BLOCKED</b><span>vote / event RPC-only</span></div>
+  </div>
+
+  <section>
+    <div class="section-head"><h2>하드닝 흐름</h2><span>BEFORE → AFTER</span></div>
+    <div class="flow">
+      <div><small>01</small><b>Baseline 보존</b><i>FAIL EVIDENCE</i></div>
+      <div><small>02</small><b>RLS / AuthZ 재설계</b><i>PASS</i></div>
+      <div><small>03</small><b>Vote / Event RPC</b><i>PASS</i></div>
+      <div><small>04</small><b>Concurrency 검증</b><i>PASS</i></div>
+      <div><small>05</small><b>Release Gate</b><i>PASS</i></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>검증 항목</h2><span>EXECUTABLE EVIDENCE</span></div>
+    <table>
+      <thead><tr><th>영역</th><th>검증 내용</th><th>결과</th></tr></thead>
+      <tbody>
+        <tr><td>RLS / AuthZ</td><td>Cross-user profile, admin boundary, self role escalation</td><td>PASS</td></tr>
+        <tr><td>Storage</td><td>Owner path write / cross-user write denial</td><td>PASS</td></tr>
+        <tr><td>Vote integrity</td><td>Unique invariant + transaction RPC + 20-session concurrency</td><td>1 VOTE</td></tr>
+        <tr><td>Event integrity</td><td>Raw insert 차단, canonical vote_submitted 위조 차단</td><td>PASS</td></tr>
+        <tr><td>Analytics</td><td>Ordered funnel, dedupe, authorized CSV export</td><td>PASS</td></tr>
+        <tr><td>Browser QA</td><td>Production build E2E + console/page error check</td><td>3 / 3</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="note">이 데모는 실제 고객 서비스나 운영 데이터를 사용하지 않은 synthetic 포트폴리오입니다. Hosted Supabase 환경 및 물리 iPhone/Android 실기기 검증은 별도 production gap으로 구분합니다.</div>
+</main>
+</body>
+</html>

@@ -1202,3 +1202,113 @@ button, input, select { font: inherit; }
   color: #bc5353;
   font-size: 5px;
 }
+
+
+/* VibeGuard security hardening preview */
+.preview-security {
+  padding: 15px;
+  border-color: #263a35;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(94,211,166,.18), transparent 30%),
+    linear-gradient(180deg, #111b19 0%, #0d1414 100%);
+  color: #eef8f4;
+}
+
+.security-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(137,199,177,.18);
+}
+
+.security-preview-head div {
+  display: grid;
+  gap: 2px;
+}
+
+.security-preview-head small {
+  color: #6fae97;
+  font-size: 6px;
+  font-weight: 900;
+  letter-spacing: .14em;
+}
+
+.security-preview-head b {
+  color: #f1faf6;
+  font-size: 12px;
+}
+
+.security-preview-head i {
+  padding: 4px 7px;
+  border: 1px solid rgba(94,211,166,.28);
+  border-radius: 999px;
+  background: rgba(94,211,166,.1);
+  color: #6fe0b6;
+  font-size: 6px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.security-preview-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.security-preview-metrics span {
+  padding: 8px;
+  border: 1px solid rgba(137,199,177,.14);
+  border-radius: 5px;
+  background: rgba(255,255,255,.035);
+}
+
+.security-preview-metrics small {
+  display: block;
+  color: #6f9487;
+  font-size: 5px;
+  font-weight: 800;
+}
+
+.security-preview-metrics b {
+  display: block;
+  margin-top: 3px;
+  color: #dff8ee;
+  font-size: 10px;
+}
+
+.security-preview-flow {
+  display: grid;
+  gap: 4px;
+}
+
+.security-preview-flow p {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+  padding: 6px 7px;
+  border: 1px solid rgba(137,199,177,.11);
+  border-radius: 4px;
+  background: rgba(255,255,255,.025);
+}
+
+.security-preview-flow p > b {
+  color: #58796e;
+  font-size: 6px;
+}
+
+.security-preview-flow p > span {
+  color: #a9c7bc;
+  font-size: 6px;
+  font-weight: 700;
+}
+
+.security-preview-flow p > i {
+  color: #64d5ad;
+  font-size: 5px;
+  font-style: normal;
+  font-weight: 900;
+}

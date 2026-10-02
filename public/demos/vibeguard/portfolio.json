@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "slug": "vibeguard",
+  "order": 7,
+  "title": "VibeGuard",
+  "kicker": "AI 코딩 웹서비스 보안 점검·안정화",
+  "description": "AI로 빠르게 만든 Next.js + Supabase 서비스의 권한 경계, 중복 투표, 행동 데이터, 브라우저 회귀를 실제 실패 → 수정 → 재검증 흐름으로 하드닝한 프로젝트입니다.",
+  "category": "SECURITY HARDENING",
+  "accent": "#5ed3a6",
+  "stack": [
+    "Next.js",
+    "Supabase",
+    "PostgreSQL",
+    "Playwright"
+  ],
+  "problem": "AI 코딩 결과물은 기능이 돌아가더라도 RLS·관리자 권한·중복 처리·이벤트 무결성·브라우저 회귀가 검증되지 않은 채 남기 쉽습니다.",
+  "solution": "취약한 synthetic baseline을 먼저 보존한 뒤 RLS/AuthZ 재설계, RPC-only 투표·이벤트, DB unique invariant, 행동 퍼널, cross-browser release gate까지 before/after 증거로 검증했습니다.",
+  "evidence": [
+    "보안 source-contract 0/10 → 10/10",
+    "20-session 동시 투표 → vote 1 / aggregate 1 / event 1",
+    "Supabase RLS·AuthZ·Storage·RPC live local PASS",
+    "Chromium · WebKit · Android emulation E2E PASS"
+  ],
+  "scope": [
+    "Supabase RLS / AuthZ audit",
+    "Role escalation / cross-user access 차단",
+    "RPC-only vote / event integrity",
+    "Duplicate / concurrency verification",
+    "Funnel / CSV analytics",
+    "Cross-browser release gate"
+  ],
+  "preview": "security"
+}

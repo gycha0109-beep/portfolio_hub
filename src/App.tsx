@@ -50,6 +50,28 @@ function Logo() {
 }
 
 function Preview({ type }: { type: Project['preview'] }) {
+  if (type === 'security') {
+    return (
+      <div className="preview-shell preview-security">
+        <div className="security-preview-head">
+          <div><small>RELEASE GATE</small><b>VibeGuard</b></div>
+          <i>PASS</i>
+        </div>
+        <div className="security-preview-metrics">
+          <span><small>SECURITY</small><b>10 / 10</b></span>
+          <span><small>CONCURRENCY</small><b>20 → 1</b></span>
+          <span><small>BROWSERS</small><b>3 / 3</b></span>
+        </div>
+        <div className="security-preview-flow">
+          <p><b>01</b><span>RLS / AuthZ boundary</span><i>PASS</i></p>
+          <p><b>02</b><span>RPC-only vote + event</span><i>PASS</i></p>
+          <p><b>03</b><span>Duplicate / retry integrity</span><i>PASS</i></p>
+          <p><b>04</b><span>Release regression</span><i>PASS</i></p>
+        </div>
+      </div>
+    )
+  }
+
   if (type === 'proposal') {
     return (
       <div className="preview-shell preview-proposal">
