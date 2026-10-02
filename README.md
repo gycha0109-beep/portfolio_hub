@@ -17,7 +17,8 @@ portfolio_hub
       ├─ partnerops
       ├─ lms
       ├─ careledger
-      └─ proposalops
+      ├─ proposalops
+      └─ vibeguard
 
 PRIVATE
 ├─ <portfolio-source-01>
@@ -55,6 +56,7 @@ Porthub는 Vercel에 단일 프로젝트로 배포합니다. 원본 프로젝트
 - LMS Skin Change — 레거시 LMS 300화면 현대화
 - CareLedger Bridge — 희망이음 회계 수기 입력 자동화
 - ProposalOps AI — 근거 기반 AI 제안서 작성·검증 자동화
+- VibeGuard — AI 코딩 웹서비스 보안 점검·안정화
 
 ## Deployment model
 
@@ -99,7 +101,7 @@ npm run build
 
 ## Current deployment state
 
-Porthub는 현재 여섯 개의 portfolio-safe project를 저장소 내부 `public/demos/<slug>`에서 직접 서빙합니다.
+Porthub는 현재 일곱 개의 portfolio-safe project를 저장소 내부 `public/demos/<slug>`에서 직접 서빙합니다.
 
 ```text
 private source repo
