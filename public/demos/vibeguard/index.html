@@ -4,147 +4,272 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>VibeGuard V2 — 독립 AI 생성 웹서비스 감사·안정화</title>
+  <title>VibeGuard — AI 코딩 웹서비스 보안·안정화</title>
   <style>
     *{box-sizing:border-box}
-    :root{--blue:#3867e8;--ink:#152033;--muted:#68758a;--line:#dce4f2;--soft:#f4f7fc;--good:#167a55;--goodbg:#effaf5;--warn:#aa6d19;--warnbg:#fff8ea;--bad:#b44955;--badbg:#fff3f4}
-    body{margin:0;background:#f6f8fc;color:var(--ink);font-family:Inter,"Noto Sans KR",system-ui,sans-serif}
-    main{width:min(1120px,calc(100% - 32px));margin:0 auto;padding:44px 0 72px}
-    .hero{border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,#fff,#eef4ff);padding:38px;box-shadow:0 18px 48px rgba(55,89,150,.08)}
-    .eyebrow{font:800 11px/1 ui-monospace,monospace;letter-spacing:.14em;color:var(--blue)}
-    h1{font-size:clamp(42px,7vw,76px);letter-spacing:-.055em;line-height:1;margin:12px 0}
+    :root{
+      --ink:#172033;--muted:#69758a;--line:#e4e8f0;--bg:#f6f7fb;--card:#fff;
+      --blue:#315eea;--blue2:#eaf0ff;--green:#13805c;--green2:#e9f8f2;
+      --red:#d9505f;--red2:#fff0f2;--amber:#b86d12;--amber2:#fff7e7;
+      --orange:#e36f45;--shadow:0 20px 55px rgba(35,49,83,.09)
+    }
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans KR",system-ui,sans-serif}
+    main{width:min(1180px,calc(100% - 32px));margin:auto;padding:32px 0 80px}
+    .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:34px;align-items:center;padding:42px;border:1px solid var(--line);border-radius:28px;background:#fff;box-shadow:var(--shadow)}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:.12em;color:var(--blue)}
+    .eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+    h1{margin:16px 0 18px;font-size:clamp(38px,5.5vw,68px);line-height:1.06;letter-spacing:-.055em}
     h1 em{font-style:normal;color:var(--blue)}
-    .hero h2{font-size:clamp(22px,3vw,31px);letter-spacing:-.035em;margin:0 0 14px}
-    .hero p{max-width:850px;color:var(--muted);font-size:15px;line-height:1.75;margin:0}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.chips span{background:#fff;border:1px solid #cad8f7;color:#315ab7;border-radius:999px;padding:8px 11px;font-size:11px;font-weight:800}
-    section{margin-top:38px}.head{display:flex;gap:20px;justify-content:space-between;align-items:end;margin-bottom:14px}.head h2{font-size:27px;letter-spacing:-.035em;margin:0}.head p{max-width:620px;text-align:right;color:#7a8799;font-size:12px;line-height:1.6;margin:0}
-    .method{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:18px;border:1px solid var(--line);border-radius:16px;background:#fff}
-    .method div{position:relative;padding:15px 12px;border:1px solid #dfe7f5;border-radius:11px;background:#f8faff}.method div:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);z-index:2;color:#80a0df;font-weight:900}
-    .method small{color:#91a0b6;font:800 9px ui-monospace,monospace}.method b{display:block;margin-top:6px;font-size:12px}.method span{display:block;margin-top:5px;color:#748197;font-size:10px;line-height:1.45}
-    .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.proof-grid>div{padding:16px;border:1px solid var(--line);border-radius:13px;background:#fff}.proof-grid small{font:800 9px ui-monospace,monospace;color:#8996aa}.proof-grid b{display:block;margin-top:7px;font-size:17px;color:#274fa9}.proof-grid span{display:block;margin-top:5px;font-size:10px;color:#768398;line-height:1.5}
-    .findings{display:grid;gap:14px}.card{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 8px 24px rgba(55,89,150,.04)}
-    .card-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid #e8edf6;background:#fbfcff}.id{font:900 10px ui-monospace,monospace;color:#fff;background:var(--blue);border-radius:8px;padding:7px 9px}.card-head h3{margin:0;font-size:18px}.closed{font:900 9px ui-monospace,monospace;color:var(--good);background:var(--goodbg);border:1px solid #ccebdc;border-radius:999px;padding:6px 9px}
-    .five{display:grid;grid-template-columns:1.1fr 1.1fr 1fr 1.2fr 1.1fr}.five>div{padding:17px;border-right:1px solid #edf1f7}.five>div:last-child{border-right:0}.five small{display:block;margin-bottom:7px;font:900 9px ui-monospace,monospace;letter-spacing:.08em}.finding small{color:var(--bad)}.repro small{color:var(--warn)}.root small{color:#6d648e}.fix small{color:var(--blue)}.retest small{color:var(--good)}
-    .five b{display:block;font-size:12px;line-height:1.55}.five p{margin:7px 0 0;color:#748096;font-size:10.5px;line-height:1.55}
-    .matrix{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}.matrix th,.matrix td{padding:13px 14px;border-bottom:1px solid #e9eef6;text-align:left;font-size:11px;line-height:1.5}.matrix th{background:#f5f8fd;color:#5d6c84}.matrix td:first-child{font:800 10px ui-monospace,monospace}.matrix .before{color:var(--bad)}.matrix .after{color:var(--good);font-weight:800}
-    .links{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.links>div{display:block;padding:16px;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--ink)}.links small{display:block;color:#8896aa;font:800 9px ui-monospace,monospace}.links b{display:block;margin-top:6px;font-size:13px}.links span{display:block;margin-top:5px;color:#748197;font-size:10px}
-    .note{margin-top:28px;padding:17px 18px;border:1px solid #d6e2fb;border-left:4px solid var(--blue);border-radius:11px;background:#eef4ff;color:#64738b;font-size:11px;line-height:1.7}
-    @media(max-width:900px){.five{grid-template-columns:1fr 1fr}.five>div{border-bottom:1px solid #edf1f7}.method{grid-template-columns:1fr}.method div:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-17px;transform:translateX(50%)}.proof-grid,.links{grid-template-columns:1fr}.head{align-items:start;flex-direction:column}.head p{text-align:left}}
-    @media(max-width:560px){main{width:min(100% - 22px,1120px)}.hero{padding:24px}.five{grid-template-columns:1fr}.card-head{grid-template-columns:auto 1fr}.closed{grid-column:2}}
+    .lead{margin:0;color:var(--muted);font-size:16px;line-height:1.75;max-width:620px}
+    .hero-kpis{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+    .hero-kpis div{min-width:115px;padding:13px 15px;border-radius:15px;border:1px solid var(--line);background:#fafbfe}
+    .hero-kpis b{display:block;font-size:24px;letter-spacing:-.04em}.hero-kpis span{display:block;margin-top:3px;color:var(--muted);font-size:11px;font-weight:700}
+    .hero-kpis .done b{color:var(--green)}
+
+    .browser{overflow:hidden;border:1px solid #dadfe9;border-radius:18px;background:#fff;box-shadow:0 24px 60px rgba(27,35,58,.14);transform:rotate(1deg)}
+    .browser-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:#f0f1f4;border-bottom:1px solid #e0e3e8}
+    .browser-bar i{width:8px;height:8px;border-radius:50%;background:#ff6a5f}.browser-bar i:nth-child(2){background:#ffc34c}.browser-bar i:nth-child(3){background:#44c25b}
+    .address{margin-left:7px;flex:1;height:23px;border-radius:7px;background:#fff;color:#9ba3b2;font-size:9px;display:flex;align-items:center;padding:0 10px}
+    .app{padding:20px;background:#fbf7ef}
+    .app-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:21px}.app-logo{font-family:Georgia,serif;font-size:20px;font-weight:800}.app-nav span{font-size:9px;color:#796e64}
+    .app h3{font-family:Georgia,serif;font-size:27px;margin:0}.app>p{margin:5px 0 17px;color:#82766b;font-size:10px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .photo{overflow:hidden;border:1px solid #e1d8cc;border-radius:10px;background:#fff;box-shadow:0 4px 12px rgba(85,62,40,.06)}
+    .pic{height:95px;position:relative}.pic.one{background:linear-gradient(160deg,#f1bb8d 0 38%,#d97549 39% 56%,#738c69 57%)}.pic.two{background:linear-gradient(170deg,#acc8da 0 42%,#f1d7b0 43% 64%,#8e6f55 65%)}.pic.three{background:linear-gradient(160deg,#d9c6e5 0 40%,#f0b4a2 41% 61%,#687d8e 62%)}
+    .photo footer{display:flex;justify-content:space-between;padding:8px 9px;font-size:8px}.photo footer b{font-size:9px}
+
+    section{margin-top:56px}
+    .section-title{margin-bottom:20px}.section-title small{display:block;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.1em}.section-title h2{margin:7px 0 5px;font-size:34px;letter-spacing:-.045em}.section-title p{margin:0;color:var(--muted);font-size:14px;line-height:1.65}
+
+    .stories{display:grid;gap:18px}
+    .story{display:grid;grid-template-columns:240px 1fr 56px 1fr;align-items:stretch;border:1px solid var(--line);border-radius:22px;background:#fff;overflow:hidden;box-shadow:0 12px 32px rgba(40,55,88,.05)}
+    .story-copy{padding:25px}.story-copy .n{display:inline-grid;place-items:center;width:31px;height:31px;border-radius:9px;background:var(--blue2);color:var(--blue);font-size:11px;font-weight:900}.story-copy h3{margin:13px 0 8px;font-size:22px;line-height:1.3;letter-spacing:-.035em}.story-copy p{margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+    .side{padding:21px;display:flex;flex-direction:column;justify-content:center}.side.before{background:var(--red2)}.side.after{background:var(--green2)}
+    .side-label{font-size:10px;font-weight:900;letter-spacing:.08em}.before .side-label{color:var(--red)}.after .side-label{color:var(--green)}
+    .visual{margin-top:11px;min-height:150px;border-radius:15px;background:rgba(255,255,255,.75);border:1px solid rgba(35,49,83,.08);padding:15px;display:flex;flex-direction:column;justify-content:center}
+    .arrow{display:grid;place-items:center;background:#fff;color:#97a2b4;font-size:25px;font-weight:900}
+    .big-state{display:flex;gap:10px;align-items:center}.icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:22px;background:#fff;border:1px solid rgba(20,30,50,.08)}
+    .big-state b{font-size:15px}.big-state span{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+    .event-row,.db-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:9px 10px;border-radius:9px;background:#fff;border:1px solid rgba(30,40,60,.08);font:700 10px ui-monospace,monospace}.bad{color:var(--red)}.good{color:var(--green)}
+    .pipe{display:flex;align-items:center;gap:7px;justify-content:center;margin:7px 0}.pipe span{padding:7px 8px;border-radius:8px;background:#fff;border:1px solid rgba(30,40,60,.08);font-size:9px;font-weight:800}.pipe i{font-style:normal;color:#8a95a6}
+    .private-card{padding:10px;border-radius:10px;background:#fff;border:1px solid rgba(30,40,60,.08)}.private-card header{display:flex;justify-content:space-between;font-size:9px}.private-card .img{height:55px;border-radius:7px;background:linear-gradient(145deg,#c8b4d8,#e7b2a4);margin-top:8px}.private-card footer{display:flex;justify-content:space-between;margin-top:8px;font-size:9px}
+    .lock{font-size:28px;text-align:center;margin-bottom:8px}
+
+    .qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .qa-card{border:1px solid var(--line);border-radius:20px;background:#fff;padding:24px;box-shadow:0 12px 30px rgba(40,55,88,.05)}
+    .qa-card h3{margin:0 0 6px;font-size:19px}.qa-card>p{margin:0;color:var(--muted);font-size:12px}
+    .terminal{margin-top:17px;border-radius:14px;background:#141821;color:#e8ecf5;padding:15px;font:12px/1.7 ui-monospace,monospace;min-height:120px}.terminal .r{color:#ff7f8a}.terminal .g{color:#6ce0a8}.terminal .m{color:#8894aa}
+    .qa-result{display:flex;justify-content:space-between;align-items:center;margin-top:13px}.qa-result b{font-size:21px}.qa-result span{font-size:10px;font-weight:900;color:var(--green);background:var(--green2);padding:7px 9px;border-radius:999px}
+
+    .result-band{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:12px;padding:25px;border-radius:22px;background:#172033;color:#fff}
+    .result-band h2{margin:0;font-size:28px;letter-spacing:-.04em}.result-band p{margin:7px 0 0;color:#aeb8ca;font-size:12px;line-height:1.6}
+    .result-band .metric{padding:16px;border-radius:15px;background:#222d43}.metric b{display:block;font-size:27px}.metric span{display:block;margin-top:5px;color:#aeb8ca;font-size:10px}
+
+    .method{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.step{padding:20px;border:1px solid var(--line);border-radius:17px;background:#fff}.step i{display:grid;place-items:center;width:35px;height:35px;border-radius:10px;background:var(--blue2);color:var(--blue);font-style:normal;font-weight:900}.step b{display:block;margin-top:13px;font-size:14px}.step span{display:block;margin-top:5px;color:var(--muted);font-size:11px;line-height:1.55}
+
+    details{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}summary{cursor:pointer;padding:17px 20px;font-size:13px;font-weight:800;list-style:none}summary::-webkit-details-marker{display:none}.tech{padding:0 20px 20px;border-top:1px solid var(--line)}.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.tech-grid div{padding:13px;background:#f7f9fc;border-radius:10px}.tech-grid small{display:block;color:#8a95a6;font-size:9px;font-weight:900}.tech-grid b{display:block;margin-top:5px;font-size:11px;word-break:break-all}.boundary{margin:15px 0 0;color:var(--muted);font-size:10.5px;line-height:1.65}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}.browser{transform:none}
+      .story{grid-template-columns:1fr}.arrow{min-height:42px;transform:rotate(90deg)}
+      .qa-grid,.method,.result-band,.tech-grid{grid-template-columns:1fr}
+      .story-copy{padding-bottom:10px}
+    }
+    @media(max-width:560px){main{width:min(100% - 20px,1180px)}.hero{padding:24px}.gallery{grid-template-columns:1fr 1fr}.gallery .photo:last-child{display:none}.section-title h2{font-size:28px}}
   </style>
 </head>
 <body>
 <main>
   <section class="hero">
-    <div class="eyebrow">INDEPENDENT AI APP AUDIT · V2</div>
-    <h1>Vibe<em>Guard</em></h1>
-    <h2>AI가 따로 만든 앱을 먼저 동결하고, 그 다음 실제로 감사했습니다.</h2>
-    <p>고정된 제품 요구사항을 별도 Lovable Agent에 전달해 이미지 참여·투표 MVP를 생성했습니다. 기존 VibeGuard 코드, 과거 취약점, 감사 체크리스트는 제공하지 않았습니다. 생성 결과를 SHA로 freeze한 뒤에만 보안·데이터 무결성·Storage·QA 감사를 시작했고, 실제로 재현된 5개 문제만 수정했습니다.</p>
-    <div class="chips"><span>Independent generation</span><span>Frozen baseline</span><span>Supabase audit</span><span>Reproduction-first</span><span>Same-path re-test</span></div>
+    <div>
+      <div class="eyebrow">AI CODED APP → PRODUCTION READY</div>
+      <h1>AI로 만든 웹서비스,<br><em>배포 전에 문제 5개를 잡았습니다.</em></h1>
+      <p class="lead">별도 AI가 만든 이미지 투표 서비스 <b>FrameVote</b>를 그대로 받아 점검했습니다. 화면은 멀쩡했지만, 투표 기록·비공개 이미지·데이터 저장 방식과 테스트에서 실제 문제가 나왔고 전부 수정한 뒤 같은 조건으로 다시 검증했습니다.</p>
+      <div class="hero-kpis">
+        <div><b>5</b><span>실제 발견 문제</span></div>
+        <div><b>5</b><span>수정 완료</span></div>
+        <div class="done"><b>PASS</b><span>최종 재검증</span></div>
+      </div>
+    </div>
+
+    <div class="browser" aria-label="AI가 생성한 FrameVote 서비스 화면 예시">
+      <div class="browser-bar"><i></i><i></i><i></i><div class="address">framevote.app</div></div>
+      <div class="app">
+        <div class="app-nav"><div class="app-logo">FrameVote</div><span>Gallery &nbsp; Profile &nbsp; Admin</span></div>
+        <h3>This week's frames</h3>
+        <p>Open an entry, cast your vote, see where it stands.</p>
+        <div class="gallery">
+          <article class="photo"><div class="pic one"></div><footer><b>Golden Hour</b><span>12 votes</span></footer></article>
+          <article class="photo"><div class="pic two"></div><footer><b>Blue Morning</b><span>8 votes</span></footer></article>
+          <article class="photo"><div class="pic three"></div><footer><b>City Glow</b><span>15 votes</span></footer></article>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section>
-    <div class="head"><h2>작업 방식</h2><p>“취약점을 만들어 놓고 고친 사례”가 되지 않도록 생성 단계와 감사 단계를 분리했습니다.</p></div>
+    <div class="section-title">
+      <small>WHAT WAS WRONG</small>
+      <h2>클라이언트 입장에서 보면, 문제는 이 3가지였습니다.</h2>
+      <p>DB 용어보다 먼저 “서비스에서 실제로 무슨 일이 생길 수 있었는지”를 보여드립니다.</p>
+    </div>
+
+    <div class="stories">
+      <article class="story">
+        <div class="story-copy">
+          <span class="n">01</span>
+          <h3>투표를 안 했는데<br>“투표 완료” 기록은 만들 수 있었습니다.</h3>
+          <p>분석 데이터가 실제 사용자 행동과 달라질 수 있는 문제입니다.</p>
+        </div>
+        <div class="side before">
+          <span class="side-label">수정 전</span>
+          <div class="visual">
+            <div class="big-state"><div class="icon">♡</div><div><b>투표하지 않음</b><span>실제 vote = 0</span></div></div>
+            <div class="event-row"><span>analytics: vote_submit</span><b class="bad">생성 가능</b></div>
+          </div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="side after">
+          <span class="side-label">수정 후</span>
+          <div class="visual">
+            <div class="big-state"><div class="icon">♥</div><div><b>실제 투표가 성공할 때만</b><span>서버가 기록을 같이 생성</span></div></div>
+            <div class="event-row"><span>vote + event</span><b class="good">같이 저장</b></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="story-copy">
+          <span class="n">02</span>
+          <h3>“비공개” 이미지가<br>공개 저장소에 있었습니다.</h3>
+          <p>화면에서 숨겨도 파일 자체가 공개된 구조라면 비공개라고 보기 어렵습니다.</p>
+        </div>
+        <div class="side before">
+          <span class="side-label">수정 전</span>
+          <div class="visual">
+            <div class="private-card">
+              <header><b>Draft entry</b><span>비공개</span></header>
+              <div class="img"></div>
+              <footer><span>Storage</span><b class="bad">PUBLIC</b></footer>
+            </div>
+          </div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="side after">
+          <span class="side-label">수정 후</span>
+          <div class="visual">
+            <div class="lock">🔒</div>
+            <div class="private-card">
+              <header><b>Draft entry</b><span>owner only</span></header>
+              <div class="img"></div>
+              <footer><span>Storage</span><b class="good">PRIVATE</b></footer>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story">
+        <div class="story-copy">
+          <span class="n">03</span>
+          <h3>투표 저장과 분석 기록이<br>따로 놀 수 있었습니다.</h3>
+          <p>한쪽만 성공하면 실제 표 수와 분석 데이터가 서로 달라지는 문제입니다.</p>
+        </div>
+        <div class="side before">
+          <span class="side-label">수정 전</span>
+          <div class="visual">
+            <div class="pipe"><span>사용자 클릭</span><i>→</i><span>vote 저장</span><b class="good">✓</b></div>
+            <div class="pipe"><span>사용자 클릭</span><i>→</i><span>event 저장</span><b class="bad">✕ 가능</b></div>
+            <div class="db-row"><span>결과</span><b class="bad">vote 1 / event 0</b></div>
+          </div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="side after">
+          <span class="side-label">수정 후</span>
+          <div class="visual">
+            <div class="pipe"><span>사용자 클릭</span><i>→</i><span>submit_vote()</span><i>→</i><span>DB</span></div>
+            <div class="db-row"><span>한 번에 처리</span><b class="good">vote 1 / event 1</b></div>
+            <div class="db-row"><span>중복 클릭</span><b class="good">추가 저장 없음</b></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <small>STABILITY</small>
+      <h2>보안만 본 게 아니라, 배포 전에 깨지는 품질 문제도 잡았습니다.</h2>
+    </div>
+    <div class="qa-grid">
+      <article class="qa-card">
+        <h3>코드 품질 검사</h3>
+        <p>AI가 만든 저장소의 자체 lint 명령부터 실패했습니다.</p>
+        <div class="terminal">
+          <div>$ bun run lint</div>
+          <div class="r">✖ 157 problems</div>
+          <div class="r">150 errors · 7 warnings</div>
+          <br>
+          <div class="m">formatter 정리 후</div>
+          <div class="g">✓ lint PASS</div>
+        </div>
+        <div class="qa-result"><b>150 errors → 0</b><span>FIXED</span></div>
+      </article>
+      <article class="qa-card">
+        <h3>라우팅 테스트</h3>
+        <p>생성된 smoke test 2개가 모두 실패했습니다.</p>
+        <div class="terminal">
+          <div>$ bun run test</div>
+          <div class="r">✖ index route</div>
+          <div class="r">✖ not-found route</div>
+          <br>
+          <div class="m">router load 순서 수정 후</div>
+          <div class="g">✓ 2 / 2 tests PASS</div>
+          <div class="g">✓ production build PASS</div>
+        </div>
+        <div class="qa-result"><b>0/2 → 2/2</b><span>FIXED</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="result-band">
+    <div>
+      <h2>결과적으로 무엇이 달라졌나</h2>
+      <p>“보안을 강화했다”가 아니라, 실제로 재현되던 잘못된 상태가 같은 테스트에서 더 이상 발생하지 않도록 바꿨습니다.</p>
+    </div>
+    <div class="metric"><b>5 / 5</b><span>발견 문제 수정 완료</span></div>
+    <div class="metric"><b>DB PASS</b><span>투표·이벤트·Storage 재검증</span></div>
+    <div class="metric"><b>CI PASS</b><span>lint · test · build 최종 통과</span></div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <small>HOW I VERIFIED IT</small>
+      <h2>“제가 문제를 만들어놓고 고친 것”이 아니도록 작업 순서를 분리했습니다.</h2>
+    </div>
     <div class="method">
-      <div><small>01 · BRIEF</small><b>고정 제품 요구사항</b><span>이미지 참여·투표 MVP 요구만 전달</span></div>
-      <div><small>02 · GENERATE</small><b>Lovable 독립 생성</b><span>workspace knowledge / skill 없이 생성</span></div>
-      <div><small>03 · FREEZE</small><b>원본 SHA 동결</b><span>GitHub baseline 2bb435dc…</span></div>
-      <div><small>04 · AUDIT</small><b>문제 재현</b><span>DB 3건 + QA 2건 확인</span></div>
-      <div><small>05 · RE-TEST</small><b>동일 경로 재검증</b><span>최종 strict pipeline 전체 PASS</span></div>
-    </div>
-    <div class="proof-grid">
-      <div><small>GENERATOR SOURCE</small><b>cc5b0f00…</b><span>Lovable가 생성한 원본 커밋</span></div>
-      <div><small>FROZEN BASELINE</small><b>2bb435dc…</b><span>감사 시작 전 GitHub mirror SHA</span></div>
-      <div><small>FINAL HARDENED</small><b>42a0023f…</b><span>hardened-v2 최종 소스</span></div>
+      <div class="step"><i>1</i><b>별도 AI가 앱 생성</b><span>Lovable에 제품 요구사항만 전달했습니다.</span></div>
+      <div class="step"><i>2</i><b>원본 먼저 고정</b><span>감사 전에 생성 결과를 commit SHA로 freeze했습니다.</span></div>
+      <div class="step"><i>3</i><b>그 뒤 문제 재현</b><span>실제로 확인된 문제만 finding으로 등록했습니다.</span></div>
+      <div class="step"><i>4</i><b>같은 조건으로 재검증</b><span>수정 후 동일 경로에서 문제가 사라졌는지 확인했습니다.</span></div>
     </div>
   </section>
 
   <section>
-    <div class="head"><h2>확정 Finding 5건</h2><p>각 항목은 Finding → Reproduction → Root Cause → Fix → 동일 조건 Re-test 순서로만 기록했습니다.</p></div>
-    <div class="findings">
-      <article class="card">
-        <div class="card-head"><span class="id">EVT-01</span><h3>투표 없이 canonical vote event 위조 가능</h3><span class="closed">CLOSED</span></div>
-        <div class="five">
-          <div class="finding"><small>FINDING</small><b>authenticated client가 <code>vote_submit</code>을 직접 기록 가능</b><p>비즈니스 사실과 관찰용 analytics event가 같은 write path를 사용했습니다.</p></div>
-          <div class="repro"><small>REPRODUCTION</small><b>vote 0 / vote_submit event 1</b><p>disposable Supabase에서 frozen baseline 그대로 재현했습니다.</p></div>
-          <div class="root"><small>ROOT CAUSE</small><b>직접 INSERT grant + 느슨한 event 정책</b><p><code>user_id = auth.uid()</code>만 만족하면 canonical event도 허용됐습니다.</p></div>
-          <div class="fix"><small>FIX</small><b>canonical event를 <code>submit_vote</code> 내부로 이동</b><p>일반 이벤트는 allowlist RPC만 사용하고 vote_submit은 제외했습니다.</p></div>
-          <div class="retest"><small>RE-TEST</small><b>직접 위조 차단</b><p>최종 run에서 canonical vote event client forgery가 차단됨을 확인했습니다.</p></div>
+    <details>
+      <summary>기술 검증 근거 보기 — commit / run / 세부 finding</summary>
+      <div class="tech">
+        <div class="tech-grid">
+          <div><small>FROZEN BASELINE</small><b>2bb435dc89543a487bf151720202fc97d68100d3</b></div>
+          <div><small>HARDENED SOURCE</small><b>42a0023fd49372ec0e384b9c5317424081ea24d1</b></div>
+          <div><small>FINAL RE-TEST RUN</small><b>37083925427</b></div>
+          <div><small>EVT-01</small><b>vote 0 / forged event 1 → forgery denied</b></div>
+          <div><small>INT-01</small><b>vote 1 / event 0 → vote 1 / event 1</b></div>
+          <div><small>STO-01</small><b>public bucket → private + owner/published policy</b></div>
         </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head"><span class="id">INT-01</span><h3>vote와 canonical event가 서로 다른 상태로 남을 수 있음</h3><span class="closed">CLOSED</span></div>
-        <div class="five">
-          <div class="finding"><small>FINDING</small><b>실제 vote는 있는데 대응 event가 없는 상태 가능</b><p>두 write가 독립적으로 수행됐습니다.</p></div>
-          <div class="repro"><small>REPRODUCTION</small><b>vote 1 / matching event 0</b><p>baseline DB에서 해당 불일치 상태를 만들 수 있었습니다.</p></div>
-          <div class="root"><small>ROOT CAUSE</small><b>transactional server-owned operation 부재</b><p>클라이언트가 durable write와 analytics write를 각각 처리했습니다.</p></div>
-          <div class="fix"><small>FIX</small><b><code>submit_vote()</code> RPC로 원자화</b><p>vote insert와 canonical event를 같은 DB transaction에서 처리합니다.</p></div>
-          <div class="retest"><small>RE-TEST</small><b>중복 2회 호출 → vote 1 / event 1</b><p>첫 호출만 insert되고 두 번째는 idempotent하게 종료됩니다.</p></div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head"><span class="id">STO-01</span><h3>unpublished entry 이미지가 public Storage bucket에 매핑</h3><span class="closed">CLOSED</span></div>
-        <div class="five">
-          <div class="finding"><small>FINDING</small><b>비공개 entry라도 image object 경로가 public bucket 사용</b><p>write ownership은 있었지만 read privacy가 bucket 공개 설정에 의존했습니다.</p></div>
-          <div class="repro"><small>REPRODUCTION</small><b>unpublished=true + bucket.public=true</b><p>두 조건이 동시에 존재함을 disposable Supabase에서 확인했습니다.</p></div>
-          <div class="root"><small>ROOT CAUSE</small><b>public bucket + read 경계 부재</b><p>entry visibility와 object visibility가 연결되지 않았습니다.</p></div>
-          <div class="fix"><small>FIX</small><b>private bucket + published/owner SELECT policy</b><p>공개 entry 또는 자신의 folder만 읽도록 바꿨습니다.</p></div>
-          <div class="retest"><small>RE-TEST</small><b>anon 비공개 차단 / owner 접근 유지</b><p>공개 객체는 anon 허용, 비공개 객체는 owner만 접근합니다.</p></div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head"><span class="id">QA-01</span><h3>생성 저장소 자체 lint gate 실패</h3><span class="closed">CLOSED</span></div>
-        <div class="five">
-          <div class="finding"><small>FINDING</small><b><code>bun run lint</code> 실패</b><p>저장소가 제공한 품질 게이트 자체가 깨진 상태였습니다.</p></div>
-          <div class="repro"><small>REPRODUCTION</small><b>157 problems · 150 errors · 7 warnings</b><p>150 errors는 formatter violation으로 자동수정 가능 상태였습니다.</p></div>
-          <div class="root"><small>ROOT CAUSE</small><b>생성 결과와 repository formatting rule 불일치</b><p>앱 기능과 별개로 CI에 바로 넣을 수 없는 상태였습니다.</p></div>
-          <div class="fix"><small>FIX</small><b>deterministic formatter pass</b><p>repo formatter를 CI에서 실행해 formatting-only 변경을 분리했습니다.</p></div>
-          <div class="retest"><small>RE-TEST</small><b>strict lint PASS</b><p>최종 pipeline에서는 continue-on-error 없이 통과합니다.</p></div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card-head"><span class="id">QA-02</span><h3>생성된 routing smoke test 2/2 실패</h3><span class="closed">CLOSED</span></div>
-        <div class="five">
-          <div class="finding"><small>FINDING</small><b>정상 테스트 명령에서도 route smoke가 모두 실패</b><p>index와 not-found 두 테스트 모두 empty render로 timeout 됐습니다.</p></div>
-          <div class="repro"><small>REPRODUCTION</small><b>0 pass / 2 fail</b><p><code>expected null not to be null</code>을 동일하게 확인했습니다.</p></div>
-          <div class="root"><small>ROOT CAUSE</small><b>router initial load 이전 렌더</b><p>test harness가 <code>router.load()</code> 완료를 기다리지 않았습니다.</p></div>
-          <div class="fix"><small>FIX</small><b>initial router load 후 render</b><p>실제 앱 코드를 속이지 않고 smoke harness의 lifecycle을 맞췄습니다.</p></div>
-          <div class="retest"><small>RE-TEST</small><b>test + production build PASS</b><p>최종 strict pipeline에서 둘 다 통과했습니다.</p></div>
-        </div>
-      </article>
-    </div>
+        <p class="boundary"><b>검증 범위:</b> 실제 고객 시스템이나 고객 데이터를 사용한 사례가 아닙니다. 별도 AI coding agent가 생성한 synthetic MVP를 freeze한 뒤 독립적으로 점검한 방법론 사례이며, hosted production Supabase·물리 디바이스·전문 침투테스트 인증을 주장하지 않습니다.</p>
+      </div>
+    </details>
   </section>
-
-  <section>
-    <div class="head"><h2>Before → After 증거</h2><p>점수 대신 실제로 재현된 상태와 같은 시나리오를 다시 실행한 결과만 보여줍니다.</p></div>
-    <table class="matrix">
-      <thead><tr><th>ID</th><th>Frozen baseline</th><th>Remediated re-test</th></tr></thead>
-      <tbody>
-        <tr><td>EVT-01</td><td class="before">vote 0 / forged canonical event 1</td><td class="after">client forgery denied</td></tr>
-        <tr><td>INT-01</td><td class="before">vote 1 / matching event 0</td><td class="after">duplicate calls → vote 1 / event 1</td></tr>
-        <tr><td>STO-01</td><td class="before">unpublished entry + public bucket</td><td class="after">anon hidden / owner readable</td></tr>
-        <tr><td>QA-01</td><td class="before">lint 150 errors</td><td class="after">strict lint PASS</td></tr>
-        <tr><td>QA-02</td><td class="before">routing tests 0/2</td><td class="after">tests PASS / build PASS</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <div class="head"><h2>원본과 검증 자료</h2><p>리뷰어가 “무엇을 기준으로 감사했는지”를 직접 확인할 수 있도록 commit과 evidence를 분리했습니다.</p></div>
-    <div class="links">
-      <div><small>01 · BASELINE</small><b>Frozen AI-generated source</b><span>branch: baseline-v2-generated · 2bb435dc89543a487bf151720202fc97d68100d3</span></div>
-      <div><small>02 · EVIDENCE</small><b>Finding / Reproduction / Re-test</b><span>docs/20-v2-remediation-evidence.md · run 37083925427</span></div>
-      <div><small>03 · HARDENED</small><b>Final remediated source</b><span>branch: hardened-v2 · 42a0023fd49372ec0e384b9c5317424081ea24d1</span></div>
-    </div>
-  </section>
-
-  <div class="note">
-    <strong>검증 범위:</strong> 이 사례는 실제 고객 시스템이나 고객 데이터를 사용하지 않았습니다. 별도 AI coding agent가 고정 요구사항으로 생성한 synthetic MVP를 freeze한 뒤 독립적으로 감사한 방법론 사례입니다. disposable local Supabase와 자동 저장소 검증을 사용했으며, hosted production 환경·물리 디바이스·전문 침투테스트 인증을 주장하지 않습니다.
-  </div>
 </main>
 </body>
 </html>

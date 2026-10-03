@@ -54,19 +54,19 @@ function Preview({ type }: { type: Project['preview'] }) {
     return (
       <div className="preview-shell preview-security">
         <div className="security-preview-head">
-          <div><small>INDEPENDENT APP AUDIT</small><b>VibeGuard V2</b></div>
-          <i>CLOSED</i>
+          <div><small>AI APP HARDENING</small><b>VibeGuard</b></div>
+          <i>5 FIXED</i>
         </div>
         <div className="security-preview-metrics">
-          <span><small>BASELINE</small><b>FROZEN</b></span>
-          <span><small>FINDINGS</small><b>5</b></span>
-          <span><small>RE-TEST</small><b>PASS</b></span>
+          <span><small>FOUND</small><b>5</b></span>
+          <span><small>FIXED</small><b>5</b></span>
+          <span><small>FINAL</small><b>PASS</b></span>
         </div>
         <div className="security-preview-flow">
-          <p><b>01</b><span>Lovable-generated baseline freeze</span><i>SHA</i></p>
-          <p><b>02</b><span>DB integrity / Storage findings</span><i>3</i></p>
-          <p><b>03</b><span>Lint / routing QA findings</span><i>2</i></p>
-          <p><b>04</b><span>Same-path remediation re-test</span><i>PASS</i></p>
+          <p><b>01</b><span>투표 기록 위조 경로</span><i>FIXED</i></p>
+          <p><b>02</b><span>비공개 이미지 노출</span><i>FIXED</i></p>
+          <p><b>03</b><span>투표·이벤트 불일치</span><i>FIXED</i></p>
+          <p><b>04</b><span>lint · test · build</span><i>PASS</i></p>
         </div>
       </div>
     )
