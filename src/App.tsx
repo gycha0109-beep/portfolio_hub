@@ -54,19 +54,19 @@ function Preview({ type }: { type: Project['preview'] }) {
     return (
       <div className="preview-shell preview-security">
         <div className="security-preview-head">
-          <div><small>RELEASE GATE</small><b>VibeGuard</b></div>
-          <i>PASS</i>
+          <div><small>INDEPENDENT APP AUDIT</small><b>VibeGuard V2</b></div>
+          <i>CLOSED</i>
         </div>
         <div className="security-preview-metrics">
-          <span><small>SECURITY</small><b>10 / 10</b></span>
-          <span><small>CONCURRENCY</small><b>20 → 1</b></span>
-          <span><small>BROWSERS</small><b>3 / 3</b></span>
+          <span><small>BASELINE</small><b>FROZEN</b></span>
+          <span><small>FINDINGS</small><b>5</b></span>
+          <span><small>RE-TEST</small><b>PASS</b></span>
         </div>
         <div className="security-preview-flow">
-          <p><b>01</b><span>RLS / AuthZ boundary</span><i>PASS</i></p>
-          <p><b>02</b><span>RPC-only vote + event</span><i>PASS</i></p>
-          <p><b>03</b><span>Duplicate / retry integrity</span><i>PASS</i></p>
-          <p><b>04</b><span>Release regression</span><i>PASS</i></p>
+          <p><b>01</b><span>Lovable-generated baseline freeze</span><i>SHA</i></p>
+          <p><b>02</b><span>DB integrity / Storage findings</span><i>3</i></p>
+          <p><b>03</b><span>Lint / routing QA findings</span><i>2</i></p>
+          <p><b>04</b><span>Same-path remediation re-test</span><i>PASS</i></p>
         </div>
       </div>
     )
