@@ -23,22 +23,27 @@ async function shotSection(index, name) {
   await el.screenshot({ path: `${out}/${name}`, animations: "disabled" });
 }
 
-async function shotRange(startIndex, endIndex, name, pad = 8) {
-  const a = await sections.nth(startIndex).boundingBox();
-  const z = await sections.nth(endIndex).boundingBox();
-  if (!a || !z) throw new Error("section bounds unavailable");
-  const top = Math.max(0, a.y - pad);
-  const bottom = z.y + z.height + pad;
-  await page.screenshot({
-    path: `${out}/${name}`,
-    animations: "disabled",
-    clip: { x: 0, y: top, width: 1440, height: bottom - top }
-  });
+async function shotBoard(indexes, name) {
+  await page.evaluate((ids) => {
+    const old = document.getElementById("portfolio-capture-board");
+    old?.remove();
+    const board = document.createElement("div");
+    board.id = "portfolio-capture-board";
+    board.style.cssText = "width:1180px;margin:0;padding:0 0 20px;background:#f6f7fb;color:#172033;";
+    const source = [...document.querySelectorAll("main > section")];
+    for (const id of ids) board.appendChild(source[id].cloneNode(true));
+    document.body.appendChild(board);
+  }, indexes);
+  const board = page.locator("#portfolio-capture-board");
+  await board.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(300);
+  await board.screenshot({ path: `${out}/${name}`, animations: "disabled" });
+  await page.locator("#portfolio-capture-board").evaluate(el => el.remove());
 }
 
 await shotSection(0, "01_vibeguard_framevote_hero.png");
 await shotSection(1, "02_core_issues_before_after.png");
-await shotRange(2, 4, "03_qa_results_verification.png", 10);
+await shotBoard([2, 3, 4], "03_qa_results_verification.png");
 
 await browser.close();
 console.log("Captured 3 Wishket portfolio images.");
