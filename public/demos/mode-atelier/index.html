@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Mode Atelier — Shopify Commerce Case Study</title>
+  <style>
+    :root{font-family:Inter,Pretendard,"Noto Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;color:#171717;background:#f4f1eb;--ink:#171717;--paper:#f4f1eb;--card:#fbfaf7;--line:#d8d2c8;--muted:#6d6a64}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink)}img{max-width:100%;display:block}main{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:32px 0 80px}
+    .top{display:flex;justify-content:space-between;align-items:center;padding:8px 0 26px;border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.08em;text-transform:uppercase}.top b{font-size:14px}.status{display:flex;gap:8px;align-items:center}.dot{width:7px;height:7px;border-radius:50%;background:#397455}
+    .hero{padding:72px 0 42px;display:grid;grid-template-columns:1.05fr .95fr;gap:58px;align-items:end}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#6d6a64}
+    h1{margin:14px 0 20px;font-family:Georgia,"Times New Roman",serif;font-size:clamp(54px,8vw,108px);font-weight:400;line-height:.9;letter-spacing:-.055em}.hero h2{margin:0 0 18px;font-size:18px;font-weight:650;letter-spacing:-.02em}.hero p{margin:0;max-width:620px;color:var(--muted);font-size:15px;line-height:1.8}
+    .hero-meta{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.hero-meta div{min-height:104px;padding:18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.28)}.hero-meta small{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase}.hero-meta b{display:block;margin-top:8px;font-size:17px}
+    .hero-shot{margin-top:10px;border:1px solid var(--line);background:#fff;padding:10px}.hero-shot img{width:100%;height:auto}section{padding:74px 0;border-top:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:180px 1fr;gap:28px;margin-bottom:30px}.section-head small{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#68645e}.section-head h2{margin:0;font-size:clamp(32px,5vw,58px);font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.045em;line-height:1}.section-copy{margin-left:208px;max-width:760px;color:var(--muted);font-size:15px;line-height:1.85}
+    .scope{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px}.scope article{background:var(--card);padding:26px;min-height:190px}.scope i{font-style:normal;font-size:11px;color:#8a857d}.scope h3{margin:26px 0 10px;font-size:18px}.scope p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.shot{margin:0;border:1px solid var(--line);background:#fff;padding:10px}.shot img{width:100%;height:auto;background:#eee}.shot figcaption{display:flex;justify-content:space-between;gap:20px;padding:12px 3px 3px;font-size:12px;color:#5e5b56}.shot figcaption b{color:#171717}.shot.mobile{display:grid;grid-template-columns:minmax(160px,260px) 1fr;align-items:center;gap:20px}.shot.mobile img{max-height:600px;object-fit:contain}
+    .verify{display:grid;grid-template-columns:1fr 1fr;gap:18px}.verify article{border:1px solid var(--line);background:var(--card);padding:24px}.verify small{color:#756f68;font-size:10px;letter-spacing:.08em;text-transform:uppercase}.verify h3{margin:10px 0 12px;font-size:21px}.verify ul{margin:0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.8}
+    .boundary{display:grid;grid-template-columns:1fr 1fr;gap:18px}.boundary article{padding:28px;border:1px solid var(--line)}.boundary .ok{background:#19201b;color:#f4f1eb}.boundary .blocked{background:#ece7dd}.boundary small{font-size:10px;letter-spacing:.09em;text-transform:uppercase}.boundary h3{font-size:30px;margin:10px 0 12px}.boundary p{font-size:13px;line-height:1.75;margin:0;opacity:.78}
+    .limitations{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}.limitations div{background:var(--card);padding:22px;font-size:13px;line-height:1.7}.final{padding-bottom:0}.final-card{background:#181818;color:#f4f1eb;padding:46px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}.final-card h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,6vw,72px);font-weight:400;letter-spacing:-.05em}.final-card p{margin:14px 0 0;color:#b9b6af;max-width:720px;line-height:1.75;font-size:14px}.final-card b{font-size:12px;letter-spacing:.12em;text-transform:uppercase}.note{margin-top:16px;color:#77716a;font-size:11px;line-height:1.7}
+    @media(max-width:800px){main{width:min(100% - 24px,1180px)}.hero{grid-template-columns:1fr;gap:34px;padding-top:48px}.section-head{grid-template-columns:1fr;gap:10px}.section-copy{margin-left:0}.scope{grid-template-columns:1fr}.gallery,.verify,.boundary,.limitations{grid-template-columns:1fr}.shot.mobile{grid-template-columns:1fr}.shot.mobile img{max-height:none}.final-card{grid-template-columns:1fr;padding:28px}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="top"><b>MODE ATELIER / CASE STUDY</b><span class="status"><i class="dot"></i> DEV STORE SMOKE VERIFIED</span></div>
+  <header class="hero">
+    <div>
+      <span class="eyebrow">Shopify Commerce · Synthetic Portfolio</span>
+      <h1>Mode<br>Atelier</h1>
+      <h2>글로벌 패션 브랜드 Shopify 커머스 구축</h2>
+      <p>글로벌 패션 쇼핑몰 외주 요구사항을 일반화해, 화면 설계에서 끝내지 않고 실제 Shopify Dev Store에 상품·검색·PDP·Ajax cart·다국어·Markets·고객 계정·테스트 결제까지 연결하고 주요 구매 흐름을 검증했습니다.</p>
+    </div>
+    <div class="hero-meta">
+      <div><small>Platform</small><b>Shopify OS 2.0</b></div>
+      <div><small>Catalog</small><b>6 products / 14 variants</b></div>
+      <div><small>Locale</small><b>KO / EN / JA</b></div>
+      <div><small>Viewport</small><b>390 / 768 / 1440</b></div>
+    </div>
+  </header>
+  <figure class="hero-shot"><img src="./screenshots/home-1440.jpg" alt="Mode Atelier 데스크톱 홈 화면"></figure>
+
+  <section>
+    <div class="section-head"><small>01 / Problem</small><h2>예쁜 화면이 아니라,<br>운영 가능한 구매 흐름이 필요했습니다.</h2></div>
+    <p class="section-copy">패션 커머스는 상품 옵션과 재고, 컬렉션 탐색, 검색·필터, 장바구니, 언어·국가 전환, 고객 계정, Checkout과 운영자 편집이 하나의 흐름으로 이어져야 합니다. 그래서 정적 목업이 아니라 실제 Shopify 데이터와 Admin 설정을 사용해 검증 범위를 만들었습니다.</p>
+  </section>
+
+  <section>
+    <div class="section-head"><small>02 / Build Scope</small><h2>스토어 화면부터 운영 설정까지<br>한 번에 연결했습니다.</h2></div>
+    <div class="scope">
+      <article><i>01</i><h3>상품 탐색</h3><p>Editorial Home, Collection, Search & Discovery 필터, 정렬, Predictive Search를 실제 상품 데이터와 연결했습니다.</p></article>
+      <article><i>02</i><h3>PDP & Cart</h3><p>Variant별 가격·URL·품절 상태, 상품 추천, Ajax add-to-cart, 실시간 badge, 수량·삭제·빈 장바구니를 검증했습니다.</p></article>
+      <article><i>03</i><h3>Global storefront</h3><p>KO/EN/JA와 Korea/US/Japan Markets, hosted customer accounts, Journal, FAQ, Lookbook, Theme Editor, SEO 구조를 구성했습니다.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><small>03 / Storefront</small><h2>실제 Dev Store에서 확인한<br>핵심 화면입니다.</h2></div>
+    <div class="gallery">
+      <figure class="shot"><img loading="lazy" src="./screenshots/collection-filters-1440.jpg" alt="컬렉션 필터 화면"><figcaption><b>Collection discovery</b><span>filter · sort · active facets</span></figcaption></figure>
+      <figure class="shot mobile"><img loading="lazy" src="./screenshots/home-390.jpg" alt="모바일 홈 화면"><figcaption><b>Responsive home</b><span>390px storefront</span></figcaption></figure>
+      <figure class="shot mobile"><img loading="lazy" src="./screenshots/pdp-390.jpg" alt="모바일 상품 상세 화면"><figcaption><b>Product detail</b><span>mobile PDP</span></figcaption></figure>
+      <figure class="shot"><img loading="lazy" src="./screenshots/variant-m-price-url-1440.jpg" alt="Variant 변경 화면"><figcaption><b>Variant state</b><span>price + URL update</span></figcaption></figure>
+      <figure class="shot"><img loading="lazy" src="./screenshots/variant-l-sold-out-1440.jpg" alt="품절 Variant 화면"><figcaption><b>Sold-out guard</b><span>disabled purchase CTA</span></figcaption></figure>
+      <figure class="shot"><img loading="lazy" src="./screenshots/ajax-add-confirmation-1440.jpg" alt="Ajax 장바구니 성공 알림"><figcaption><b>Ajax cart</b><span>live badge + notice</span></figcaption></figure>
+      <figure class="shot"><img loading="lazy" src="./screenshots/cart-multiple-products-1440.jpg" alt="여러 상품 장바구니"><figcaption><b>Cart</b><span>multiple products / variants</span></figcaption></figure>
+      <figure class="shot"><img loading="lazy" src="./screenshots/predictive-search.jpg" alt="예측 검색 화면"><figcaption><b>Predictive Search</b><span>products · pages · collections</span></figcaption></figure>
+      <figure class="shot mobile"><img loading="lazy" src="./screenshots/home-ko-390.jpg" alt="한국어 모바일 홈"><figcaption><b>Korean locale</b><span>localized route</span></figcaption></figure>
+      <figure class="shot"><img loading="lazy" src="./screenshots/home-ja-1440.jpg" alt="일본어 데스크톱 홈"><figcaption><b>Japanese locale</b><span>localized storefront</span></figcaption></figure>
+      <figure class="shot"><img loading="lazy" src="./screenshots/test-payment-approved-ja.jpg" alt="Shopify 테스트 결제 승인 화면"><figcaption><b>Test checkout</b><span>simulated approval only</span></figcaption></figure>
+    </div>
+    <p class="note">모든 이미지는 synthetic 데이터로 구성한 실제 Shopify draft preview의 검증 캡처입니다. 공개 production 스토어나 실제 결제 완료를 의미하지 않습니다.</p>
+  </section>
+
+  <section>
+    <div class="section-head"><small>04 / Verification</small><h2>기능을 만들었다는 주장과<br>실제로 확인한 범위를 분리했습니다.</h2></div>
+    <div class="verify">
+      <article><small>Commerce flow</small><h3>구매 흐름</h3><ul><li>Variant 가격 변경 · URL 반영 · 품절 CTA</li><li>Ajax add-to-cart · live badge · 오류 복구</li><li>장바구니 수량 변경 · 삭제 · 다중 상품</li><li>필터 · 정렬 · 빈 결과 · Predictive Search</li></ul></article>
+      <article><small>Global / quality</small><h3>운영·품질</h3><ul><li>KO / EN / JA 및 국가 전환 경로</li><li>Hosted customer accounts 진입</li><li>390 / 768 / 1440 핵심 화면 smoke</li><li>Theme Check · locale parity · Ajax unit contracts PASS</li></ul></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><small>05 / Payment Boundary</small><h2>테스트 결제와 실제 PG를<br>같다고 표현하지 않았습니다.</h2></div>
+    <div class="boundary">
+      <article class="ok"><small>Verified</small><h3>Test Gateway</h3><p>Shopify 무료 테스트 환경에서 결제 거절 → 재시도 → 승인 → Test order 생성까지 확인했습니다. Checkout 흐름 검증을 위한 모의 결제입니다.</p></article>
+      <article class="blocked"><small>External dependency</small><h3>Production PG</h3><p>실제 카드·PayPal·간편결제 활성화는 merchant country, 사업자 심사, provider eligibility와 정책에 따라 달라집니다. 실 PG 연동 완료를 주장하지 않습니다.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><small>06 / Limits</small><h2>아직 확인하지 않은 것도<br>그대로 남겼습니다.</h2></div>
+    <div class="limitations">
+      <div><b>추가 검증 영역</b><br>Lighthouse / axe, 전체 screen-reader·arrow-key 감사, live Ajax stock 422, pagination runtime, Contact/newsletter 실제 전송</div>
+      <div><b>실서비스 외부 의존</b><br>실 PG 심사, merchant country, USD/JPY 정책, DNS, 법률·배송·세금 검수, production publish 승인</div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="final-card"><div><b>Result</b><h2>Portfolio smoke scope<br>VERIFIED.</h2><p>Dev Store 기준으로 핵심 커머스 흐름을 구현·검증하고 인수인계 가능한 증거를 남겼습니다. Production go-live는 가맹점 의존 항목 때문에 별도 단계로 구분합니다.</p></div><b>MODE ATELIER / 2026</b></div>
+  </section>
+</main>
+</body>
+</html>
