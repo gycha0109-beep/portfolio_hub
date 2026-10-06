@@ -50,6 +50,14 @@ function Logo() {
 }
 
 function Preview({ type }: { type: Project['preview'] }) {
+  if (type === 'commerce') {
+    return (
+      <div className="preview-shell cover-shell">
+        <img className="cover-image" src="/demos/mode-atelier/screenshots/home-1440.jpg" alt="Mode Atelier Shopify 스토어 홈 화면" />
+      </div>
+    )
+  }
+
   if (type === 'security') {
     return (
       <div className="preview-shell preview-security">
@@ -528,7 +536,7 @@ function ProjectDetail() {
             <p>{project.description}</p>
             <div className="detail-actions">
               <a className="primary-button" href={project.demoUrl} target="_blank" rel="noreferrer">
-                <Play size={16} fill="currentColor" /> LIVE DEMO <ExternalLink size={15} />
+                <Play size={16} fill="currentColor" /> {project.slug === 'mode-atelier' ? 'CASE STUDY' : 'LIVE DEMO'} <ExternalLink size={15} />
               </a>
               <Link className="secondary-button" to="/">목록으로 돌아가기</Link>
             </div>

@@ -231,6 +231,41 @@
         "Repository QA gate stabilization / re-test"
       ],
       "preview": "security"
+    },
+    {
+      "schemaVersion": 1,
+      "slug": "mode-atelier",
+      "order": 8,
+      "title": "Mode Atelier",
+      "kicker": "글로벌 패션 브랜드 Shopify 커머스 구축",
+      "description": "글로벌 패션 쇼핑몰 요구사항을 일반화해 Shopify Online Store 2.0에서 상품·검색·PDP·Ajax cart·다국어·Markets·고객 계정·테스트 결제·QA까지 실제 Dev Store로 검증한 프로젝트입니다.",
+      "category": "SHOPIFY COMMERCE",
+      "accent": "#ded8ce",
+      "stack": [
+        "Shopify",
+        "Liquid",
+        "JavaScript",
+        "GitHub Actions"
+      ],
+      "problem": "패션 쇼핑몰은 보기 좋은 화면만으로는 부족합니다. 상품 옵션·품절·검색·필터·장바구니·다국어·고객 계정·Checkout과 운영자 편집 흐름까지 실제 Shopify 데이터와 연결돼야 합니다.",
+      "solution": "Online Store 2.0 테마와 synthetic catalog를 구축하고, 실제 Dev Store에서 상품 탐색부터 테스트 결제까지 주요 구매 흐름을 브라우저로 검증했습니다. 실 PG·법률·DNS·production publish처럼 가맹점 의존 영역은 검증 범위와 분리했습니다.",
+      "evidence": [
+        "6개 synthetic 상품 · 14개 variant · 5개 collection 실제 구성",
+        "Variant 가격·URL·품절, Ajax cart, 필터·정렬·Predictive Search 실제 검증",
+        "KO / EN / JA 및 Korea / US / Japan Markets 경로 검증",
+        "Test Gateway 거절 → 재시도 승인 → Test order 생성 확인",
+        "390 / 768 / 1440 핵심 화면 smoke 및 Shopify Theme Check PASS"
+      ],
+      "scope": [
+        "Editorial Home / Lookbook / Journal",
+        "Collection filtering / sorting / search",
+        "PDP / variants / sold-out / recommendations",
+        "Ajax cart / cart / checkout entry",
+        "KO·EN·JA localization / Markets",
+        "Hosted customer accounts / Theme Editor / SEO",
+        "Test payment / QA evidence / handover"
+      ],
+      "preview": "commerce"
     }
   ]
 }
