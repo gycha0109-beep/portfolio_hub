@@ -44,7 +44,7 @@ const requiredMeta = [
   'category', 'accent', 'stack', 'problem', 'solution', 'evidence', 'scope', 'preview',
 ]
 
-const allowedPreview = new Set(['erp', 'ai', 'ops', 'legacy', 'ledger', 'proposal', 'security'])
+const allowedPreview = new Set(['erp', 'ai', 'ops', 'legacy', 'ledger', 'proposal', 'security', 'commerce'])
 
 const files = []
 let totalBytes = 0
