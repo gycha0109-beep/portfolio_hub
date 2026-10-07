@@ -538,6 +538,16 @@ function ProjectDetail() {
               <a className="primary-button" href={project.demoUrl} target="_blank" rel="noreferrer">
                 <Play size={16} fill="currentColor" /> {project.slug === 'mode-atelier' ? 'CASE STUDY' : 'LIVE DEMO'} <ExternalLink size={15} />
               </a>
+              {project.slug === 'mode-atelier' && (
+                <a
+                  className="secondary-button"
+                  href="https://mode-atelier-fluhoiwk.myshopify.com?preview_theme_id=188330770750"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  실제 Shopify 스토어 <ExternalLink size={15} />
+                </a>
+              )}
               <Link className="secondary-button" to="/">목록으로 돌아가기</Link>
             </div>
           </div>
