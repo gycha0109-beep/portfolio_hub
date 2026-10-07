@@ -555,7 +555,6 @@ function ProjectDetail() {
                 Shopify Dev Store · Demo password <code>modeatelier</code>
               </p>
             )}
-            </div>
           </div>
 
           <div className="detail-preview">
