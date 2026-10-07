@@ -550,6 +550,12 @@ function ProjectDetail() {
               )}
               <Link className="secondary-button" to="/">목록으로 돌아가기</Link>
             </div>
+            {project.slug === 'mode-atelier' && (
+              <p className="demo-access-note">
+                Shopify Dev Store · Demo password <code>modeatelier</code>
+              </p>
+            )}
+            </div>
           </div>
 
           <div className="detail-preview">
