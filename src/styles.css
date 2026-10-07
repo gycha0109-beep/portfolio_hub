@@ -1313,3 +1313,20 @@ button, input, select { font: inherit; }
   font-style: normal;
   font-weight: 900;
 }
+
+.demo-access-note {
+  margin: 12px 0 0;
+  color: #9ba1aa;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.demo-access-note code {
+  margin-left: 4px;
+  padding: 3px 7px;
+  border: 1px solid #343b46;
+  border-radius: 4px;
+  background: #151a21;
+  color: #f4f6f8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+}
